@@ -1,0 +1,23 @@
+<%= @user.errors.full_messages.join(',') %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, class:'form-control' %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, class:'form-control' %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email, class:'form-control' %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, class:'form-control', rows: 4 %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, class:'form-control' %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, class:'form-control' %>
+  <!-- <br> -->
+  <%= f.submit "Sign Up", class: 'btn btn-primary' %>
+<% end %>

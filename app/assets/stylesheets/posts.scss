@@ -1,0 +1,20 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#logo{
+  height:100%;
+  width: auto;
+}
+header{
+  height: 100px;
+  text-align: center;
+  border-bottom: solid thin grey;
+}
+header h3{
+  display: inline-block;
+  text-shadow: 0px 0px 5px rgba(221, 19, 47, 0.41);
+}
+#boxtitle{
+  text-align: center;
+}
