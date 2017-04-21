@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-md-2 col-sm-4 nav nav-pills nav-stacked" id="sidebar1" data-spy="affix">
       <div id="userLogo">
-          <img src="https://s-media-cache-ak0.pinimg.com/originals/b4/44/f5/b444f56a9f12291ad3c2ba5e1b2cef63.jpg" class="img-responsive center-block" alt="Logo">
+          <%= image_tag @user.selfie.url(:medium), class:"img-responsive center-block" %>
+          <!-- <img src="https://s-media-cache-ak0.pinimg.com/originals/b4/44/f5/b444f56a9f12291ad3c2ba5e1b2cef63.jpg" class="img-responsive center-block" alt="Logo"> -->
       </div>
       <br>
       <div class="left-navigation" >

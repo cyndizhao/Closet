@@ -35,7 +35,7 @@ gem "font-awesome-rails" #add font-awesome
 gem 'fancybox-rails' #add fancybox
 gem 'jquery-rails' #add jquery
 gem 'bxslider-rails' #add bxslider
-
+gem "paperclip", "~> 4.2"
 
 
 

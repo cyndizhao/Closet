@@ -18,6 +18,11 @@
 
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, class:'form-control' %>
+
+  <%= f.label :selfie %>
+  <%= f.file_field :selfie, class: 'form-control', id: "inputImage"%>
   <!-- <br> -->
+  <div id="previewImage" style="max-width:300px;">
+  </div>
   <%= f.submit "Sign Up", class: 'btn btn-primary' %>
 <% end %>
