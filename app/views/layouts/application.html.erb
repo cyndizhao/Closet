@@ -78,7 +78,11 @@
         <!-- <img id="logo" alt="Brand" src="<%= asset_path( 'logo.png') %>">
         <h3>Captures and Reflects Fashion</h3> -->
       <!-- </header> -->
-
+      <% if flash[:notice] %>
+        <div class="flash-notice"><%= flash[:notice] %></div>
+      <% elsif flash[:alert] %>
+        <div class="flash-alert"><%= flash.now[:alert] %></div>
+      <% end %>
     <%= yield %>
     <!-- <div id="myModalFirst" class="modal fade" role="dialog"> -->
     <!-- </div> -->

@@ -12,16 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require bootstrap-sprockets
 //= require jquery
 //= require bxslider
 //= require fancybox
+//= require_tree .
+
 $(document).ready(function(){
   $(".fancybox").fancybox({
       openEffect: "none",
       closeEffect: "none"
   });
+  
   $('#slide1').bxSlider({
     minSlides: 3,
     maxSlides: 4,
@@ -32,6 +34,5 @@ $(document).ready(function(){
     // // auto_hover: true,
     // controls: ture,
   });
-
 
 });

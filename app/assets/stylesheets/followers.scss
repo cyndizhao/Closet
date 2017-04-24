@@ -1,0 +1,19 @@
+// Place all the styles related to the followers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#followers .avatar{
+	width:90px;
+
+}
+#followers .avatar > img{
+	width:70px;
+	height:70px;
+	border-radius:10%;
+}
+#followerinfo {
+  text-align: left;
+}
+#followerName {
+  width: 100px;
+}

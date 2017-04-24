@@ -1,34 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2 col-sm-4 nav nav-pills nav-stacked" id="sidebar1" data-spy="affix">
-      <div id="userLogo">
-          <%= image_tag @user.selfie.url(:medium), class:"img-responsive center-block" %>
-          <!-- <img src="https://s-media-cache-ak0.pinimg.com/originals/b4/44/f5/b444f56a9f12291ad3c2ba5e1b2cef63.jpg" class="img-responsive center-block" alt="Logo"> -->
-      </div>
-      <br>
-      <div class="left-navigation" >
-        <ul>
-          <h5><strong>WHEREABOUTS</strong></h5>
-          <li>Home</li>
-          <li>Office</li>
-          <li>School</li>
-          <li>Gym</li>
-          <li>Art Class</li>
-          <li>Hike Club</li>
-        </ul>
-        <br>
-        <ul>
-          <h5><strong>HOBBIES</strong></h5>
-          <li>Hiking</li>
-          <li>Rafting</li>
-          <li>Badminton</li>
-          <li>Tennis</li>
-          <li>Sketching</li>
-          <li>Horse Riding</li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4" id="main-content">
+    <!-- render _sidebar.html.erb -->
+    <% if params[:id] == current_user.id.to_s %>
+      <%= render 'partials/sidebar' %>
+
+      <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4" id="main-content">
       <!--Main content code to be written here -->
       <div class="container" id="greeting">
         <% greeting = ["Hi, what\'s new?", "Ready to share your outfit for today?", "Fashion is what you’re offered four times a year by designers. And style is what you choose.", "Clothes are like a good meal, a good movie, great pieces of music."] %>
@@ -71,5 +47,8 @@
       </div>
 
     </div>
+    <% else %>
+      <p>other people's home</p>
+    <% end %>
   </div>
 </div>
