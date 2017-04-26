@@ -14,7 +14,7 @@ $(document).ready(function(){
         console.log(file);
         img.src = file.target.result;
         $('#previewImage').html(img);
-        $('#previewImage img').css({'max-width': '300px', 'height':'auto'})
+        $('#previewImage img').css({'max-width': '400px', 'height':'auto'})
       }
       reader.readAsDataURL(image);
       console.log(files);

@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :followeds, class_name: 'Following', foreign_key: 'follower_id' #gives an array of "Following" objects where this user IS the follower
   has_many :people_you_follow, through: :followeds, source: :user
 
-
+  
 
 
   has_secure_password

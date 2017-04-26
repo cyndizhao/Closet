@@ -23,7 +23,7 @@ $(document).ready(function(){
       openEffect: "none",
       closeEffect: "none"
   });
-  
+
   $('#slide1').bxSlider({
     minSlides: 3,
     maxSlides: 4,
@@ -34,5 +34,8 @@ $(document).ready(function(){
     // // auto_hover: true,
     // controls: ture,
   });
+
+  //add iPicture
+  $("#iPicture").iPicture();
 
 });

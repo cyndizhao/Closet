@@ -10,7 +10,8 @@
         <% greeting = ["Hi, what\'s new?", "Ready to share your outfit for today?", "Fashion is what you’re offered four times a year by designers. And style is what you choose.", "Clothes are like a good meal, a good movie, great pieces of music."] %>
         <h3><%= greeting.sample %></h3>
         <div id = "wrap">
-          <a href="#" id = "newOutfit"><b>NEW OUTFIT</b></a>
+          <%= link_to "NEW OUTFIT", new_post_path, id:"newOutfit" %>
+          <!-- <a href="#" id = "newOutfit"><b>NEW OUTFIT</b></a> -->
         </div>
       </div>
 
