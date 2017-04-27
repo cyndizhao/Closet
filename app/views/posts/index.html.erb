@@ -1,7 +1,9 @@
-<header>
-  <img id="logo" alt="Brand" src="<%= asset_path( 'logo.png') %>">
-  <h3>Style Is A Way To Say Who You Are Without Having To Speak</h3>
-</header>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">装</h1>
+    <p class="lead">Style Is A Way To Say Who You Are Without Having To Speak</p>
+  </div>
+</div>
 
 <div class="container">
   <% if user_signed_in? %>
@@ -17,7 +19,7 @@
             <% if !following.present? %>
 
             <div class="col-sm-3" style="margin-bottom: 10px;">
-              <div class="card card<%= counter %>" >
+              <div class="card" >
                   <div class="header-bg header-bg<%= counter %>" width="250" height="70" id="header-blur"></div>
                   <div class="avatar">
                     <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
@@ -111,3 +113,20 @@
   </div>
 
 </div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+    <h4 class="title">Closet</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit, libero a molestie consectetur, sapien elit lacinia mi.</p>
+      <ul class="social-icon">
+      <a href="#" class="social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+      <a href="#" class="social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+      <a href="#" class="social"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+      <a href="#" class="social"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+      <a href="#" class="social"><i class="fa fa-google" aria-hidden="true"></i></a>
+      <a href="#" class="social"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+      </ul>
+    </div>
+  </div>
+
+</footer>

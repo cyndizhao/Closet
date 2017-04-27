@@ -2,18 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#logo{
-  height:100%;
-  width: auto;
-}
-header{
-  height: 100px;
-  text-align: center;
-  border-bottom: solid thin grey;
-}
-header h3{
-  display: inline-block;
-  text-shadow: 0px 0px 5px rgba(221, 19, 47, 0.41);
+.jumbotron-fluid{
+  background: linear-gradient(to right, #307dac ,#4a4cc9, #77a0b8,#6a6cba, #abcfe5,#b6b6dd, #ccdfeb);
+  // background-image: url('http://fc06.deviantart.net/fs71/i/2013/237/1/5/outfit_sketch_spazz_by_dreamerwhit95-d6jqz6i.jpg');
+  // background-image: image-url('background.jpg');
+  // filter: drop-shadow(10px 10px 7px rgba(0,0,0,0.8)) grayscale(0.8);;
+  filter: grayscale(0.7);;
 }
 .boxtitle{
   text-align: center;
@@ -21,33 +15,37 @@ header h3{
 
 // Find new friends
 .card {
+  background-color: white;
   overflow: hidden;
   position: relative;
   border: 1px solid #CCC;
   border-radius: 8px;
   text-align: center;
   padding: 0;
-  // background-color: #f5f5f5;
   color: rgb(136, 172, 217);
 }
-.header-bg1{
-  background-color: #f2dede;
 
-}
-.header-bg2{
-  background-color: #d9edf7;
-
-}
-.header-bg3{
-  background-color: #f5f5f5;
-
-}
-.header-bg4{
-  background-color: #dff0d8;
-}
+// .header-bg1{
+//   background-color: #f2dede;
+//
+// }
+// .header-bg2{
+//   background-color: #d9edf7;
+//
+// }
+// .header-bg3{
+//   background-color: #f5f5f5;
+//
+// }
+// .header-bg4{
+//   background-color: #dff0d8;
+// }
 
 .card .header-bg {
   /* This stretches the canvas across the entire hero unit */
+  // background-color: #000;
+  // background-color: #2b2e32;
+  background-color: #35404f;
   position: absolute;
   top: 0;
   left: 0;
@@ -67,5 +65,5 @@ header h3{
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 5px solid rgba(0,0,30,0.8);
+  border: 3px solid rgba(0,0,30,0.8);
 }
