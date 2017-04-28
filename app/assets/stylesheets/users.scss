@@ -1,6 +1,30 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#signUpform{
+    width : 400px;
+    height : 500px;
+    background-color : #35404f;
+    margin :0 auto;
+    border-radius : 15px;
+    box-shadow: 0 0 15px #4a4cc9;
+    padding-bottom: 20px;
+    padding-top: 25px;
+}
+#signUpform input{
+  width: 200px;
+}
+
+// #logInform input[type=button]
+#signUpButton{
+  background: linear-gradient(to right, #307dac, #4a4cc9, #77a0b8, #6a6cba, #abcfe5, #b6b6dd, #ccdfeb);
+  filter: grayscale(0.5);
+
+}
+#inputImage{
+  color:white;
+}
+
 #sidebar1 {
     background: #F17153;
     // /* For browsers that do not support gradients */

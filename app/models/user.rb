@@ -10,14 +10,14 @@ class User < ApplicationRecord
   has_many :followeds, class_name: 'Following', foreign_key: 'follower_id' #gives an array of "Following" objects where this user IS the follower
   has_many :people_you_follow, through: :followeds, source: :user
 
-  
+
 
 
   has_secure_password
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :description, presence: true
+  # validates :description, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
