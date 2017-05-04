@@ -16,6 +16,7 @@ $(document).ready(function(){
         img.src = file.target.result;
         $('#previewImage').html(img);
         $('#previewImage img').css({'max-width': '400px', 'height':'auto'})
+        $('#previewImage img').addClass("ip_tooltipImg");
       }
       reader.readAsDataURL(image);
       console.log(files);

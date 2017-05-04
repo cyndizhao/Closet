@@ -16,9 +16,11 @@ class PostsController < ApplicationController
 
   def create
     #params.require(:post).permit([:description, :picture, :category_id])
+    # byebug
     @post = Post.new post_params
     @post.user = current_user
     if @post.save
+
       # redirect_to user_path(current_user)
       redirect_to post_path(@post)
     else
