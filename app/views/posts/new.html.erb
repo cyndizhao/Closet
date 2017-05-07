@@ -13,7 +13,7 @@
               <!-- form start -->
 
               <h3>Create post</h3>
-              <%= form_for @post, id:"newPostForm" do |f| %>
+              <%= form_for @post, html: {id:"newPostForm"} do |f| %>
               <div class="form-group">
                 <%= f.label "Season" %>
                 <%= f.collection_select :category_id, Category.order(:name), :id, :name %>
@@ -25,13 +25,14 @@
               <div class="form-group">
                 <%= f.submit "Create", class:"btn btn-primary"%>
               </div>
-              <input type="hidden" id="labels">
+              <input type="hidden" name="items_json" id="items">
+              <!-- <div class="form-group">
+                <%# f.label :description %>
+                <%# f.text_area :description, rows:"4", class:"form-control"%>
+              </div>  -->
               <% end %>
 
-              <!-- <div class="form-group">
-        				<%# f.label :description %>
-        				<%# f.text_area :description, rows:"4", class:"form-control"%>
-        			</div>  -->
+
 
               <!-- preview picture -->
               <div id="iPicture" data-interaction="hover">
@@ -39,7 +40,25 @@
 
                 </div>
               </div>
+              <div id="newItemFormDiv" style="color: black" class="hidden">
+                <form class="" action="index.html" method="post" id="newItemForm">
+                  <label for="">Brand:</label>
+                  <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}), id:"itemBrand", name: "brand", class: "form-control"%>
+                  <label for="">Price:</label>
+                  <input type="text" name="price" value="" id="itemPrice" class="form-control">
+                  <label for="">Link:</label>
+                  <input type="text" name="link" value="" id="itemLink" class="form-control">
+                  <input type="submit" name="" value="Submit">
+                </form>
 
+
+                <%# form_for Item.new, html: {id:"newItemForm"} do |f| %>
+                <%# f.collection_select :brand_id, Brand.order(:name), :id, :name %>
+                <%# f.text_field :price, class:"form-control"%>
+                <%# f.text_field :link, class:"form-control"%>
+                <%# f.submit "test", class:"btn btn-primary"%>
+                <%# end %>
+              </div>
 
 
         		</div>

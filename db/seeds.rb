@@ -1,7 +1,7 @@
 #four categories
-['Spring', 'Summer', 'Autumn', 'Winter'].each do |category|
-  Category.create(name: category)
-end
+# ['Spring', 'Summer', 'Autumn', 'Winter'].each do |category|
+#   Category.create(name: category)
+# end
 
 
 # 10.times do
@@ -20,3 +20,7 @@ end
 #               category: Category.all.sample,
 #               user: User.all.sample
 # end
+
+['Zara', 'H&M', 'Forever 21', 'Jimmy Choo', 'Gucci', 'Tom Ford', 'Jo Malone', 'Dior', 'Katespade'].each do |brand|
+  Brand.create(name: brand)
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425042842) do
+ActiveRecord::Schema.define(version: 20170507192400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,19 @@ ActiveRecord::Schema.define(version: 20170425042842) do
     t.integer  "follower_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer  "price"
+    t.string   "link"
+    t.integer  "post_id"
+    t.integer  "brand_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "x"
+    t.integer  "y"
+    t.index ["brand_id"], name: "index_items_on_brand_id", using: :btree
+    t.index ["post_id"], name: "index_items_on_post_id", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|
@@ -62,6 +75,8 @@ ActiveRecord::Schema.define(version: 20170425042842) do
     t.datetime "selfie_updated_at"
   end
 
+  add_foreign_key "items", "brands"
+  add_foreign_key "items", "posts"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
 end

@@ -20,7 +20,12 @@ class PostsController < ApplicationController
     @post = Post.new post_params
     @post.user = current_user
     if @post.save
-
+      raw_items = JSON.parse(params[:items_json])
+      raw_items.each do |item|
+        item['brand_id'] = Brand.find_by_name(item['brand']).id
+        item.delete('brand')
+        @post.items.create(item)
+      end
       # redirect_to user_path(current_user)
       redirect_to post_path(@post)
     else

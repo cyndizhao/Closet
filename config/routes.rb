@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'posts#index'
-  resources :posts
+  resources :posts 
+  resources :items
   # get('/users/:id', {to:'users#show_posts'})
   resources :users, only:[:show, :new, :create, :update, :edit] do
     resources :followers, only:[:index]

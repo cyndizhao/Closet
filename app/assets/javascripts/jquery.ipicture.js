@@ -1,13 +1,13 @@
 /*
  * iPicture² 1.0.0
- * 
+ *
  * Author: Sara D'Alia
- * 
+ *
  */
 (function($){
- 
+
     $.fn.extend({
-         
+
         //pass the options variable to the function
     	iPicture: function(options) {
 
@@ -16,27 +16,30 @@
         		animationType:"ltr-slide",
         		button: "moreblack"
             }
-                 
+
             var options =  $.extend(defaults, options);
- 
+
             return this.each(function() {
                 var o = options;
                 var self = this;
             	//each picture
         		$('.ip_slide').each(function( index, value ) {
         			$(this).find('.ip_tooltip').each(function( index, value ){
-        				htmlContent=$(value).html();
-        				button = $(value).data('button');
-        				round = $(value).data('round');
-        				tooltipBg = $(value).data('tooltipbg');
-        				$(value).html('');
-        				if(round!=undefined && round!=""){
-        					$('<div class="'+round+'"></div><div class="'+round+'In"></div><div class="'+round+'Inner"></div>')
-        						.appendTo(value);
-        				}
-        				$('<div class="button '+button+'"></div>').appendTo(value);
-        				descrContainer = $('<div class="descrContainer"><div class="ip_descr '+tooltipBg+'"><div class="xs">'+htmlContent+'</div></div></div>')
-        					.appendTo(value);
+                if ($(value).find('.ip_descr').length < 1 ){
+                  // [belu]: add only at first function call.
+          				htmlContent=$(value).html();
+          				button = $(value).data('button');
+          				round = $(value).data('round');
+          				tooltipBg = $(value).data('tooltipbg');
+          				$(value).html('');
+          				if(round!=undefined && round!=""){
+          					$('<div class="'+round+'"></div><div class="'+round+'In"></div><div class="'+round+'Inner"></div>')
+          						.appendTo(value);
+          				}
+          				$('<div class="button '+button+'"></div>').appendTo(value);
+          				descrContainer = $('<div class="descrContainer"><div class="ip_descr '+tooltipBg+'"><div class="xs">'+htmlContent+'</div></div></div>')
+          					.appendTo(value);
+                }
         			});
         		});
         		var interaction=$(self).data('interaction');
@@ -60,7 +63,7 @@
         				case "rtl-slide":
         					insertDescr($(value),'rtl-before','pass-rtl');
         					//Animation function left to right sliding
-        					if(interaction=="click") clickHandler($(value), 'rtl-slide'); 
+        					if(interaction=="click") clickHandler($(value), 'rtl-slide');
         						else mouseOverHandler($(value), 'rtl-slide');
         					break;
         				default:
@@ -74,7 +77,7 @@
         		});
             });
             function insertDescr(selector, descrClass, divClass){
-            	var descr = selector.find(".ip_descr").addClass(descrClass);
+              var descr = selector.find(".ip_descr").addClass(descrClass);
 				$('<div class="'+divClass+'"></div>').insertBefore(descr);
             };
             function clickHandler(selector, animationType){
@@ -111,5 +114,5 @@
             };
         }
     });
-     
+
 })(jQuery);
