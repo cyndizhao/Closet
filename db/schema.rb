@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507192400) do
+ActiveRecord::Schema.define(version: 20170510043948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,12 @@ ActiveRecord::Schema.define(version: 20170507192400) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "genders", force: :cascade do |t|
+    t.string   "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer  "price"
     t.string   "link"
@@ -43,8 +49,19 @@ ActiveRecord::Schema.define(version: 20170507192400) do
     t.datetime "updated_at", null: false
     t.integer  "x"
     t.integer  "y"
+    t.string   "detail"
+    t.string   "kind"
     t.index ["brand_id"], name: "index_items_on_brand_id", using: :btree
     t.index ["post_id"], name: "index_items_on_post_id", using: :btree
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|
@@ -57,7 +74,9 @@ ActiveRecord::Schema.define(version: 20170507192400) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.integer  "gender_id"
     t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
+    t.index ["gender_id"], name: "index_posts_on_gender_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
@@ -73,10 +92,15 @@ ActiveRecord::Schema.define(version: 20170507192400) do
     t.string   "selfie_content_type"
     t.integer  "selfie_file_size"
     t.datetime "selfie_updated_at"
+    t.boolean  "business_user"
+    t.string   "company_name"
   end
 
   add_foreign_key "items", "brands"
   add_foreign_key "items", "posts"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "categories"
+  add_foreign_key "posts", "genders"
   add_foreign_key "posts", "users"
 end

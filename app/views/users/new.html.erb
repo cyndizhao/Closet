@@ -5,10 +5,20 @@
     <div id="signUpform">
       <%= form_for @user do |f| %>
       <h2 style="color: white">Sign Up Here</h2><br>
-      <%= f.text_field :first_name, placeholder:"First Name", style:"padding : 5px" %>
-      <br><br>
-      <%= f.text_field :last_name, placeholder:"Last Name", style:"padding : 5px" %>
-      <br><br>
+      <div id='business_user'>
+        <%= f.check_box :business_user, {}, 'true', 'false' %>
+        <%= f.label :business_user%>
+      </div>
+      <div class="input-user-name">
+        <%= f.text_field :first_name, placeholder:"First Name", style:"padding : 5px" %>
+        <br><br>
+        <%= f.text_field :last_name, placeholder:"Last Name", style:"padding : 5px" %>
+        <br><br>
+      </div>
+      <div class="input-company-name hidden">
+        <%= f.text_field :company_name, placeholder:"Company Name", style:"padding : 5px" %>
+        <br><br>
+      </div>
 
       <%= f.email_field :email, placeholder:"Email", style:"padding : 5px" %>
       <br><br>

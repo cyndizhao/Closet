@@ -15,5 +15,13 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path, alert: 'You must be signed in!'
     end
   end
-  
+
+  def business_user?(user)
+    user.business_user
+  end
+  helper_method :business_user?
+
+  def get_date
+    
+  end
 end

@@ -34,7 +34,19 @@ $(document).ready(function(){
     // // auto_hover: true,
     // controls: ture,
   });
+  $("#single_picture").iPicture();
+  $(".iPictures").iPicture();
 
+  $( "#business_user input[type=checkbox]" ).on( "click", function(event){
+
+    if ($('.input-company-name').hasClass('hidden') && $(this).is(':checked')){
+      $('.input-user-name').addClass('hidden');
+      $('.input-company-name').removeClass('hidden');
+    }else{
+      $('.input-user-name').removeClass('hidden');
+      $('.input-company-name').addClass('hidden');
+    }
+  });
 
   //user.js
   $(function() {
@@ -82,6 +94,8 @@ $(document).ready(function(){
       const link = fData.get('link');
       const price = fData.get('price');
       const brand = fData.get('brand');
+      const detail = fData.get('detail');
+      const kind = fData.get('kind');
       console.log(link);
       console.log(price);
       //debugger;
@@ -90,14 +104,18 @@ $(document).ready(function(){
         y: y,
         price: price,
         link: link,
-        brand: brand
+        brand: brand,
+        detail: detail,
+        kind: kind
       })
       $('#itemPrice').val('');
       $('#itemLink').val('');
       $('#itemBrand').val('');
+      $('#item_kind').val('');
+      $('#item_detail').val('');
       $('#newItemFormDiv').addClass('hidden');
       $("#previewImage").append(`<div class="ip_tooltip ip_img32" style="top: ${y}px; left: ${x}px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
-      <p><p>${brand}</p>$${price}</p><p>${link}</p></div>`);
+      <ul><li>${brand}</li><li>${kind}</li><li>$${price}</li><li>${detail}</li><li><a href="${link}">Find item here</a></li></ul></div>`);
       //debugger;
       console.log(outfit_labels);
       $("#iPicture").iPicture();

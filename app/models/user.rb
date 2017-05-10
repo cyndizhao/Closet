@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
-  # has_many :likes, dependent: :nullify
-  has_attached_file :selfie, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/missing.png"
+  has_many :likes, dependent: :destroy
+  has_attached_file :selfie, styles: { medium: "300x300>", thumb: "150x150>" }, default_url: "/images/missing.png"
   validates_attachment_content_type :selfie, content_type: /\Aimage\/.*\z/
 
   has_many :followings # gives an array of "Following" objects where this user is this one being followed
@@ -15,8 +15,10 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :first_name, presence: true, unless: :is_business_user?
+  validates :last_name, presence: true, unless: :is_business_user?
+  validates :company_name, presence: true, if: :is_business_user?
+  validates :business_user, inclusion: { in: [ true, false ] }, default: false
   # validates :description, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true,
@@ -28,5 +30,9 @@ class User < ApplicationRecord
   private
   def downcase_email
     self.email.downcase! if email.present?
+  end
+
+  def is_business_user?
+    business_user == true
   end
 end

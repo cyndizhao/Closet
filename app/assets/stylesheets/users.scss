@@ -14,6 +14,18 @@
 #signUpform input{
   width: 200px;
 }
+#business_user{
+  text-align: left;
+  display: inline-block;
+  width: 200px;
+  input{
+    width: auto;
+  }
+  label{
+    margin-left: 5%;
+    color:white;
+  }
+}
 
 // #logInform input[type=button]
 #signUpButton{
@@ -45,7 +57,7 @@
 
 
 }
-#userLogo img {
+#userLogo img, .other_selfie{
     max-width: 50%;
     margin-top: 30px;
     padding: 3px;
@@ -76,7 +88,7 @@
 
 #greeting{
   height:150px;
-  border-bottom: dotted 2px grey;
+  background-color: #dedfe8;
 }
 
 #newOutfit {
@@ -106,4 +118,21 @@
   font-size: 12px;
   line-height: 1.428571429;
   // border-radius: 15px;
+}
+.hidden{
+  display: none;
+}
+
+.other-user-home {
+
+  img{
+    margin-top: 0px;
+  }
+
+  .card{
+    text-align: left;
+    background-color: #556984;
+    color: white;
+  }
+
 }

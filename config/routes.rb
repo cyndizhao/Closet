@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'posts#index'
-  resources :posts 
+  resources :posts do
+    resources :likes, only: [:create, :destroy]
+  end
+  
   resources :items
   # get('/users/:id', {to:'users#show_posts'})
   resources :users, only:[:show, :new, :create, :update, :edit] do
