@@ -5,6 +5,9 @@ class Item < ApplicationRecord
   validates :post_id, presence: true
   validates :brand_id, presence: true
   validates :price, presence: true
+  validates :kind, presence: true
+  validates :detail, presence: true
   validates :x, presence: true
   validates :y, presence: true
+  #add name to item : name
 end

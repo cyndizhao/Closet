@@ -36,6 +36,7 @@ gem 'fancybox-rails' #add fancybox
 gem 'jquery-rails' #add jquery
 gem 'bxslider-rails' #add bxslider
 gem "paperclip", "~> 4.2"
+gem 'cancancan', '~> 1.10'
 
 
 

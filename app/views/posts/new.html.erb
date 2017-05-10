@@ -12,11 +12,15 @@
 
               <!-- form start -->
 
-              <h3>Create post</h3>
+              <h3>What's your look today?</h3>
               <%= form_for @post, html: {id:"newPostForm"} do |f| %>
               <div class="form-group">
                 <%= f.label "Season" %>
                 <%= f.collection_select :category_id, Category.order(:name), :id, :name %>
+              </div>
+              <div class="form-group">
+                <%= f.label "Gender" %>
+                <%= f.collection_select :gender_id, Gender.order(:gender), :id, :gender %>
               </div>
               <div class="form-group">
                 <%= f.label :picture %>
@@ -41,9 +45,17 @@
                 </div>
               </div>
               <div id="newItemFormDiv" style="color: black" class="hidden">
+
                 <form class="" action="index.html" method="post" id="newItemForm">
                   <label for="">Brand:</label>
                   <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}), id:"itemBrand", name: "brand", class: "form-control"%>
+                  <label for="">Category:</label>
+                  <%= select_tag :kind, options_for_select(["Outerwear", "Jacket", "Bomber", "Blazer", "Trouser", "Short", "Jean", "Jogging", "Shirt",
+                    "T-shirt", "Polo", "Top", "Sweatshirt", "Sweater", "Shoe", "Bag", "Ring ", "Hat", "Scarf", "Ties", "Belt", "Swimwear",
+                    "Ring", "Necklace", "Bracelet", "Earring ", "Watch", "Sunglasses"]),
+                    id:"item_kind", name: "kind", class: "form-control"%>
+                  <label for="">Details:</label>
+                  <input type="text" name="detail" value="" id="item_detail" class="form-control">
                   <label for="">Price:</label>
                   <input type="text" name="price" value="" id="itemPrice" class="form-control">
                   <label for="">Link:</label>

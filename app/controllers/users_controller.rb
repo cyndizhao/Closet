@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
+    byebug
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Thank you for signing in"
@@ -18,6 +19,8 @@ class UsersController < ApplicationController
 
   def show
     @user_id = params[:id]
+    @user = User.find_by_id(@user_id)
+    @posts = @user.posts
     # session[:user_id]
   end
 
@@ -26,7 +29,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(params.require(:user).permit([:first_name, :last_name, :email, :description, :selfie]))
+    # TODO add if else
+    if @user.update(params.require(:user).permit([:first_name, :last_name, :company_name, :email, :description, :selfie]))
       flash[:notice] = "User Infomation Updated"
       redirect_to user_path(current_user)
     else
@@ -40,6 +44,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit([:first_name, :last_name, :email, :description, :password, :password_confirmation, :selfie])
+    params.require(:user).permit([:first_name, :last_name, :email, :description, :password, :password_confirmation, :selfie, :business_user, :company_name])
   end
 end
