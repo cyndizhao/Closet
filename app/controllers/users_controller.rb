@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :get_user, only:[:show ]
+  before_action :get_user, only:[:show, :edit, :update]
   before_action :authenticate_user!, only:[:update, :edit, :show]
   def new
     @user = User.new
@@ -17,7 +17,21 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user_id = params[:id]
     # session[:user_id]
+  end
+
+  def edit
+
+  end
+
+  def update
+    if @user.update(params.require(:user).permit([:first_name, :last_name, :email, :description, :selfie]))
+      flash[:notice] = "User Infomation Updated"
+      redirect_to user_path(current_user)
+    else
+      render :edit
+    end
   end
 
   private
@@ -26,6 +40,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit([:first_name, :last_name, :email, :description, :password, :password_confirmation])
+    params.require(:user).permit([:first_name, :last_name, :email, :description, :password, :password_confirmation, :selfie])
   end
 end

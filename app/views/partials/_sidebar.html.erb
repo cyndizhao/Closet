@@ -1,0 +1,27 @@
+<div class="col-md-2 col-sm-4 nav nav-pills nav-stacked" id="sidebar1" data-spy="affix">
+  <div id="userLogo">
+      <%= image_tag @user.selfie.url(:medium), class:"img-responsive center-block" %>
+  </div>
+  <br>
+  <div class="left-navigation" >
+    <ul>
+      <h5><strong>Your Account</strong></h5>
+      <li><%= link_to 'Profile', edit_user_path(@user), style: 'color:white;'%></li>
+      <li><%= link_to 'Styles', user_path(@user), style: 'color:white;'%></li>
+      <li><%= link_to 'People Followed', user_followers_path(@user), style: 'color:white;'%></li>
+      <li>Settings</li>
+      <!-- <li>Art Class</li>
+      <li>Hike Club</li> -->
+    </ul>
+    <!-- <br>
+    <ul>
+      <h5><strong>HOBBIES</strong></h5>
+      <li>Hiking</li>
+      <li>Rafting</li>
+      <li>Badminton</li>
+      <li>Tennis</li>
+      <li>Sketching</li>
+      <li>Horse Riding</li>
+    </ul> -->
+  </div>
+</div>

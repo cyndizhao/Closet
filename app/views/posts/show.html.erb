@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- render _sidebar.html.erb -->
+    <% @user = @post.user%>
+    <%= render 'partials/sidebar' %>
+    <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4" id="main-content">
+      <h3>One single </h3>
+      <%= image_tag @post.picture.url(:medium), class:"img-responsive center-block" %>
+
+
+    </div>
+
+  </div>
+</div>

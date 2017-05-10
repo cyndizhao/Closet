@@ -1,39 +1,17 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2 col-sm-4 nav nav-pills nav-stacked" id="sidebar1" data-spy="affix">
-      <div id="userLogo">
-          <img src="https://s-media-cache-ak0.pinimg.com/originals/b4/44/f5/b444f56a9f12291ad3c2ba5e1b2cef63.jpg" class="img-responsive center-block" alt="Logo">
-      </div>
-      <br>
-      <div class="left-navigation" >
-        <ul>
-          <h5><strong>WHEREABOUTS</strong></h5>
-          <li>Home</li>
-          <li>Office</li>
-          <li>School</li>
-          <li>Gym</li>
-          <li>Art Class</li>
-          <li>Hike Club</li>
-        </ul>
-        <br>
-        <ul>
-          <h5><strong>HOBBIES</strong></h5>
-          <li>Hiking</li>
-          <li>Rafting</li>
-          <li>Badminton</li>
-          <li>Tennis</li>
-          <li>Sketching</li>
-          <li>Horse Riding</li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4" id="main-content">
+    <!-- render _sidebar.html.erb -->
+    <% if params[:id] == current_user.id.to_s %>
+      <%= render 'partials/sidebar' %>
+
+      <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4" id="main-content">
       <!--Main content code to be written here -->
       <div class="container" id="greeting">
         <% greeting = ["Hi, what\'s new?", "Ready to share your outfit for today?", "Fashion is what you’re offered four times a year by designers. And style is what you choose.", "Clothes are like a good meal, a good movie, great pieces of music."] %>
         <h3><%= greeting.sample %></h3>
         <div id = "wrap">
-          <a href="#" id = "newOutfit"><b>NEW OUTFIT</b></a>
+          <%= link_to "New Outfit", new_post_path, id:"newOutfit" %>
+          <!-- <a href="#" id = "newOutfit"><b>NEW OUTFIT</b></a> -->
         </div>
       </div>
 
@@ -44,11 +22,11 @@
             <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class=" thumbnail fancybox" rel="gallery" title="show all tags">
               <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
             </a>
-            <button type="button" class="btn btn-danger btn-circle" id="heart"><i class="glyphicon glyphicon-heart"></i></button>
-            <span>288</span>
-            <a href="#" class="btn disabled"><i class="glyphicon glyphicon-white glyphicon-trash"></i></a>
-            <a href="#" class="btn btn-inverse disabled"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-            <a href="#" class="btn btn-inverse disabled"><i class="glyphicon glyphicon-trash"></i></a>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <i class="fa fa-hashtag" aria-hidden="true"></i>
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 
           </div>
           <div class="col-lg-3">
@@ -70,5 +48,8 @@
       </div>
 
     </div>
+    <% else %>
+      <p>other people's home</p>
+    <% end %>
   </div>
 </div>

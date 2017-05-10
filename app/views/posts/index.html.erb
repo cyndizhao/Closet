@@ -1,11 +1,50 @@
-<header>
-  <img id="logo" alt="Brand" src="<%= asset_path( 'logo.png') %>">
-  <h3>Style Is A Way To Say Who You Are Without Having To Speak</h3>
-</header>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">装</h1>
+    <p class="lead">Style Is A Way To Say Who You Are Without Having To Speak</p>
+  </div>
+</div>
 
 <div class="container">
+  <% if user_signed_in? %>
+    <div class="row">
+      <h2 class="boxtitle">FIND NEW FRIENDS?</h2>
+      <div>
+        <% users = User.all %>
+        <% counter = 1%>
+        <% users.each do |u| %>
+          <% if !(current_user.people_you_follow_ids.include? u.id) && (counter < 5) %>
+          <!-- ??????????????????why people_you_follow_ids only return a single result in rails console?-->
+            <% following = current_user.followings.find_by(user: u) %>
+            <% if !following.present? %>
+
+            <div class="col-sm-3" style="margin-bottom: 10px;">
+              <div class="card" >
+                  <div class="header-bg header-bg<%= counter %>" width="250" height="70" id="header-blur"></div>
+                  <div class="avatar">
+                    <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
+                  </div>
+                  <div class="content">
+
+                      <p><%= u.first_name.capitalize %></p>
+                      <p><%= link_to 'Follow',user_followings_path(u), method: :post, class:"btn btn-default"%></p>
+
+                      <!-- <p><button type="button" class="btn btn-default">Follow</button></p> -->
+                  </div>
+              </div>
+            </div>
+            <% end %>
+            <% counter += 1 %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <h2 class="boxtitle">RECOMMENDATION</h2>
+    </div>
+  <% end %>
   <div class="row">
-    <h2 id="boxtitle">NEW</h2>
+    <h2 class="boxtitle">NEW</h2>
     <div class='list-group gallery'>
       <div class="col-lg-4">
         <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class=" thumbnail fancybox" rel="gallery" title="show all tags">
@@ -25,7 +64,7 @@
     </div>
   </div>
   <div class="row">
-    <h2 id="boxtitle">TRENDING</h2>
+    <h2 class="boxtitle">TRENDING</h2>
     <div class='list-group gallery'>
       <ul id="slide1">
       <li>
@@ -72,7 +111,22 @@
     </ul>
     </div>
   </div>
-  <div class="row">
-    <h2 id="boxtitle">Recommendation(when user sign in)</h2>
-  </div>
+
 </div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+    <h4 class="title">Closet</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit, libero a molestie consectetur, sapien elit lacinia mi.</p>
+      <ul class="social-icon">
+      <a href="#" class="social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+      <a href="#" class="social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+      <a href="#" class="social"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+      <a href="#" class="social"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+      <a href="#" class="social"><i class="fa fa-google" aria-hidden="true"></i></a>
+      <a href="#" class="social"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+      </ul>
+    </div>
+  </div>
+
+</footer>

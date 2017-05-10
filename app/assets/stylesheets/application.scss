@@ -20,17 +20,41 @@
 
  @import "font-awesome";
 
+body{
+  // font-family: 'Oswald', sans-serif;
+  // font-family: 'Raleway', sans-serif;
+  // font-family: 'Lora', serif;
+  font-family: 'Ubuntu', sans-serif;
+  // font-family: 'PT Sans Narrow', sans-serif;
+  background-color: #f5f5f5;
+  margin-top: 50px;
+}
 #loginButton, #signupButton{
   margin-top:7px;
   margin-right:10px;
   margin-left:10px;
   width:75px;
 }
+.hidden{
+  display: none;
+}
 .navbar{
+  font-size: 1.2em;
   margin-bottom: 0px;
+  border:0px;
+
+}
+.fixed-top{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
 }
  .bs-dark.navbar-inverse {
-   background-color: #222;
+  //  background-color: #222;
+  // background-color: rgba(0, 0, 0, 0.7);
+  background-color: #35404f;
    border-color: #080808;
  }
  .bs-dark .navbar-img {padding:5px 6px !important;}
@@ -95,14 +119,26 @@
    position: relative;
    left: -34px;
    margin-bottom: 0;
-   -webkit-border-radius: 3px;
-   -moz-border-radius: 3px;
    border-radius: 3px;
  }
 
  .bs-dark .search-box:focus + button {
    z-index: 3;
  }
+
+ .footer {
+   text-align: center;
+   padding: 50px 0 20px 0;
+   background-color: #35404f;
+   color: #878c94;
+ }
+ .footer .title{color:#fff;font-size:25px;}
+
+
+ .footer .social-icon{padding:0px;margin:0px;}
+ .footer .social-icon a{display:inline-block;color:#fff;font-size:25px;padding:5px;}
+ .footer .acount-icon a{display:block;color:#fff;font-size:18px;padding:5px;text-decoration:none;}
+ .footer .acount-icon .fa{margin-right:25px;}
 
  @media (min-width: 768px) {
      .bs-dark .dropdown:hover {background-color: #000;}
