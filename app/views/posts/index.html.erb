@@ -7,50 +7,67 @@
 
 <div class="container">
   <% if user_signed_in? %>
-    <div class="row">
-      <h2 class="boxtitle">FIND NEW FRIENDS?</h2>
-      <div>
-        <% users = User.all %>
-        <% counter = 1%>
-        <% users.each do |u| %>
-          <% if !(current_user.people_you_follow_ids.include? u.id) && (counter < 5) %>
-          <!-- ??????????????????why people_you_follow_ids only return a single result in rails console?-->
-            <% following = current_user.followings.find_by(user: u) %>
-            <% if !following.present? %>
+  <div class="row">
+    <h2 class="boxtitle">Find New Friends?</h2>
+    <div>
+      <% users = User.all %>
+      <% counter = 1%>
+      <% users.each do |u| %>
+        <% if !(current_user.people_you_follow_ids.include? u.id) && (counter < 5) %>
+        <!-- ??????????????????why people_you_follow_ids only return a single result in rails console?-->
+          <% following = current_user.followings.find_by(user: u) %>
+          <% if !following.present? %>
 
-            <div class="col-sm-3" style="margin-bottom: 10px;">
-              <div class="card" >
-                  <div class="header-bg header-bg<%= counter %>" width="250" height="70" id="header-blur"></div>
-                  <div class="avatar">
-                    <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
-                  </div>
-                  <div class="content">
-                      <% if business_user?(u) %>
-                        <p><%= u.company_name.capitalize %></p>
-                      <% else %>
-                        <p><%= u.first_name.capitalize %></p>
-                      <% end %>
-                      <p>Followers: <%= u.followers.count %></p>
-                      <p><%= link_to 'Follow',user_followings_path(u), method: :post, class:"btn btn-default"%></p>
+          <div class="col-sm-3" style="margin-bottom: 10px;">
+            <div class="card" >
+                <div class="header-bg header-bg<%= counter %>" width="250" height="70" id="header-blur"></div>
+                <div class="avatar">
+                  <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
+                </div>
+                <div class="content">
+                    <% if business_user?(u) %>
+                      <p><%= u.company_name.capitalize %></p>
+                    <% else %>
+                      <p><%= u.first_name.capitalize %></p>
+                    <% end %>
+                    <p>Followers: <%= u.followers.count %></p>
+                    <p><%= link_to 'Follow',user_followings_path(u), method: :post, class:"btn btn-default"%></p>
 
-                      <!-- <p><button type="button" class="btn btn-default">Follow</button></p> -->
-                  </div>
-              </div>
+                    <!-- <p><button type="button" class="btn btn-default">Follow</button></p> -->
+                </div>
             </div>
-            <% end %>
-            <% counter += 1 %>
+          </div>
           <% end %>
+          <% counter += 1 %>
         <% end %>
-      </div>
+      <% end %>
     </div>
-    <div class="row">
-      <h2 class="boxtitle">RECOMMENDATION</h2>
+  </div>
+
+
+  <div class="row">
+    <h2 class="boxtitle">Looks From People You Follow</h2>
+    <div class='list-group gallery'>
+      <ul id="slide1">
+        <% Post.all.each do |p| %>
+        <%= image_tag p.picture.url(:medium), class:"img-responsive" %>
+        <!-- <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt=""> -->
+        <% end %>
+      </ul>
+      <%# Post.order('created_at DESC').each do |p| %>
+        <!-- TODO -->
+      <%# end %>
     </div>
+
+  </div>
   <% end %>
   <div class="row">
-    <h2 class="boxtitle">NEW</h2>
+    <h2 class="boxtitle">New</h2>
     <div class='list-group gallery'>
-      <div class="col-lg-4">
+      <ul id = "slide2">
+
+      </ul>
+      <!-- <div class="col-lg-4">
         <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class=" thumbnail fancybox" rel="gallery" title="show all tags">
           <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
         </a>
@@ -64,14 +81,14 @@
         <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class=" thumbnail fancybox" rel="gallery" title="show all tags">
           <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
         </a>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="row">
-    <h2 class="boxtitle">TRENDING</h2>
+    <h2 class="boxtitle">Trending</h2>
     <div class='list-group gallery'>
-      <ul id="slide1">
-      <li>
+      <ul id="slide3">
+      <!-- <li>
         <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class="fancybox" rel="gallery" title="show all tags">
           <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
         </a>
@@ -110,7 +127,7 @@
         <a href="http://www.closetfulofclothes.com/wp-content/uploads/2015/12/winter-fall-work-outfit-grey-tweed-pants-trousers-cropped-pants-wide-leg-pants-ankel-booties-booties-and-shoes-navy-top-fall-neutrals-saddle-bag-thefashionguitar-instagram.jpg" class="fancybox" rel="gallery" title="show all tags">
           <img class= "img-responsive"src="http://www.closetfulofclothes.com/wp-content/uploads/2015/12/winter-fall-work-outfit-grey-tweed-pants-trousers-cropped-pants-wide-leg-pants-ankel-booties-booties-and-shoes-navy-top-fall-neutrals-saddle-bag-thefashionguitar-instagram.jpg" alt="">
         </a>
-      </li>
+      </li> -->
 
     </ul>
     </div>

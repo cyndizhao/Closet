@@ -7,12 +7,15 @@ class LikesController < ApplicationController
       return
     end
 
-
     like = Like.new(user: current_user, post: post)
-    if like.save
-      redirect_to post_path(post), notice: 'post liked'
-    else
-      redirect_to post_path(post), alert: like.errors.full_messages.join(', ')
+    respond_to do |format|
+      if like.save
+        format.html {redirect_to post_path(post), notice: 'post liked'}
+        format.js {render :render_like}
+      else
+        format.html {redirect_to post_path(post), alert: like.errors.full_messages.join(', ')}
+        format.js {render :render_like}
+      end
     end
   end
 
@@ -22,11 +25,14 @@ class LikesController < ApplicationController
       redirect_to post_path(like.post), alert: 'Can not Unliking your own post'
       return
     end
-
-    if like.destroy
-      redirect_to post_path(like.post), notice:'Un-liked post!'
-    else
-      redirect_to post_path(like.post), alert: like.errors.full_messages.join(', ')
+    respond_to do |format|
+      if like.destroy
+        format.html {redirect_to post_path(like.post), notice:'Un-liked post!'}
+        format.js {render :render_like}
+      else
+        format.html {redirect_to post_path(like.post), alert: like.errors.full_messages.join(', ')}
+        format.js {render :render_like}
+      end
     end
   end
 end

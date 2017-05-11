@@ -31,7 +31,8 @@
                              <td class="avatar"><%= image_tag f.selfie.url(:medium), class:"img-responsive center-block" %></td>
                              <td id="followerName"><a href="/users/<%= f.id %>"><%= f.first_name.capitalize %> <%= f.last_name.capitalize %><a></td>
                              <td id="followerDescription"><%= f.description %></td>
-                             <td><button type="button" name="button">Unfollow</button></td>
+                             <% f.following_id%>
+                             <td><%= link_to "Unfollow", user_following_path(current_user, f.following_id), method: :delete%><td>
                           </tr>
                         <% end %>
 

@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     #Most_recent
     @last_post = Post.last(3)
     #Trending
-    @most_liked = Post.left_joins(:likes).group(:id).order("COUNT(post_id) DESC").limit(3)
+    @most_liked = Post.left_joins(:likes).group(:id).order("COUNT(post_id) DESC")
   end
 
   def new

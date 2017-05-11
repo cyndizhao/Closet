@@ -11,6 +11,16 @@ class FollowingsController < ApplicationController
     end
   end
 
+  def destroy
+    byebug
+    following = Following.find(params[:id])
+    user = following.follower_id
+    if following.destroy
+      redirect_to user_followers_path(user), notice:'unfollowed'
+    else
+      redirect_to user_followers_path(user), alert:following.errors.full_messages.join(', ')
+    end
+  end
   # def destroy
   #   like = Like.find(params[:id])
   #
