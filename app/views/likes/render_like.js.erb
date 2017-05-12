@@ -1,1 +1,1 @@
-$('#like').replaceWith('<%= j render 'like' %>');
+$('#<%= dom_id(@post) %>').replaceWith('<%= j render 'like' %>');
