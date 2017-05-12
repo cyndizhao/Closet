@@ -22,7 +22,7 @@
   border-radius: 8px;
   text-align: center;
   padding: 0;
-  color: rgb(136, 172, 217);
+  color: #3e4144;
 }
 
 // .header-bg1{
@@ -45,7 +45,10 @@
   /* This stretches the canvas across the entire hero unit */
   // background-color: #000;
   // background-color: #2b2e32;
-  background-color: #35404f;
+  // background-color: #35404f;
+  // background: linear-gradient(to right, #307dac ,#4a4cc9, #77a0b8,#6a6cba, #abcfe5,#b6b6dd, #ccdfeb);
+  background: linear-gradient(#4a4cc9, #6a6cba, #b6b6dd, #77a0b8, #518cb0, #1879b4);
+  filter: grayscale(0.6);
   position: absolute;
   top: 0;
   left: 0;
@@ -67,11 +70,15 @@
   border-radius: 50%;
   border: 3px solid rgba(0,0,30,0.8);
 }
+#iPicture, .iPicture{
+  text-align: center;
+}
 
 #iPicture ul, .iPictures ul{
   text-align: left;
   color:white;
   width: 200px;
+
 }
 .ip_tooltip{
   width: 200px;
@@ -87,4 +94,12 @@
   padding-bottom: 20px;
   padding-top: 25px;
 
+}
+#inputPicture{
+  display: inline-block;
+  width: 190px;
+}
+#previewImage{
+  text-align: center;
+  display: inline-block;
 }

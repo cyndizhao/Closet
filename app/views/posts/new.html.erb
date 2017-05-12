@@ -23,11 +23,14 @@
                   <%= f.label "Gender" %>
                   <%= f.collection_select :gender_id, Gender.order(:gender), :id, :gender %>
                 </div>
-                <div class="form-group" style="text-align:center;">
+                <div class="form-group">
                   <%# f.label :picture %>
-                  <%= f.file_field :picture, id: "inputImage"%>
+                  <i class="fa fa-file-image-o" aria-hidden="true" class="pull-right"></i>
+                  <%= f.file_field :picture, id: "inputPicture", class:"pull-right"%>
+
+
                 </div>
-            
+
                 <!-- <div class="form-group"> -->
                   <%= f.submit "Create", class:"btn btn-primary"%>
                 <!-- </div> -->
@@ -40,10 +43,10 @@
                 <%# f.text_area :description, rows:"4", class:"form-control"%>
               </div>  -->
 
-
-
-
               <!-- preview picture -->
+              <div class="hidden" id="message">
+                <h4>Share Details About Each Item</h4>
+              </div>
               <div id="iPicture" data-interaction="hover">
                 <div id="previewImage" class="ip_slide">
 
@@ -53,7 +56,7 @@
 
                 <form class="" action="index.html" method="post" id="newItemForm">
                   <label for="">Brand:</label>
-                  <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}), id:"itemBrand", name: "brand", class: "form-control"%>
+                  <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}), id:"itemBrand", name: "brand", class: "form-control", placeholder: "Season"%>
                   <label for="">Category:</label>
                   <%= select_tag :kind, options_for_select(["Outerwear", "Jacket", "Bomber", "Blazer", "Trouser", "Short", "Jean", "Jogging", "Shirt",
                     "T-shirt", "Polo", "Top", "Sweatshirt", "Sweater", "Shoe", "Bag", "Ring ", "Hat", "Scarf", "Ties", "Belt", "Swimwear",

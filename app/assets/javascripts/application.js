@@ -50,7 +50,7 @@ $(document).ready(function(){
 
   //user.js
   $(function() {
-    $('#inputImage').on('change', function(event) {
+    $('#inputPicture, #inputImage').on('change', function(event) {
       $('#signUp').addClass('col-md-6');
       var files = event.target.files;
       var image = files[0]
@@ -64,6 +64,7 @@ $(document).ready(function(){
         $('#previewImage').html(img);
         $('#previewImage img').css({'max-width': '400px', 'height':'auto'})
         $('#previewImage img').addClass("ip_tooltipImg");
+        $('#message').removeClass('hidden');
         //AJAX call post request to create a new post and get post id from the server
       }
       reader.readAsDataURL(image);
@@ -124,6 +125,7 @@ $(document).ready(function(){
   //man and woman
   $("#newPostForm").on('submit', function() {
     $(this).find('#items').val(JSON.stringify(outfit_labels));
+    $('#message').addClass('hidden');
     outfit_labels = [];
     return true;
   });
