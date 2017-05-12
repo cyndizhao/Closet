@@ -21,15 +21,24 @@
         <div class='list-group gallery'>
           <% @posts.each do |p| %>
           <%# group.each do |post| %>
-          <div class="col-lg-4">
-
-          <%= image_tag p.picture.url(:medium), class:"img-responsive center-block" %>
-          <%= link_to "Details", post_path(p), class:"fa fa-tags"%>
-          <i class="fa fa-heart" aria-hidden="true"> <%= p.likes.count %></i>
-          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <i class="fa fa-tags" aria-hidden="true"></i>
-          <i class="fa fa-hashtag" aria-hidden="true"></i>
+          <div class="col-md-4">
+            <%# render 'ipicture' %>
+            <div class="iPictures" data-interaction="hover">
+              <div class="ip_slide">
+                <%= image_tag p.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
+                <% p.items.each do |i| %>
+                  <div class="ip_tooltip ip_img32" style="top: <%= i.y %>px; left: <%= i.x %>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
+                    <ul><li><%= Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <%= link_to "Details", post_path(p), class:"fa fa-tags"%>
+            <i class="fa fa-heart" aria-hidden="true"> <%= p.likes.count %></i>
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <i class="fa fa-hashtag" aria-hidden="true"></i>
 
           <!-- <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class=" thumbnail fancybox" rel="gallery" title="show all tags">
             <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
@@ -52,26 +61,8 @@
                 <%= image_tag @user.selfie.url(:medium), class:"img-responsive center-block other_selfie" %>
               </div>
               <div class="col-md-8">
-                <div class="row">
-                  <br>
-                  <div class="col-md-12">
-                    <p><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <!-- <p><%# @user.description if @user.description.present? %></p> -->
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <p><i class="fa fa-file-image-o" aria-hidden="true"></i> <%= @user.posts.count%></p>
-                  </div>
-                  <div class="col-md-4">Followers: <%= @user.followers.count %></div>
-                  <div class="col-md-4">Following: <%= @user.people_you_follow.count %></div>
-                </div>
-
+                <!--Render  -->
+                <%= render 'followings/follow' %>
               </div>
           </div>
         </div>
@@ -85,22 +76,14 @@
                     <%= image_tag p.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
                     <% p.items.each do |i| %>
                       <div class="ip_tooltip ip_img32" style="top: <%= i.y %>px; left: <%= i.x %>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
-                        <ul><li><%= Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
+                        <ul><li><% Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
                       </div>
                     <% end %>
                   </div>
                 </div>
-                <span>
-                  <% if user_signed_in? && (can? :like, p)%>
-                    <% if !p.liked_by?(current_user) %>
-                      <%= link_to fa_icon("heart-o"), post_likes_path(p), method: :post%>
-                    <% else %>
-                      <%= link_to fa_icon("heart"), post_like_path(p, p.like_for(current_user)), method: :delete%>
-                    <% end %>
-                  <% end %>
-                </span>
-                <span><%= p.likes.count %> Likes</span>
+                <%= render "likes/like", p: p %>
                 <span class="pull-right"><%= ((Time.now - p.created_at) /86400).to_i%> day(s) ago</span>
+                <!-- User Post Likes !!! -->
               </div>
             <% end %>
           </div>

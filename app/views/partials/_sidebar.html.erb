@@ -6,8 +6,8 @@
   <div class="left-navigation" >
     <ul>
       <h5><strong>Your Account</strong></h5>
+      <li><%= link_to 'Looks', user_path(@user), style: 'color:white;'%></li>
       <li><%= link_to 'Profile', edit_user_path(@user), style: 'color:white;'%></li>
-      <li><%= link_to 'Styles', user_path(@user), style: 'color:white;'%></li>
       <li><%= link_to 'Following', user_followers_path(@user), style: 'color:white;'%></li>
       <li>Settings</li>
       <!-- <li>Art Class</li>

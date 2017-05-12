@@ -27,6 +27,13 @@ class User < ApplicationRecord
 
   before_validation :downcase_email
 
+  def followed_users
+    User.select('users.*','followings.id AS following_id').joins(:followings).where('followings.follower_id = ?', self.id)
+  end
+
+  def find_following_id_for_specific_followed_user(followed_people)
+    User.select('users.*','followings.id AS following_id').joins(:followings).where('followings.follower_id = ?', self.id).find_by_id(followed_people).following_id
+  end
   private
   def downcase_email
     self.email.downcase! if email.present?

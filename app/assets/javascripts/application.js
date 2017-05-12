@@ -24,7 +24,7 @@ $(document).ready(function(){
       closeEffect: "none"
   });
 
-  $('#slide1').bxSlider({
+  $('#slide1, #slide2, #slide3').bxSlider({
     minSlides: 3,
     maxSlides: 4,
     slideWidth: 280,
@@ -34,7 +34,7 @@ $(document).ready(function(){
     // // auto_hover: true,
     // controls: ture,
   });
-  $("#single_picture").iPicture();
+  // $("#single_picture").iPicture();
   $(".iPictures").iPicture();
 
   $( "#business_user input[type=checkbox]" ).on( "click", function(event){
