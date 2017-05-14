@@ -8,5 +8,5 @@
       <%= link_to fa_icon("heart"), post_like_path(post_like, post_like.like_for(current_user)), method: :delete, remote: true%>
     <% end %>
   <% end %>
-  <span><%= post_like.likes.count %> Likes</span>
+  <span><%= pluralize(post_like.likes.count, 'like') %></span>
 </span>

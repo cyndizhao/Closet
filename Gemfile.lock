@@ -51,6 +51,10 @@ GEM
     bxslider-rails (4.2.5.1)
     byebug (9.0.6)
     cancancan (1.16.0)
+    chosen-rails (1.5.2)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -187,6 +191,7 @@ DEPENDENCIES
   bxslider-rails
   byebug
   cancancan (~> 1.10)
+  chosen-rails
   coffee-rails (~> 4.2)
   faker
   fancybox-rails

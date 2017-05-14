@@ -1,0 +1,5 @@
+$('.modal .modal-heading').html("Details For Each Item");
+$('.modal .modal-body').html("<%= escape_javascript(render @post) %>");
+$('.modal-footer').html("<a class='btn btn-primary' href='users/<%= @post.user.id %>'>Author</a>")
+
+$('.modal').modal();

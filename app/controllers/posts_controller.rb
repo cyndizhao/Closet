@@ -27,37 +27,28 @@ class PostsController < ApplicationController
         @post.items.create(item)
       end
       # redirect_to user_path(current_user)
-      redirect_to post_path(@post)
+      redirect_to user_path(current_user)
     else
       render :new
     end
   end
 
   def show
-    # @number = 2
-    # # @post = Post.find(params[:id])
-    # @comment = Comment.new
-    # @comments = @post.comments
-    # try to limit number of the displaying comments
-    # if !(@post.likes.find_by_user_id(current_user))
-    #   @liked_by_currentuser = false
-    # else
-    #   @liked_by_currentuser = true
-    #
-    # end
-    # @like = Like.new
-
+    respond_to do |format|
+        format.html # show.html.erb
+        format.js # show.js.erb
+    end
   end
-  #
-  # def destroy
-  #   # @post = Post.find params[:id]
-  #   if !can? :destroy, @post
-  #     redirect_to root_path, alert:'Access denied!'
-  #   else
-  #     @post.destroy
-  #     redirect_to posts_path, notice:'Post Deleted!'
-  #   end
-  # end
+
+  def destroy
+    user = @post.user
+    if !can? :destroy, @post
+      redirect_to user_path(user), alert:'Access denied!'
+    else
+      @post.destroy
+      redirect_to user_path(user), notice:'Post Deleted!'
+    end
+  end
   #
   # def edit
   #   # @post = Post.find(params[:id])

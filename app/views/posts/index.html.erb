@@ -44,7 +44,7 @@
         </a>
       </li>
       <li>
-        <a href="https://s-media-cache-ak0.pinimg.com/736x/e5/7e/c4/e57ec449afb0f61378ece5f1071b484a.jpg" class="fancybox" rel="gallery" title="show all tags">
+        <a href="https://s-media-cache-ak0.pinimg.com/736x/e5/7e/c4/e57ec449afb0f61378ece5f1071b484a.jpg" class="box" rel="gallery" title="show all tags">
           <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/736x/e5/7e/c4/e57ec449afb0f61378ece5f1071b484a.jpg" alt="">
         </a>
       </li>
@@ -83,7 +83,12 @@
     <div class='list-group gallery'>
       <ul id="slide1">
         <% Post.all.each do |p| %>
-        <a href><%= image_tag p.picture.url(:medium), class:"img-responsive" %></a>
+        <div class="crop">
+          <%= link_to post_path(p), remote: true do %>
+            <%= image_tag p.picture.url(:medium), class:"img-responsive" %>
+          <% end %>
+        </div>
+
         <!-- <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt=""> -->
         <% end %>
       </ul>
@@ -180,3 +185,5 @@
   </div>
 
 </footer>
+
+<%= render "layouts/modal" %>

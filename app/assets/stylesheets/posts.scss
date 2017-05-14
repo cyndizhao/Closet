@@ -85,7 +85,7 @@
 }
 #new-post{
 
-  width : 300px;
+  width : 700px;
   height : 300px;
   background-color : #c7ccd8;
   margin :0 auto;
@@ -102,4 +102,35 @@
 #previewImage{
   text-align: center;
   display: inline-block;
+}
+#new-post-button{
+  background: linear-gradient(to right, #307dac, #4a4cc9, #77a0b8, #6a6cba, #abcfe5, #b6b6dd, #ccdfeb);
+  filter: grayscale(0.4);
+  color: black;
+  border: 0px;
+}
+// Modal on index page popup show page
+.modal-backdrop.in {
+  // background-color: lightslategray;
+  // opacity: 1;
+  // z-index: 200;
+}
+// .bx-prev, .bx-next {
+//   z-index: 100 !important;
+// }
+
+.modal-dialog{
+  max-width: 500px;
+  .modal-heading{
+    text-align: center;
+  }
+}
+
+.crop {
+    width: 277px;
+    height: 277px;
+    overflow: hidden;
+}
+.iPictures{
+  background-color: black;
 }

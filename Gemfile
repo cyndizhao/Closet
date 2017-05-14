@@ -37,8 +37,7 @@ gem 'jquery-rails' #add jquery
 gem 'bxslider-rails' #add bxslider
 gem "paperclip", "~> 4.2"
 gem 'cancancan', '~> 1.10'
-
-
+gem 'chosen-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -16,13 +16,14 @@
 //= require jquery
 //= require bxslider
 //= require fancybox
+//= require chosen-jquery
 //= require_tree .
 
 $(document).ready(function(){
-  $(".fancybox").fancybox({
-      openEffect: "none",
-      closeEffect: "none"
-  });
+  // $(".fancybox").fancybox({
+  //     openEffect: "none",
+  //     closeEffect: "none"
+  // });
 
   $('#slide1, #slide2, #slide3').bxSlider({
     minSlides: 3,
@@ -35,6 +36,7 @@ $(document).ready(function(){
     // controls: ture,
   });
   // $("#single_picture").iPicture();
+  $('.chosen-select').chosen();
   $(".iPictures").iPicture();
 
   $( "#business_user input[type=checkbox]" ).on( "click", function(event){
@@ -62,7 +64,7 @@ $(document).ready(function(){
         console.log(file);
         img.src = file.target.result;
         $('#previewImage').html(img);
-        $('#previewImage img').css({'max-width': '400px', 'height':'auto'})
+        $('#previewImage img').css({'max-width': '400px', 'max-height':'400px'})
         $('#previewImage img').addClass("ip_tooltipImg");
         $('#message').removeClass('hidden');
         //AJAX call post request to create a new post and get post id from the server
