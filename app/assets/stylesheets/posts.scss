@@ -85,8 +85,8 @@
 }
 #new-post{
 
-  width : 700px;
-  height : 300px;
+  // width : 700px;
+  // height : 300px;
   background-color : #c7ccd8;
   margin :0 auto;
   border-radius : 15px;
@@ -108,6 +108,18 @@
   filter: grayscale(0.4);
   color: black;
   border: 0px;
+}
+
+#newItemForm{
+  .btn{
+    background: linear-gradient(to right, #307dac, #4a4cc9, #77a0b8, #6a6cba, #abcfe5, #b6b6dd, #ccdfeb);
+    filter: grayscale(0.4);
+    color: black;
+    border: 0px;
+  }
+  input[type='submit']{
+    font-weight: bold;
+  }
 }
 // Modal on index page popup show page
 .modal-backdrop.in {
