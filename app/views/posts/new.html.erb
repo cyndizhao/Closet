@@ -79,8 +79,8 @@
                       <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}.sort_by{ |b| b.downcase }), id:"itemBrand", name: "brand", class: "form-control"%>
                       <label for="">Category:</label>
                       <%= select_tag :kind, options_for_select(["Bag", "Belt", "Blazer", "Bomber", "Bracelet", "Earring ", "Glasses", "Hat",
-                        "Jacket", "Jean", "Necklace", "Outerwear", "Polo", "Ring", "Ring ", "Scarf", "Shirt", "Shoe", "Short", "Sunglasses",
-                        "Sweater", "Swimwear", "T-shirt", "Ties", "Top", "Trouser", "Watch"]),
+                        "Jacket", "Jean", "Necklace", "Outerwear", "Polo", "Ring", "Scarf", "Shirt", "Shoes", "Shorts", "Sunglasses",
+                        "Sweater", "Swimwear", "T-shirt", "Ties", "Top", "Trousers", "Watch"]),
                         id:"item_kind", name: "kind", class: "form-control"%>
                       <label for="">Details:</label>
                       <input type="text" name="detail" value="" id="item_detail" class="form-control">

@@ -13,9 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require jquery
 //= require bxslider
-//= require fancybox
 //= require chosen-jquery
 //= require_tree .
 

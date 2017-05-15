@@ -1,0 +1,19 @@
+// Place all the styles related to the categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#spring{
+  background-image: url('spring.jpg');
+
+}
+#summer{
+  background-image: url('summer.jpg');
+}
+#autumn{
+  background-image: url('autumn.jpg');
+}
+#winter{
+  background-image: url('winter.jpg');
+}
+#spring, #summer, #autumn, #winter{
+  height: 250px;
+}

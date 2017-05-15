@@ -1,5 +1,5 @@
 <% post_like = p.present? ? p : @post %>
-
+<br>
 <span id="<%= dom_id(post_like) %>">
   <% if user_signed_in? && (can? :like, post_like)%>
     <% if !post_like.liked_by?(current_user) %>
