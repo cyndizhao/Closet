@@ -5,77 +5,87 @@
       <% @user = current_user%>
       <%= render 'partials/sidebar' %>
       <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4" id="main-content">
-
+        <br>
         <div class="container" id="newPost">
         	<div class="row">
         		<div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
 
               <!-- form start -->
-              <div id='new-post'>
-                <h3>What's your look today?</h3>
-                <br>
-                <%= form_for @post, html: {id:"newPostForm"} do |f| %>
-                <div class="form-group">
-                  <%= f.label "Season" %>
-                  <%= f.collection_select :category_id, Category.order(:name), :id, :name, class:'form-control' %>
+              <div class = "row" >
+                <div class="col-md-12" id='new-post'>
+                  <h3>What's your look today?</h3>
+                  <br>
+                  <%= form_for @post, html: {id:"newPostForm"} do |f| %>
+                  <div class="form-group">
+                    <%= f.label "Season", style:"margin-right: 10px;" %>
+                    <%= f.collection_select :category_id, Category.order(:name), :id, :name, {}, {class:'chosen-select', style:'width:150px'} %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label "Gender", style:"margin-right: 10px;"%>
+                    <%= f.collection_select :gender_id, Gender.order(:gender), :id, :gender, {}, {class:'chosen-select', style:'width:150px'} %>
+                  </div>
+                  <div class="form-group">
+                    <%# f.label :picture %>
+                    <i class="fa fa-file-image-o" aria-hidden="true" style="margin-right:5px;"></i>
+                    <%= f.file_field :picture, id: "inputPicture"%>
+                  </div>
+                  <!-- <div class="form-group">
+                    <%# f.label :description %>
+                    <%# f.text_area :description, rows:"4", class:"form-control"%>
+                  </div>  -->
+
+                  <!-- <div class="form-group"> -->
+                  <%= f.submit "Share your new look", class:"btn btn-primary", id:"new-post-button"%>
+                  <!-- </div> -->
+                  <input type="hidden" name="items_json" id="items">
+                  <% end %>
                 </div>
-                <div class="form-group">
-                  <%= f.label "Gender" %>
-                  <%= f.collection_select :gender_id, Gender.order(:gender), :id, :gender %>
+
+
+                <!-- preview picture -->
+              </div>
+              <br>
+              <div class="row hidden" id="new-post-div" style="background-color:#282a2d; color:white;border-radius:10px;padding:10px;">
+                <div class="col-md-7">
+                  <div class="hidden" id="message1">
+                    <p>Share Details About Each Item By Clicking On The Image</p>
+                  </div>
+                  <div id="iPicture" data-interaction="hover">
+                    <div id="previewImage" class="ip_slide">
+
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group" style="text-align:center;">
-                  <%# f.label :picture %>
-                  <%= f.file_field :picture, id: "inputImage"%>
+
+                <div class="col-md-5">
+                  <div class="hidden" id="message2">
+                    <p>Item details</p>
+                  </div>
+                  <div id="newItemFormDiv" style="text-align:center;" class="hidden">
+                    <form class="" action="index.html" method="post" id="newItemForm">
+                      <label for="">Brand:</label>
+                      <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}.sort_by{ |b| b.downcase }), id:"itemBrand", name: "brand", class: "form-control chosen-select"%>
+                      <label for="">Category:</label>
+                      <%= select_tag :kind, options_for_select(["Outerwears", "Jackets", "Bombers",
+                        "Blazers", "Trouserss", "Shorts", "Jeans", "Joggings", "Shirts",
+                        "T-shirts", "Polo", "Tops", "Sweatshirts", "Sweaters", "Shoes",
+                        "Bags", "Rings ", "Hats", "Scarves", "Ties", "Belts", "Swimwear",
+                        "Necklaces", "Bracelets", "Earrings ", "Watches", "Sunglasses, Glasses"]),
+                        id:"item_kind", name: "kind", class: "form-control chosen-select"%>
+                      <label for="">Details:</label>
+                      <input type="text" name="detail" value="" id="item_detail" class="form-control">
+                      <label for="">Price:</label>
+                      <input type="text" name="price" value="" id="itemPrice" class="form-control">
+                      <label for="">Link:</label>
+                      <input type="text" name="link" value="" id="itemLink" class="form-control">
+                      <br>
+                      <!-- <i style='submit' class="fa fa-plus fa-lg" aria-hidden="true"></i> -->
+                      <input type="submit" name="" value="+" class="btn btn-primary" style="border-radius:100%;">
+                    </form>
+                  </div>
                 </div>
-            
-                <!-- <div class="form-group"> -->
-                  <%= f.submit "Create", class:"btn btn-primary"%>
-                <!-- </div> -->
-                <input type="hidden" name="items_json" id="items">
-                <% end %>
               </div>
 
-              <!-- <div class="form-group">
-                <%# f.label :description %>
-                <%# f.text_area :description, rows:"4", class:"form-control"%>
-              </div>  -->
-
-
-
-
-              <!-- preview picture -->
-              <div id="iPicture" data-interaction="hover">
-                <div id="previewImage" class="ip_slide">
-
-                </div>
-              </div>
-              <div id="newItemFormDiv" style="color: black" class="hidden">
-
-                <form class="" action="index.html" method="post" id="newItemForm">
-                  <label for="">Brand:</label>
-                  <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}), id:"itemBrand", name: "brand", class: "form-control"%>
-                  <label for="">Category:</label>
-                  <%= select_tag :kind, options_for_select(["Outerwear", "Jacket", "Bomber", "Blazer", "Trouser", "Short", "Jean", "Jogging", "Shirt",
-                    "T-shirt", "Polo", "Top", "Sweatshirt", "Sweater", "Shoe", "Bag", "Ring ", "Hat", "Scarf", "Ties", "Belt", "Swimwear",
-                    "Ring", "Necklace", "Bracelet", "Earring ", "Watch", "Sunglasses"]),
-                    id:"item_kind", name: "kind", class: "form-control"%>
-                  <label for="">Details:</label>
-                  <input type="text" name="detail" value="" id="item_detail" class="form-control">
-                  <label for="">Price:</label>
-                  <input type="text" name="price" value="" id="itemPrice" class="form-control">
-                  <label for="">Link:</label>
-                  <input type="text" name="link" value="" id="itemLink" class="form-control">
-                  <input type="submit" name="" value="Submit">
-                </form>
-
-
-                <%# form_for Item.new, html: {id:"newItemForm"} do |f| %>
-                <%# f.collection_select :brand_id, Brand.order(:name), :id, :name %>
-                <%# f.text_field :price, class:"form-control"%>
-                <%# f.text_field :link, class:"form-control"%>
-                <%# f.submit "test", class:"btn btn-primary"%>
-                <%# end %>
-              </div>
 
 
         		</div>

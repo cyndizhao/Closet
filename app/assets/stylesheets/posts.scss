@@ -22,7 +22,7 @@
   border-radius: 8px;
   text-align: center;
   padding: 0;
-  color: rgb(136, 172, 217);
+  color: #3e4144;
 }
 
 // .header-bg1{
@@ -45,7 +45,10 @@
   /* This stretches the canvas across the entire hero unit */
   // background-color: #000;
   // background-color: #2b2e32;
-  background-color: #35404f;
+  // background-color: #35404f;
+  // background: linear-gradient(to right, #307dac ,#4a4cc9, #77a0b8,#6a6cba, #abcfe5,#b6b6dd, #ccdfeb);
+  background: linear-gradient(#4a4cc9, #6a6cba, #b6b6dd, #77a0b8, #518cb0, #1879b4);
+  filter: grayscale(0.6);
   position: absolute;
   top: 0;
   left: 0;
@@ -67,19 +70,23 @@
   border-radius: 50%;
   border: 3px solid rgba(0,0,30,0.8);
 }
+#iPicture, .iPicture{
+  text-align: center;
+}
 
 #iPicture ul, .iPictures ul{
   text-align: left;
   color:white;
   width: 200px;
+
 }
 .ip_tooltip{
   width: 200px;
 }
 #new-post{
 
-  width : 300px;
-  height : 300px;
+  // width : 700px;
+  // height : 300px;
   background-color : #c7ccd8;
   margin :0 auto;
   border-radius : 15px;
@@ -87,4 +94,61 @@
   padding-bottom: 20px;
   padding-top: 25px;
 
+}
+#inputPicture{
+  display: inline-block;
+  width: 190px;
+}
+#previewImage{
+  text-align: center;
+  display: inline-block;
+}
+#new-post-button{
+  background: linear-gradient(to right, #307dac, #4a4cc9, #77a0b8, #6a6cba, #abcfe5, #b6b6dd, #ccdfeb);
+  filter: grayscale(0.4);
+  color: black;
+  border: 0px;
+}
+
+#newItemForm{
+  .btn{
+    background: linear-gradient(to right, #307dac, #4a4cc9, #77a0b8, #6a6cba, #abcfe5, #b6b6dd, #ccdfeb);
+    filter: grayscale(0.4);
+    color: black;
+    border: 0px;
+  }
+  input[type='submit']{
+    font-weight: bold;
+  }
+  #item_detail, #itemPrice, #itemLink{
+    height: 24px !important;
+  }
+}
+#itemBrand_chosen, #item_kind_chosen{
+  width: 286.66px !important;
+}
+// Modal on index page popup show page
+.modal-backdrop.in {
+  // background-color: lightslategray;
+  // opacity: 1;
+  // z-index: 200;
+}
+.bx-prev, .bx-next {
+  z-index: 50 !important;
+}
+
+.modal-dialog{
+  max-width: 500px;
+  .modal-heading{
+    text-align: center;
+  }
+}
+
+.crop {
+    width: 277px;
+    height: 277px;
+    overflow: hidden;
+}
+.iPictures{
+  background-color: black;
 }

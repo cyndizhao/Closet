@@ -1,0 +1,14 @@
+// Place all the styles related to the genders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#women, #men{
+  height: 250px;
+}
+#women{
+  background-image: url('background-women.jpg');
+  // filter: grayscale(30%) contrast(2);
+}
+#men{
+  background-image: url('background-men.jpg');
+  filter: grayscale(80%);
+}

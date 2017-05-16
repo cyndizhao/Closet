@@ -2,7 +2,7 @@
   <div class="row">
     <!-- render _sidebar.html.erb -->
     <%= render 'partials/sidebar' %>
-    <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4" id="main-content">
+    <div class="col-md-6 col-sm-8 col-md-offset-4 col-sm-offset-4" id="edit-user">
       <%= @user.errors.full_messages.join(',') %>
 
       <%= form_for @user do |f| %>
@@ -23,7 +23,8 @@
 
         <div id="previewImage" style="max-width:300px;">
         </div>
-        <%= f.submit "Update", class: 'btn btn-primary' %>
+        <br>
+        <%= f.submit "Update Your Profile", class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>

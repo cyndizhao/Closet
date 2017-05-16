@@ -29,7 +29,15 @@
                         <% @followings.each do |f| %>
                           <tr id="followerinfo">
                             <td class="avatar"><%= image_tag f.selfie.url(:medium), class:"img-responsive center-block" %></td>
-                            <td id="followerName"><a href="/users/<%= f.id %>"><%= f.first_name.capitalize %> <%= f.last_name.capitalize %><a></td>
+                            <td id="followerName">
+                              <a href="/users/<%= f.id %>">
+                              <% if f.first_name.present? %>
+                              <%= f.first_name.capitalize %> <%= f.last_name.capitalize %>
+                              <% else %>
+                              <%= f.company_name.capitalize %> 
+                              <% end %>
+                              <a>
+                              </td>
                             <td id="followerDescription"><%= f.description %></td>
                             <% f.following_id%>
                             <td>

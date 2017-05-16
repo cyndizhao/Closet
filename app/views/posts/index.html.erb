@@ -6,121 +6,34 @@
 </div>
 
 <div class="container">
-  <% if user_signed_in? %>
-  <div class="row">
-    <h2 class="boxtitle">Find New Friends?</h2>
-    <div>
-      <% users = User.all %>
-      <% counter = 1%>
-      <% users.each do |u| %>
-        <% if !(current_user.people_you_follow_ids.include? u.id) && (counter < 5) %>
-        <!-- ??????????????????why people_you_follow_ids only return a single result in rails console?-->
-          <% following = current_user.followings.find_by(user: u) %>
-          <% if !following.present? %>
-
-          <div class="col-sm-3" style="margin-bottom: 10px;">
-            <div class="card" >
-                <div class="header-bg header-bg<%= counter %>" width="250" height="70" id="header-blur"></div>
-                <div class="avatar">
-                  <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
-                </div>
-                <div class="content">
-                    <% if business_user?(u) %>
-                      <p><%= u.company_name.capitalize %></p>
-                    <% else %>
-                      <p><%= u.first_name.capitalize %></p>
-                    <% end %>
-                    <p>Followers: <%= u.followers.count %></p>
-                    <p><%= link_to 'Follow',user_followings_path(u), method: :post, class:"btn btn-default"%></p>
-
-                    <!-- <p><button type="button" class="btn btn-default">Follow</button></p> -->
-                </div>
-            </div>
-          </div>
-          <% end %>
-          <% counter += 1 %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <h2 class="boxtitle">Looks From People You Follow</h2>
-    <div class='list-group gallery'>
-      <ul id="slide1">
-        <% Post.all.each do |p| %>
-        <%= image_tag p.picture.url(:medium), class:"img-responsive" %>
-        <!-- <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt=""> -->
-        <% end %>
-      </ul>
-      <%# Post.order('created_at DESC').each do |p| %>
-        <!-- TODO -->
-      <%# end %>
-    </div>
-
-  </div>
-  <% end %>
   <div class="row">
     <h2 class="boxtitle">New</h2>
     <div class='list-group gallery'>
       <ul id = "slide2">
-
+        <% @last_posts.each do |p| %>
+        <div class="crop">
+          <%= link_to post_path(p), remote: true do %>
+            <%= image_tag p.picture.url(:medium), class:"img-responsive" %>
+          <% end %>
+        </div>
+        <% end %>
       </ul>
-      <!-- <div class="col-lg-4">
-        <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class=" thumbnail fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
-        </a>
-      </div>
-      <div class="col-lg-4">
-        <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class=" thumbnail fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
-        </a>
-      </div>
-      <div class="col-lg-4">
-        <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class=" thumbnail fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
-        </a>
-      </div> -->
     </div>
   </div>
   <div class="row">
     <h2 class="boxtitle">Trending</h2>
     <div class='list-group gallery'>
       <ul id="slide3">
+        <% @most_liked_posts.each do |p| %>
+        <div class="crop">
+          <%= link_to post_path(p), remote: true do %>
+            <%= image_tag p.picture.url(:medium), class:"img-responsive" %>
+          <% end %>
+        </div>
+        <% end %>
       <!-- <li>
         <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class="fancybox" rel="gallery" title="show all tags">
           <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
-        </a>
-      </li>
-      <li>
-        <a href="http://www.thefruitysky.com/wp-content/uploads/17817778_403586323347206_7451474981013159936_n-640x640.jpg" class="fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="http://www.thefruitysky.com/wp-content/uploads/17817778_403586323347206_7451474981013159936_n-640x640.jpg" alt="">
-        </a>
-      </li>
-      <li>
-        <a href="https://s-media-cache-ak0.pinimg.com/736x/e5/7e/c4/e57ec449afb0f61378ece5f1071b484a.jpg" class="fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/736x/e5/7e/c4/e57ec449afb0f61378ece5f1071b484a.jpg" alt="">
-        </a>
-      </li>
-      <li>
-        <a href="https://cdn.shopify.com/s/files/1/0162/2116/files/Insta-image-42_b82a8c73-9322-4985-8762-9b1183f15c6a.jpg?12215716545693072007" class="fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="https://cdn.shopify.com/s/files/1/0162/2116/files/Insta-image-42_b82a8c73-9322-4985-8762-9b1183f15c6a.jpg?12215716545693072007" alt="">
-        </a>
-      </li>
-      <li>
-        <a href="https://s-media-cache-ak0.pinimg.com/736x/e5/7e/c4/e57ec449afb0f61378ece5f1071b484a.jpg" class="fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/736x/e5/7e/c4/e57ec449afb0f61378ece5f1071b484a.jpg" alt="">
-        </a>
-      </li>
-      <li>
-        <a href="https://media1.popsugar-assets.com/files/thumbor/gwy2tNTq9AbRtwj1MhyXJg4uJcU/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2015/08/04/944/n/1922564/059fd248_edit_img_image_14563166_1438628700_Risk-Taker-Chiara-Ferragni/i/Outfit-Inspiration-Personality-Type.jpg" class="fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="https://media1.popsugar-assets.com/files/thumbor/gwy2tNTq9AbRtwj1MhyXJg4uJcU/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2015/08/04/944/n/1922564/059fd248_edit_img_image_14563166_1438628700_Risk-Taker-Chiara-Ferragni/i/Outfit-Inspiration-Personality-Type.jpg" alt="">
-        </a>
-      </li>
-      <li>
-        <a href="http://cimg.zettecdn.com/img/Clozette_Fashion-Formula-7-Outfit-Combos-That-Always-Wow_aponytale_clozetteinsider_cover.jpg" class="fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="http://cimg.zettecdn.com/img/Clozette_Fashion-Formula-7-Outfit-Combos-That-Always-Wow_aponytale_clozetteinsider_cover.jpg" alt="">
         </a>
       </li>
       <li>
@@ -132,8 +45,93 @@
     </ul>
     </div>
   </div>
+  <% if user_signed_in? %>
+  <% list_of_post = [] %>
+  <div class="row">
+    <h2 class="boxtitle">Looks From People You Follow</h2>
+    <div class='list-group gallery'>
+      <ul id="slide1">
+        <% @friends_new_posts.each do |p| %>
+        <div class="crop">
+          <%= link_to post_path(p), remote: true do %>
+            <%= image_tag p.picture.url(:medium), class:"img-responsive" %>
+          <% end %>
+        </div>
+        <% end %>
+      </ul>
+    </div>
 
+  </div>
+
+  <!-- normal user -->
+  <div class="row">
+    <h2 class="boxtitle">Find New Friends?</h2>
+    <div>
+      <% users = User.all %>
+      <% counter1 = 1%>
+      <% users.each do |u| %>
+        <% if !(current_user.people_you_follow_ids.include? u.id) && (counter1 < 7) %>
+        <!-- ??????????????????why people_you_follow_ids only return a single result in rails console?-->
+          <% following = current_user.followings.find_by(user: u) %>
+          <% if !following.present? && !(business_user?(u))%>
+          <div class="col-sm-2" style="margin-bottom: 10px;">
+            <div class="card" >
+                <div class="header-bg header-bg<%= counter1 %>" width="250" height="70" id="header-blur"></div>
+                <div class="avatar">
+                  <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
+                </div>
+                <div class="content">
+                  <p><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>&nbsp<%= u.first_name.capitalize %></p>
+                  <p>Followers: <%= u.followers.count %></p>
+                  <p><%= link_to 'Follow',user_followings_path(u), method: :post, class:"btn btn-default"%></p>
+                    <!-- <p><button type="button" class="btn btn-default">Follow</button></p> -->
+                </div>
+            </div>
+          </div>
+          <% counter1 += 1 %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- business_user -->
+  <div class="row">
+    <h2 class="boxtitle">Interested In Any Brand?</h2>
+    <div>
+      <% users = User.all %>
+      <% counter2 = 1%>
+      <% users.each do |u| %>
+        <% if !(current_user.people_you_follow_ids.include? u.id) && (counter2 < 7) %>
+        <!-- ??????????????????why people_you_follow_ids only return a single result in rails console?-->
+          <% following = current_user.followings.find_by(user: u) %>
+          <% if !following.present? && business_user?(u)%>
+          <div class="col-sm-2" style="margin-bottom: 10px;">
+            <div class="card" >
+              <div class="header-bg header-bg<%= counter2 %>" width="250" height="70" id="header-blur"></div>
+              <div class="avatar">
+                <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
+              </div>
+              <div class="content">
+                <p><%= u.company_name.capitalize %></p>
+                <p>Followers: <%= u.followers.count %></p>
+                <p><%= link_to 'Follow',user_followings_path(u), method: :post, class:"btn btn-default"%></p>
+                  <!-- <p><button type="button" class="btn btn-default">Follow</button></p> -->
+              </div>
+            </div>
+          </div>
+          <% counter2 += 1 %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <% end %>
+<br>
 </div>
+
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -151,3 +149,5 @@
   </div>
 
 </footer>
+
+<%= render "layouts/modal" %>

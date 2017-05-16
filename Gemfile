@@ -32,13 +32,12 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem 'bootstrap-sass', '~> 3.3.6' #add bootstrap
 gem "font-awesome-rails" #add font-awesome
-gem 'fancybox-rails' #add fancybox
+# gem 'fancybox-rails' #add fancybox
 gem 'jquery-rails' #add jquery
 gem 'bxslider-rails' #add bxslider
 gem "paperclip", "~> 4.2"
 gem 'cancancan', '~> 1.10'
-
-
+gem 'chosen-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

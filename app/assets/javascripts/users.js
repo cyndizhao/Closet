@@ -4,7 +4,7 @@
 
 // $(document).ready(function(){
 //   $(function() {
-//     $('#inputImage').on('change', function(event) {
+//     $('#inputPicture').on('change', function(event) {
 //       $('#signUp').addClass('col-md-6');
 //       var files = event.target.files;
 //       var image = files[0]

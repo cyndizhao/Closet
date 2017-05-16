@@ -1,5 +1,5 @@
 <% post_like = p.present? ? p : @post %>
-
+<br>
 <span id="<%= dom_id(post_like) %>">
   <% if user_signed_in? && (can? :like, post_like)%>
     <% if !post_like.liked_by?(current_user) %>
@@ -8,5 +8,5 @@
       <%= link_to fa_icon("heart"), post_like_path(post_like, post_like.like_for(current_user)), method: :delete, remote: true%>
     <% end %>
   <% end %>
-  <span><%= post_like.likes.count %> Likes</span>
+  <span><%= pluralize(post_like.likes.count, 'like') %></span>
 </span>

@@ -4,10 +4,25 @@ class PostsController < ApplicationController
   before_action :post_params, only:[:update, :create]
 
   def index
+    # if params[:search]
+    #   @search_posts = Post.items.any_of({detail: /#{params[:search]}/i}, {kind: /#{params[:search]}/i})
+    #
+    # end
+    #New posts from friends
+    if user_signed_in?
+      list_of_posts = []
+      current_user.people_you_follow.each do |u|
+        u.posts.each do |post|
+          list_of_posts.push(post)
+        end
+      end
+      @friends_new_posts = list_of_posts.sort {|a, b| b[:created_at] <=> a[:created_at] }
+      #TODO get the first 8 of array
+    end
     #Most_recent
-    @last_post = Post.last(3)
+    @last_posts = Post.last(8)
     #Trending
-    @most_liked = Post.left_joins(:likes).group(:id).order("COUNT(post_id) DESC")
+    @most_liked_posts = Post.left_joins(:likes).group(:id).order("COUNT(post_id) DESC").limit(8)
   end
 
   def new
@@ -27,37 +42,28 @@ class PostsController < ApplicationController
         @post.items.create(item)
       end
       # redirect_to user_path(current_user)
-      redirect_to post_path(@post)
+      redirect_to user_path(current_user)
     else
       render :new
     end
   end
 
   def show
-    # @number = 2
-    # # @post = Post.find(params[:id])
-    # @comment = Comment.new
-    # @comments = @post.comments
-    # try to limit number of the displaying comments
-    # if !(@post.likes.find_by_user_id(current_user))
-    #   @liked_by_currentuser = false
-    # else
-    #   @liked_by_currentuser = true
-    #
-    # end
-    # @like = Like.new
-
+    respond_to do |format|
+        format.html # show.html.erb
+        format.js # show.js.erb
+    end
   end
-  #
-  # def destroy
-  #   # @post = Post.find params[:id]
-  #   if !can? :destroy, @post
-  #     redirect_to root_path, alert:'Access denied!'
-  #   else
-  #     @post.destroy
-  #     redirect_to posts_path, notice:'Post Deleted!'
-  #   end
-  # end
+
+  def destroy
+    user = @post.user
+    if !can? :destroy, @post
+      redirect_to user_path(user), alert:'Access denied!'
+    else
+      @post.destroy
+      redirect_to user_path(user), notice:'Post Deleted!'
+    end
+  end
   #
   # def edit
   #   # @post = Post.find(params[:id])

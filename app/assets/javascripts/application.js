@@ -13,16 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require jquery
 //= require bxslider
-//= require fancybox
+//= require chosen-jquery
 //= require_tree .
 
 $(document).ready(function(){
-  $(".fancybox").fancybox({
-      openEffect: "none",
-      closeEffect: "none"
-  });
+  // $(".fancybox").fancybox({
+  //     openEffect: "none",
+  //     closeEffect: "none"
+  // });
 
   $('#slide1, #slide2, #slide3').bxSlider({
     minSlides: 3,
@@ -35,7 +34,7 @@ $(document).ready(function(){
     // controls: ture,
   });
   // $("#single_picture").iPicture();
-  $(".iPictures").iPicture();
+  $('.chosen-select').chosen();
 
   $( "#business_user input[type=checkbox]" ).on( "click", function(event){
 
@@ -50,8 +49,9 @@ $(document).ready(function(){
 
   //user.js
   $(function() {
-    $('#inputImage').on('change', function(event) {
+    $('#inputPicture, #inputImage').on('change', function(event) {
       $('#signUp').addClass('col-md-6');
+      // $('')
       var files = event.target.files;
       var image = files[0]
       // here's the file size
@@ -62,8 +62,10 @@ $(document).ready(function(){
         console.log(file);
         img.src = file.target.result;
         $('#previewImage').html(img);
-        $('#previewImage img').css({'max-width': '400px', 'height':'auto'})
+        $('#previewImage img').css({'max-width': '400px', 'max-height':'400px'})
         $('#previewImage img').addClass("ip_tooltipImg");
+
+        $('#new-post-div, #message1').removeClass('hidden');
         //AJAX call post request to create a new post and get post id from the server
       }
       reader.readAsDataURL(image);
@@ -79,12 +81,12 @@ $(document).ready(function(){
   let offset;
   $(document).on("click", "#previewImage img", function(e){
   // $('#previewImage img').on("click", function(e){
-    $('#newItemFormDiv').removeClass('hidden');
+    $('#newItemFormDiv, #message2').removeClass('hidden');
     offset = $(this).offset();
     x = e.pageX - offset.left;
     y = e.pageY - offset.top;
 
-    // debugger;
+    // debugger#;
     //show form div
     $('#newItemForm').off().on('submit', function(event){
       console.log(x);
@@ -98,7 +100,10 @@ $(document).ready(function(){
       const kind = fData.get('kind');
       console.log(link);
       console.log(price);
-      //debugger;
+      console.log(brand);
+      console.log(detail);
+      console.log(kind);
+      // debugger;
       outfit_labels.push({
         x: x,
         y: y,
@@ -113,7 +118,7 @@ $(document).ready(function(){
       $('#itemBrand').val('');
       $('#item_kind').val('');
       $('#item_detail').val('');
-      $('#newItemFormDiv').addClass('hidden');
+      $('#newItemFormDiv, #message2').addClass('hidden');
       $("#previewImage").append(`<div class="ip_tooltip ip_img32" style="top: ${y}px; left: ${x}px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
       <ul><li>${brand}</li><li>${kind}</li><li>$${price}</li><li>${detail}</li><li><a href="${link}">Find item here</a></li></ul></div>`);
       //debugger;
@@ -124,8 +129,10 @@ $(document).ready(function(){
   //man and woman
   $("#newPostForm").on('submit', function() {
     $(this).find('#items').val(JSON.stringify(outfit_labels));
+    $('#message').addClass('hidden');
     outfit_labels = [];
     return true;
   });
 
+  $(".iPictures").iPicture();
 });

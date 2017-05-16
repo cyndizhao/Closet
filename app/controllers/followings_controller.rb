@@ -30,14 +30,4 @@ class FollowingsController < ApplicationController
       end
     end
   end
-  # def destroy
-  #   like = Like.find(params[:id])
-  #
-  #
-  #   if like.destroy
-  #     redirect_to question_path(like.question), notice:'Un-liked question!'
-  #   else
-  #     redirect_to question_path(like.question), alert: like.errors.full_messages.join(', ')
-  #   end
-  # end
 end

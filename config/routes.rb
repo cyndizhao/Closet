@@ -14,4 +14,7 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
     #get rid of ":id" in the url
   end
+
+  resources :categories, only: :index
+  resources :genders, only: :index
 end

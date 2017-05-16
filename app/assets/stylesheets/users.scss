@@ -136,3 +136,17 @@
   }
 
 }
+#edit-user{
+  background-color : #c7ccd8;
+  box-shadow: 0 0 15px #4a4cc9;
+  padding-bottom: 20px;
+  padding-top: 25px;
+  margin-top: 2%;
+
+  .btn{
+    background: linear-gradient(to right, #307dac, #4a4cc9, #77a0b8, #6a6cba, #abcfe5, #b6b6dd, #ccdfeb);
+    filter: grayscale(0.4);
+    color: black;
+    border: 0px;
+  }
+}
