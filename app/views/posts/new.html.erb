@@ -62,26 +62,14 @@
                     <p>Item details</p>
                   </div>
                   <div id="newItemFormDiv" style="text-align:center;" class="hidden">
-
-                    <%# form_for Item.new, html:{id:"newItemForm"} do |f| %>
-                      <%# f.select :brand, options_for_select(Brand.all.map{|b| b.name}), id:"itemBrand", name: "brand",:class => "chosen-select"%>
-                      <%# f.select :kind, options_for_select(["Outerwear", "Jacket", "Bomber", "Blazer", "Trouser", "Short", "Jean", "Jogging", "Shirt",
-                        "T-shirt", "Polo", "Top", "Sweatshirt", "Sweater", "Shoe", "Bag", "Ring ", "Hat", "Scarf", "Ties", "Belt", "Swimwear",
-                        "Ring", "Necklace", "Bracelet", "Earring ", "Watch", "Sunglasses"]), id:"item_kind", name: "kind", :class => "chosen-select"%>
-                      <%#f.text_field :detail, id:"item_detail", class:'form-control', placeholder:'Details'%>
-                      <%# f.text_field :price, id:"itemPrice", class:'form-control', placeholder:'Price'%>
-                      <%# f.text_field :link, id:"itemLink", class:'form-control', placeholder:'Link'%>
-                      <%# f.submit %>
-
-                    <%# end %>
                     <form class="" action="index.html" method="post" id="newItemForm">
                       <label for="">Brand:</label>
-                      <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}.sort_by{ |b| b.downcase }), id:"itemBrand", name: "brand", class: "form-control"%>
+                      <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}.sort_by{ |b| b.downcase }), id:"itemBrand", name: "brand", class: "form-control chosen-select"%>
                       <label for="">Category:</label>
                       <%= select_tag :kind, options_for_select(["Bag", "Belt", "Blazer", "Bomber", "Bracelet", "Earring ", "Glasses", "Hat",
                         "Jacket", "Jean", "Necklace", "Outerwear", "Polo", "Ring", "Scarf", "Shirt", "Shoes", "Shorts", "Sunglasses",
                         "Sweater", "Swimwear", "T-shirt", "Ties", "Top", "Trousers", "Watch"]),
-                        id:"item_kind", name: "kind", class: "form-control"%>
+                        id:"item_kind", name: "kind", class: "form-control chosen-select"%>
                       <label for="">Details:</label>
                       <input type="text" name="detail" value="" id="item_detail" class="form-control">
                       <label for="">Price:</label>

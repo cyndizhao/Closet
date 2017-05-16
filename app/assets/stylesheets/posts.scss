@@ -120,6 +120,12 @@
   input[type='submit']{
     font-weight: bold;
   }
+  #item_detail, #itemPrice, #itemLink{
+    height: 24px !important;
+  }
+}
+#itemBrand_chosen, #item_kind_chosen{
+  width: 286.66px !important;
 }
 // Modal on index page popup show page
 .modal-backdrop.in {

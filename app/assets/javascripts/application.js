@@ -35,7 +35,6 @@ $(document).ready(function(){
   });
   // $("#single_picture").iPicture();
   $('.chosen-select').chosen();
-  $(".iPictures").iPicture();
 
   $( "#business_user input[type=checkbox]" ).on( "click", function(event){
 
@@ -101,7 +100,10 @@ $(document).ready(function(){
       const kind = fData.get('kind');
       console.log(link);
       console.log(price);
-      //debugger;
+      console.log(brand);
+      console.log(detail);
+      console.log(kind);
+      // debugger;
       outfit_labels.push({
         x: x,
         y: y,
@@ -132,4 +134,5 @@ $(document).ready(function(){
     return true;
   });
 
+  $(".iPictures").iPicture();
 });
