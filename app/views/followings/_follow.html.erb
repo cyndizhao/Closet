@@ -7,7 +7,7 @@
         <% if page_user.first_name.present? %>
           <span><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>&nbsp<%= page_user.first_name.capitalize %> <%= page_user.last_name.capitalize %></span>
         <% else %>
-          <span><i style="color:gold;" class="fa fa-diamond fa-lg" aria-hidden="true"></i>&nbsp<%= page_user.company_name.capitalize %></span>
+          <span><i style="color:gold;" class="fa fa-diamond fa-lg" aria-hidden="true"></i>&nbsp<%= page_user.company_name %></span>
         <% end %>
         <% if page_user.followings.find_by_follower_id(current_user.id).present? %>
         <% following_id = current_user.find_following_id_for_specific_followed_user(page_user) %>

@@ -6,6 +6,49 @@
 </div>
 
 <div class="container">
+  <% if @search_word.present? %>
+    <% if @search_posts_ids.present? %>
+    <h3>Your Search Result for "<%= @search_word.downcase.capitalize %>":</h3>
+    <br>
+      <div class="row">
+      <% @search_posts_ids.each do |id| %>
+        <% p = Post.find(id) %>
+        <div class="col-md-4">
+          <div class="iPictures" data-interaction="hover">
+            <div class="ip_slide">
+              <%= image_tag p.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
+              <% p.items.each do |i| %>
+                <div class="ip_tooltip ip_img32" style="top: <%= (i.y) * (36/40.0) %>px; left: <%= (i.x) * (36/40.0)%>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
+                  <ul><li><%= Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="like-div" style="margin-top:2%;">
+          <%= render "likes/like", p: p %>
+          <% if can? :destroy, p%>
+            <%= link_to post_path(p), method: :delete, data:{confirm: 'Are you sure?'} do%>
+              <i class="fa fa-trash" aria-hidden="true" style="color:black;"></i>
+            <% end %>
+          <% end %>
+
+          <i class="fa fa-eye" aria-hidden="true"> <%= p.likes.count %></i>
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <i class="fa fa-tags" aria-hidden="true"></i>
+          <i class="fa fa-hashtag" aria-hidden="true"></i>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    <% else %>
+    <h3>No Relavant Result </h3>
+      <div style="height:400px;">
+      </div>
+    <% end %>
+    <br>
+    <br>
+  <% else %>
   <div class="row">
     <h2 class="boxtitle">New</h2>
     <div class='list-group gallery'>
@@ -64,6 +107,7 @@
   </div>
 
   <!-- normal user -->
+  <hr>
   <div class="row">
     <h2 class="boxtitle">Find New Friends?</h2>
     <div>
@@ -73,7 +117,7 @@
         <% if !(current_user.people_you_follow_ids.include? u.id) && (counter1 < 7) %>
         <!-- ??????????????????why people_you_follow_ids only return a single result in rails console?-->
           <% following = current_user.followings.find_by(user: u) %>
-          <% if !following.present? && !(business_user?(u))%>
+          <% if !following.present? && !(business_user?(u)) && u != current_user%>
           <div class="col-sm-2" style="margin-bottom: 10px;">
             <div class="card" >
                 <div class="header-bg header-bg<%= counter1 %>" width="250" height="70" id="header-blur"></div>
@@ -94,7 +138,7 @@
       <% end %>
     </div>
   </div>
-
+  <br>
   <!-- business_user -->
   <div class="row">
     <h2 class="boxtitle">Interested In Any Brand?</h2>
@@ -105,7 +149,7 @@
         <% if !(current_user.people_you_follow_ids.include? u.id) && (counter2 < 7) %>
         <!-- ??????????????????why people_you_follow_ids only return a single result in rails console?-->
           <% following = current_user.followings.find_by(user: u) %>
-          <% if !following.present? && business_user?(u)%>
+          <% if !following.present? && business_user?(u) && u!= current_user%>
           <div class="col-sm-2" style="margin-bottom: 10px;">
             <div class="card" >
               <div class="header-bg header-bg<%= counter2 %>" width="250" height="70" id="header-blur"></div>
@@ -113,7 +157,7 @@
                 <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
               </div>
               <div class="content">
-                <p><%= u.company_name.capitalize %></p>
+                <p><i class="fa fa-diamond fa-lg" aria-hidden="true"></i>&nbsp<%= u.company_name %></p>
                 <p>Followers: <%= u.followers.count %></p>
                 <p><%= link_to 'Follow',user_followings_path(u), method: :post, class:"btn btn-default"%></p>
                   <!-- <p><button type="button" class="btn btn-default">Follow</button></p> -->
@@ -126,10 +170,12 @@
       <% end %>
     </div>
   </div>
-
-
   <% end %>
 <br>
+
+
+<% end %>
+<hr>
 </div>
 
 <footer class="footer">

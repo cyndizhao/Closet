@@ -4,11 +4,19 @@ class PostsController < ApplicationController
   before_action :post_params, only:[:update, :create]
 
   def index
-    # if params[:search]
-    #   @search_posts = Post.items.any_of({detail: /#{params[:search]}/i}, {kind: /#{params[:search]}/i})
-    #
-    # end
-    #New posts from friends
+    if params[:search]
+      @search_word = params[:search]
+      @search_items = Item.search(params[:search]).order("created_at DESC")
+      if @search_items.present?
+        @search_posts_ids = Array.new
+        @search_items.each do |i|
+          @search_posts_ids << (i.post.id)
+        end
+        @search_posts_ids.uniq!
+      end
+    end
+
+    #New posts from friend
     if user_signed_in?
       list_of_posts = []
       current_user.people_you_follow.each do |u|
