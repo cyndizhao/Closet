@@ -35,8 +35,11 @@
                           </td>
                         <td id="followerDescription"><%= p.description %></td>
                         <td>
-                          <!-- TODO if following relationship exit the shows unfollow; search full name??? -->
-                          <%= link_to 'Follow',user_followings_path(p), method: :post%>
+                          <% if current_user.find_whether_you_followed_the_person(p) %>
+                            <%= link_to "Unfollow", user_following_path(current_user, current_user.find_following_id_for_specific_followed_user(p)), method: :delete%>
+                          <% else %>
+                            <%= link_to 'Follow',user_followings_path(p), method: :post%>
+                          <% end %>
                         <td>
                       </tr>
                     <% end %>
