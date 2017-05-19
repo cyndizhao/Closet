@@ -34,6 +34,17 @@ class User < ApplicationRecord
   def find_following_id_for_specific_followed_user(followed_people)
     User.select('users.*','followings.id AS following_id').joins(:followings).where('followings.follower_id = ?', self.id).find_by_id(followed_people).following_id
   end
+
+  def find_whether_you_followed_the_person(followed_people)
+    User.select('users.*','followings.id AS following_id').joins(:followings).where('followings.follower_id = ?', self.id).find_by_id(followed_people)
+  end
+
+  def self.search_name(search)
+    # where("first_name ILIKE ? OR last_name ILIKE ?", "%#{search}%", "%#{search}%")
+    #TODO search full name
+    where("lower(first_name || ' ' || last_name) ILIKE ?", "%#{search.downcase}%")
+  end
+
   private
   def downcase_email
     self.email.downcase! if email.present?

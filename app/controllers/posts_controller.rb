@@ -4,11 +4,19 @@ class PostsController < ApplicationController
   before_action :post_params, only:[:update, :create]
 
   def index
-    # if params[:search]
-    #   @search_posts = Post.items.any_of({detail: /#{params[:search]}/i}, {kind: /#{params[:search]}/i})
-    #
-    # end
-    #New posts from friends
+    if params[:search]
+      @search_word = params[:search]
+      @search_items = Item.search(params[:search]).order("created_at DESC")
+      if @search_items.present?
+        @search_posts_ids = Array.new
+        @search_items.each do |i|
+          @search_posts_ids << (i.post.id)
+        end
+        @search_posts_ids.uniq!
+      end
+    end
+
+    #New posts from friend
     if user_signed_in?
       list_of_posts = []
       current_user.people_you_follow.each do |u|
@@ -31,7 +39,6 @@ class PostsController < ApplicationController
 
   def create
     #params.require(:post).permit([:description, :picture, :category_id])
-    # byebug
     @post = Post.new post_params
     @post.user = current_user
     if @post.save
@@ -64,7 +71,7 @@ class PostsController < ApplicationController
       redirect_to user_path(user), notice:'Post Deleted!'
     end
   end
-  #
+
   # def edit
   #   # @post = Post.find(params[:id])
   #   redirect_to root_path, alert:'Access denied!' unless can? :edit, @post
@@ -84,7 +91,7 @@ class PostsController < ApplicationController
   #     render :edit
   #   end
   # end
-  #
+  
   private
   def get_post
     @post = Post.find(params[:id])

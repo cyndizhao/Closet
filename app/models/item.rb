@@ -10,4 +10,8 @@ class Item < ApplicationRecord
   validates :x, presence: true
   validates :y, presence: true
   #add name to item : name
+
+  def self.search(search)
+    where("detail ILIKE ?", "%#{search}%") 
+  end
 end

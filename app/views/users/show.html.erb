@@ -11,7 +11,6 @@
         <h3><%= greeting.sample %></h3>
         <div id = "wrap">
           <%= link_to "New Outfit", new_post_path, id:"newOutfit" %>
-          <!-- <a href="#" id = "newOutfit"><b>NEW OUTFIT</b></a> -->
         </div>
       </div>
 
@@ -21,7 +20,7 @@
         <div class='list-group gallery'>
           <% @posts.each do |p| %>
           <%# group.each do |post| %>
-          <div class="col-md-4">
+          <div class="col-md-4" style="margin-bottom: 2%;">
             <%# render 'ipicture' %>
             <div class="iPictures" data-interaction="hover">
               <div class="ip_slide">
@@ -46,7 +45,6 @@
             <i class="fa fa-heart-o" aria-hidden="true"></i>
             <i class="fa fa-tags" aria-hidden="true"></i>
             <i class="fa fa-hashtag" aria-hidden="true"></i>
-
           <!-- <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class=" thumbnail fancybox" rel="gallery" title="show all tags">
             <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
           </a> -->
@@ -59,9 +57,9 @@
     </div>
     <% elsif @user.business_user == true %>
     <div class="container other-user-home">
-      <!-- <p>Other Individual home</p> -->
-      <div class="container" style="margin-top:2%; margin-bottom:2%;">
-        <div class="row card">
+      <!-- <p>brand home</p> -->
+      <div class="container" style="margin-top:2%; margin-bottom:2%">
+        <div class="row card" style="background-color:#618fab;">
             <div class="col-md-4">
               <%= image_tag @user.selfie.url(:medium), class:"img-responsive center-block other_selfie" %>
             </div>
@@ -71,6 +69,16 @@
             </div>
         </div>
       </div>
+
+      <!-- Show map -->
+      <div class="container hidden" id="map_wrapper">
+        <div style='width: 803px; margin: 0 auto; border:dotted thin black;'>
+          <div id="map" style='width: 800px; height: 400px;box-sizing: border-box;' data-id="<%= @user.company_name.capitalize %>"></div>
+        </div>
+        <!-- <span class="map_spinner" style="display: none;"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> &nbsp; Loading...</span> -->
+
+      </div>
+
 
       <div class="container">
         <div class="row">
@@ -86,9 +94,10 @@
                   <% end %>
                 </div>
               </div>
+              <div style="margin-bottom: 5%; margin-top:2%;">
               <%= render "likes/like", p: p %>
               <span class="pull-right"><%= ((Time.now - p.created_at) /86400).to_i%> day(s) ago</span>
-              <!-- User Post Likes !!! -->
+              </div>
             </div>
           <% end %>
         </div>
@@ -125,8 +134,10 @@
                     <% end %>
                   </div>
                 </div>
+                <div style="margin-bottom: 5%; margin-top:2%;">
                 <%= render "likes/like", p: p %>
                 <span class="pull-right"><%= ((Time.now - p.created_at) /86400).to_i%> day(s) ago</span>
+                </div>
                 <!-- User Post Likes !!! -->
               </div>
             <% end %>

@@ -38,6 +38,7 @@
 }
 
 #sidebar1 {
+    position:fixed;
     background: #F17153;
     // /* For browsers that do not support gradients */
     // background: -webkit-linear-gradient(#F17153, #F58D63, #f1ab53);
@@ -148,5 +149,14 @@
     filter: grayscale(0.4);
     color: black;
     border: 0px;
+  }
+}
+
+#map_wrapper{
+  position: relative;
+  .map_spinner{
+    position: absolute;
+    top:calc(50% - 21px);
+    left: calc(50% - 50px);
   }
 }
