@@ -4,7 +4,7 @@
     <% if params[:id] == current_user.id.to_s %>
       <%= render 'partials/sidebar' %>
 
-      <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4" id="main-content">
+      <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4">
       <!--Main content code to be written here -->
       <div class="row" id="greeting">
         <% greeting = ["Hi, what\'s new?", "Ready to share your outfit for today?", "Fashion is what you’re offered four times a year by designers. And style is what you choose.", "Clothes are like a good meal, a good movie, great pieces of music."] %>
@@ -13,48 +13,57 @@
           <%= link_to "New Outfit", new_post_path, id:"newOutfit" %>
         </div>
       </div>
+      <br>
 
-      <%# @posts.in_groups(3) do |group|%>
       <div class="row">
-        <h2 id="boxtitle"></h2>
-        <div class='list-group gallery'>
           <% @posts.each do |p| %>
-          <%# group.each do |post| %>
-          <div class="col-md-4" style="margin-bottom: 2%;">
-            <%# render 'ipicture' %>
+          <div class="col-md-4 post-col-4">
             <div class="iPictures" data-interaction="hover">
               <div class="ip_slide">
                 <%= image_tag p.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
                 <% p.items.each do |i| %>
-                  <div class="ip_tooltip ip_img32" style="top: <%= (i.y) * (37/40.0) %>px; left: <%= (i.x) * (37/40.0)%>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
+                  <div class="ip_tooltip ip_img32" style="top: <%= (i.y) * (34.2/40.0) %>px; left: <%= (i.x) * (34.2/40.0)%>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
                     <ul><li><%= Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
                   </div>
                 <% end %>
               </div>
             </div>
-            <%# link_to "Details", post_path(p), class:"fa fa-tags"%>
-            <%= render "likes/like", p: p %>
-            <% if can? :destroy, p%>
-              <%= link_to post_path(p), method: :delete, data:{confirm: 'Are you sure?'} do%>
-                <i class="fa fa-trash" aria-hidden="true" style="color:black;"></i>
-              <% end %>
-            <% end %>
+            <!-- <%= render "likes/like", p: p %> -->
+            <div style="margin-bottom: 5%; margin-top:2%;">
+              <div>
+                <i class="fa fa-heart" aria-hidden="true"> <%= p.likes.count %></i>
+                &nbsp;
+                <% if can? :destroy, p%>
+                <%= link_to post_path(p), method: :delete, data:{confirm: 'Are you sure?'} do%>
+                <span><i class="fa fa-trash-o" aria-hidden="true" style="color:black;"></i></span>
+                <% end %>
+                &nbsp;
+                <% end %>
 
-            <i class="fa fa-heart" aria-hidden="true"> <%= p.likes.count %></i>
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <i class="fa fa-tags" aria-hidden="true"></i>
-            <i class="fa fa-hashtag" aria-hidden="true"></i>
-          <!-- <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class=" thumbnail fancybox" rel="gallery" title="show all tags">
-            <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
-          </a> -->
+                <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                <span class="pull-right"><%= ((Time.now - p.created_at) /86400).to_i%> day(s) ago</span>
+              </div>
+              <div>
+                <% if p.items.present? %>
+                <% list = [] %>
+                  <% p.items.each do |i| %>
+                    <% if !(list.include? i.brand.name) %>
+                      <span><i class="fa fa-hashtag" aria-hidden="true"></i><%= i.brand.name %></span>
+                      <% list.push(i.brand.name) %>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <span><i class="fa fa-hashtag" aria-hidden="true"></i></span>
+                <% end %>
+                <span><i class="fa fa-tags" aria-hidden="true"></i></span>
+              </div>
+            </div>
           </div>
           <% end %>
-
-        </div>
       </div>
-      <%# end %>
     </div>
+
+
     <% elsif @user.business_user == true %>
     <div class="container other-user-home">
       <!-- <p>brand home</p> -->
@@ -76,14 +85,13 @@
           <div id="map" style='width: 800px; height: 400px;box-sizing: border-box;' data-id="<%= @user.company_name.capitalize %>"></div>
         </div>
         <!-- <span class="map_spinner" style="display: none;"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> &nbsp; Loading...</span> -->
-
       </div>
 
 
       <div class="container">
         <div class="row">
           <% @user.posts.each do |p|%>
-            <div class="col-md-4">
+            <div class="col-md-4 post-col-4">
               <div class="iPictures" data-interaction="hover">
                 <div class="ip_slide">
                   <%= image_tag p.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
@@ -94,10 +102,7 @@
                   <% end %>
                 </div>
               </div>
-              <div style="margin-bottom: 5%; margin-top:2%;">
               <%= render "likes/like", p: p %>
-              <span class="pull-right"><%= ((Time.now - p.created_at) /86400).to_i%> day(s) ago</span>
-              </div>
             </div>
           <% end %>
         </div>
@@ -123,21 +128,21 @@
         <div class="container">
           <div class="row">
             <% @user.posts.each do |p|%>
-              <div class="col-md-4">
+              <div class="col-md-4 post-col-4">
                 <div class="iPictures" data-interaction="hover">
                   <div class="ip_slide">
                     <%= image_tag p.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
                     <% p.items.each do |i| %>
-                      <div class="ip_tooltip ip_img32" style="top: <%= (i.y) * (36/40.0) %>px; left: <%= (i.x) * (36/40.0) %>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
+                      <div class="ip_tooltip ip_img32" style="top: <%= (i.y) * (33.7/40.0) %>px; left: <%= (i.x) * (33.7/40.0) %>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
                         <ul><li><% Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
                       </div>
                     <% end %>
                   </div>
                 </div>
-                <div style="margin-bottom: 5%; margin-top:2%;">
+                <!-- <div style="margin-bottom: 5%; margin-top:2%;"> -->
                 <%= render "likes/like", p: p %>
-                <span class="pull-right"><%= ((Time.now - p.created_at) /86400).to_i%> day(s) ago</span>
-                </div>
+                <!-- <span class="pull-right"><%= ((Time.now - p.created_at) /86400).to_i%> day(s) ago</span>
+                </div> -->
                 <!-- User Post Likes !!! -->
               </div>
             <% end %>
