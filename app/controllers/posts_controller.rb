@@ -39,7 +39,6 @@ class PostsController < ApplicationController
 
   def create
     #params.require(:post).permit([:description, :picture, :category_id])
-    # byebug
     @post = Post.new post_params
     @post.user = current_user
     if @post.save
@@ -72,7 +71,7 @@ class PostsController < ApplicationController
       redirect_to user_path(user), notice:'Post Deleted!'
     end
   end
-  #
+
   # def edit
   #   # @post = Post.find(params[:id])
   #   redirect_to root_path, alert:'Access denied!' unless can? :edit, @post
@@ -92,7 +91,7 @@ class PostsController < ApplicationController
   #     render :edit
   #   end
   # end
-  #
+  
   private
   def get_post
     @post = Post.find(params[:id])

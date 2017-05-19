@@ -5,9 +5,9 @@
     <div class="col-md-12">
       <p>
         <% if page_user.first_name.present? %>
-          <span><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>&nbsp<%= page_user.first_name.capitalize %> <%= page_user.last_name.capitalize %></span>
+          <span><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>&nbsp;<%= page_user.first_name.capitalize %> <%= page_user.last_name.capitalize %></span>
         <% else %>
-          <span><i style="color:gold;" class="fa fa-diamond fa-lg" aria-hidden="true"></i>&nbsp<%= page_user.company_name %></span>
+          <span><i style="color:gold;" class="fa fa-diamond fa-lg" aria-hidden="true"></i>&nbsp;<%= page_user.company_name %></span>
         <% end %>
         <% if page_user.followings.find_by_follower_id(current_user.id).present? %>
         <% following_id = current_user.find_following_id_for_specific_followed_user(page_user) %>
@@ -18,8 +18,10 @@
         <% else %>
         <span style="margin-left:10px;">
           <%= link_to 'Follow',user_followings_path(page_user), method: :post,
-          class:"btn btn-default pull-center", remote: true%></span>
+          class:"btn btn-default pull-center", remote: true%>
+        </span>
         <% end %>
+        <span><button id="get_location" type="button" name="button" class="btn btn-default pull-right">Find Closest Store?</button></span>
       </p>
     </div>
   </div>

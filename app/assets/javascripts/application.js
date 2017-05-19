@@ -15,6 +15,8 @@
 //= require bootstrap-sprockets
 //= require bxslider
 //= require chosen-jquery
+//= require underscore
+//= require gmaps/google
 //= require_tree .
 
 $(document).ready(function(){
@@ -23,6 +25,7 @@ $(document).ready(function(){
   //     closeEffect: "none"
   // });
 
+  //home page slider
   $('#slide1, #slide2, #slide3').bxSlider({
     minSlides: 3,
     maxSlides: 4,
@@ -36,6 +39,7 @@ $(document).ready(function(){
   // $("#single_picture").iPicture();
   $('.chosen-select').chosen();
 
+  //user.js signup form
   $( "#business_user input[type=checkbox]" ).on( "click", function(event){
 
     if ($('.input-company-name').hasClass('hidden') && $(this).is(':checked')){
@@ -55,11 +59,11 @@ $(document).ready(function(){
       var files = event.target.files;
       var image = files[0]
       // here's the file size
-      console.log(image.size);
+      // console.log(image.size);
       var reader = new FileReader();
       reader.onload = function(file) {
         var img = new Image();
-        console.log(file);
+        // console.log(file);
         img.src = file.target.result;
         $('#previewImage').html(img);
         $('#previewImage img').css({'max-width': '400px', 'max-height':'400px'})
@@ -98,11 +102,11 @@ $(document).ready(function(){
       const brand = fData.get('brand');
       const detail = fData.get('detail');
       const kind = fData.get('kind');
-      console.log(link);
-      console.log(price);
-      console.log(brand);
-      console.log(detail);
-      console.log(kind);
+      // console.log(link);
+      // console.log(price);
+      // console.log(brand);
+      // console.log(detail);
+      // console.log(kind);
       // debugger;
       outfit_labels.push({
         x: x,
@@ -113,6 +117,8 @@ $(document).ready(function(){
         detail: detail,
         kind: kind
       })
+      // TODO make if simple
+      // $('#newItemForm').reset();
       $('#itemPrice').val('');
       $('#itemLink').val('');
       $('#itemBrand').val('');
@@ -126,7 +132,7 @@ $(document).ready(function(){
       $("#iPicture").iPicture();
     })
   });
-  //man and woman
+
   $("#newPostForm").on('submit', function() {
     $(this).find('#items').val(JSON.stringify(outfit_labels));
     $('#message').addClass('hidden');
@@ -134,5 +140,77 @@ $(document).ready(function(){
     return true;
   });
 
+
+  let map;
+  let pyrmont;
+  let centerImage = {
+    url: 'http://www.myiconfinder.com/uploads/iconsets/256-256-a5485b563efc4511e0cd8bd04ad0fe9e.png',
+    scaledSize: new google.maps.Size(35, 35),
+  }
+  //find closest store GOOGLE MAP
+  $('#get_location').on('click', function(event){
+    event.preventDefault();
+    if($('#map_wrapper').hasClass('hidden')){
+      // $('.map_spinner').show();
+      if (pyrmont){
+        $('#map_wrapper').removeClass('hidden');
+        centerMap(pyrmont);
+      }
+      navigator.geolocation.getCurrentPosition(function(location) {
+        const lat = location.coords.latitude;
+        const log = location.coords.longitude;
+        pyrmont = new google.maps.LatLng(lat,log);
+        // pyrmont = new google.maps.LatLng(49 + Math.random(), -123 - Math.random());
+
+        centerMap(pyrmont);
+        $('#map_wrapper').removeClass('hidden');
+
+        const query = $('#map').attr("data-id");
+        const request = {
+          location: pyrmont,
+          radius: '1000',
+          query: query
+        };
+        service = new google.maps.places.PlacesService(map);
+        service.textSearch(request, callback);
+      });
+
+    }else{
+      $('#map_wrapper').addClass('hidden');
+    }
+
+    function centerMap(pyrmont){
+      map = map || new google.maps.Map(document.getElementById('map'), {
+        center: pyrmont,
+        zoom: 15
+      });
+      map.setCenter(pyrmont);
+      var centerMarker = new google.maps.Marker({
+        position: pyrmont,
+        title: 'Your Current Position',
+        map: map,
+        icon: centerImage
+      });
+    }
+
+    function callback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          createMarker(results[i]);
+        }
+      }
+      // $('.map_spinner').hide();
+    }
+    function createMarker(place) {
+      var placeLoc = place.geometry.location;
+      var marker = new google.maps.Marker({
+        map: map,
+        title: place.name,
+        position: place.geometry.location
+      });
+    }
+
+
+  });
   $(".iPictures").iPicture();
 });

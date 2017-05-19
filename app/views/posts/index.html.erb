@@ -125,10 +125,9 @@
                   <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
                 </div>
                 <div class="content">
-                  <p><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>&nbsp<%= u.first_name.capitalize %></p>
+                  <p><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>&nbsp;<%= u.first_name.capitalize %></p>
                   <p>Followers: <%= u.followers.count %></p>
                   <p><%= link_to 'Follow',user_followings_path(u), method: :post, class:"btn btn-default"%></p>
-                    <!-- <p><button type="button" class="btn btn-default">Follow</button></p> -->
                 </div>
             </div>
           </div>
@@ -147,7 +146,6 @@
       <% counter2 = 1%>
       <% users.each do |u| %>
         <% if !(current_user.people_you_follow_ids.include? u.id) && (counter2 < 7) %>
-        <!-- ??????????????????why people_you_follow_ids only return a single result in rails console?-->
           <% following = current_user.followings.find_by(user: u) %>
           <% if !following.present? && business_user?(u) && u!= current_user%>
           <div class="col-sm-2" style="margin-bottom: 10px;">
@@ -157,7 +155,7 @@
                 <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
               </div>
               <div class="content">
-                <p><i class="fa fa-diamond fa-lg" aria-hidden="true"></i>&nbsp<%= u.company_name %></p>
+                <p><i class="fa fa-diamond fa-lg" aria-hidden="true"></i>&nbsp;<%= u.company_name %></p>
                 <p>Followers: <%= u.followers.count %></p>
                 <p><%= link_to 'Follow',user_followings_path(u), method: :post, class:"btn btn-default"%></p>
                   <!-- <p><button type="button" class="btn btn-default">Follow</button></p> -->
@@ -178,6 +176,10 @@
 <hr>
 </div>
 
+<!-- <section id="About">
+  <h1>About Us</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</section> -->
 <footer class="footer">
   <div class="container">
     <div class="row">

@@ -39,6 +39,9 @@ gem "paperclip", "~> 4.2"
 gem 'cancancan', '~> 1.10'
 gem 'chosen-rails'
 
+gem 'gmaps4rails'
+gem 'underscore-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

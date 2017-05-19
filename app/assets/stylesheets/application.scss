@@ -11,10 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
- *= require_self
  *= require font-awesome
  *= require bxslider
  *= require chosen
+ *= require_self
  */
 
 
@@ -66,8 +66,7 @@ body{
    background-color: #000;
    border: 1px solid rgba(0, 0, 0, 0.7);
    border: 1px solid rgba(0, 0, 0, .15);
-   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-           box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+   box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
  }
 
  .bs-dark .dropdown-menu .divider {
