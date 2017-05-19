@@ -1,11 +1,33 @@
 <% post_like = p.present? ? p : @post %>
-<span id="<%= dom_id(post_like) %>">
-  <% if user_signed_in? && (can? :like, post_like)%>
+<div style="margin-bottom: 5%; margin-top:2%;">
+<div class="">
+  <span id="<%= dom_id(post_like) %>">
+    <% if user_signed_in? && (can? :like, post_like)%>
     <% if !post_like.liked_by?(current_user) %>
-      <%= link_to fa_icon("heart-o"), post_likes_path(post_like), method: :post, remote: true%>
+    <%= link_to fa_icon("heart-o"), post_likes_path(post_like), method: :post, remote: true%>
     <% else %>
-      <%= link_to fa_icon("heart"), post_like_path(post_like, post_like.like_for(current_user)), method: :delete, remote: true%>
+    <%= link_to fa_icon("heart"), post_like_path(post_like, post_like.like_for(current_user)), method: :delete, remote: true%>
     <% end %>
+    <% end %>
+    <span><%= pluralize(post_like.likes.count, 'like') %></span>
+    &nbsp;
+    <span><%= link_to fa_icon("id-badge"), user_path(post_like.user), class:"fa-lg"%></span>
+
+    <span class="pull-right"><%= ((Time.now - post_like.created_at) /86400).to_i%> day(s) ago</span>
+  </span>
+
+</div>
+<div class="">
+  <% if post_like.items.present? %>
+  <% list = [] %>
+    <% post_like.items.each do |i| %>
+      <% if !(list.include? i.brand.name) %>
+        <span><i class="fa fa-hashtag" aria-hidden="true"></i><%= i.brand.name %></span>
+        <% list.push(i.brand.name) %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <span><i class="fa fa-hashtag" aria-hidden="true"></i></span>
   <% end %>
-  <span><%= pluralize(post_like.likes.count, 'like') %></span>
-</span>
+</div>
+</div>
