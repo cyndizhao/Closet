@@ -9,7 +9,7 @@
       <li><%= link_to 'Looks', user_path(@user), style: 'color:white;'%></li>
       <li><%= link_to 'Profile', edit_user_path(@user), style: 'color:white;'%></li>
       <li><%= link_to 'Following', user_followers_path(@user), style: 'color:white;'%></li>
-      <li><%# link_to 'All You Liked', user_followers_path(@user), style: 'color:white;'%></li>
+      <li><%= link_to 'Collection', user_bookmarks_path(@user), style: 'color:white;'%></li>
       <li>Settings</li>
     </ul>
   </div>

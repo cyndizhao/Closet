@@ -25,18 +25,14 @@
             </div>
           </div>
           <div class="like-div" style="margin-top:2%;">
-          <%= render "likes/like", p: p %>
+            <%= render "partials/like_bookmark_wrapper", p: p %>
           <% if can? :destroy, p%>
             <%= link_to post_path(p), method: :delete, data:{confirm: 'Are you sure?'} do%>
               <i class="fa fa-trash" aria-hidden="true" style="color:black;"></i>
             <% end %>
           <% end %>
 
-          <i class="fa fa-eye" aria-hidden="true"> <%= p.likes.count %></i>
-          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <i class="fa fa-tags" aria-hidden="true"></i>
-          <i class="fa fa-hashtag" aria-hidden="true"></i>
+
           </div>
         </div>
       <% end %>
