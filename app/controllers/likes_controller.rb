@@ -23,7 +23,7 @@ class LikesController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     @like = Like.find(params[:id])
-    if cannot? :like, @like.post
+    if cannot? :like, @post
       redirect_to post_path(@like.post), alert: 'Can not Unliking your own post'
       return
     end
