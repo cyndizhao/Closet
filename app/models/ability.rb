@@ -16,6 +16,14 @@ class Ability
     cannot :like, Post do |post|
       user == post.user
     end
+
+    can :bookmark, Post do |post|
+      user != post.user
+    end
+    cannot :bookmark, Post do |post|
+      user == post.user
+    end
+
   end
 
 end

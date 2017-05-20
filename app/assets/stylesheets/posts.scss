@@ -92,7 +92,8 @@
   border-radius : 15px;
   box-shadow: 0 0 15px #4a4cc9;
   padding-bottom: 20px;
-  padding-top: 25px;
+  padding-top: 10px;
+  text-align: center;
 
 }
 #inputPicture{
@@ -171,6 +172,13 @@ i{
 .fa-file-image-o, #follow .fa-user-circle{
   color:white;
 }
-.find_new_friends .fa-user-circle{
+.find_new_friends .fa-user-circle, i.fa-file-image-o{
   color:black;
+}
+.fa-star-o, .fa-star{
+  color: #0e8c5a;
+}
+
+#message1, #message2{
+  text-align: center;
 }
