@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+
   has_attached_file :selfie, styles: { medium: "300x300>", thumb: "150x150>" }, default_url: "/images/missing.png"
   validates_attachment_content_type :selfie, content_type: /\Aimage\/.*\z/
 
