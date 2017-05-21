@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-3">STYLITE</h1>
+    <h1>STYLITE</h1>
     <p class="lead">Style Is A Way To Say Who You Are Without Having To Speak</p>
   </div>
 </div>
@@ -154,7 +154,6 @@
                 <p><i class="fa fa-diamond fa-lg" aria-hidden="true"></i>&nbsp;<%= u.company_name %></p>
                 <p>Followers: <%= u.followers.count %></p>
                 <p><%= link_to 'Follow',user_followings_path(u), method: :post, class:"btn btn-default"%></p>
-                  <!-- <p><button type="button" class="btn btn-default">Follow</button></p> -->
               </div>
             </div>
           </div>

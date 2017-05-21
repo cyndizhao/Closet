@@ -30,7 +30,6 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    # byebug
     @post = Post.find(params[:post_id])
     @bookmark = Bookmark.find(params[:id])
     if cannot? :bookmark, @post

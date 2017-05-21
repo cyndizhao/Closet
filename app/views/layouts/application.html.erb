@@ -46,16 +46,13 @@
                   </ul>
                 </li>
               </ul>
-              <form class="navbar-form navbar-right form-horizontal" role="search">
-                <%= form_for posts_path, method: :get, html: { role: "search",class:"navbar-form navbar-right form-horizontal"} do %>
-
-                  <div class="input-group">
-                    <%= text_field_tag :search, params[:search], class: "search-box", placeholder:"Search"%>
-                    <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
-                  </div>
-                <% end %>
-              </form>
-
+              <!-- Search Bar -->
+              <%= form_for posts_path, method: :get, html: { role: "search",class:"navbar-form navbar-right form-horizontal"} do %>
+                <div class="input-group">
+                  <%= text_field_tag :search, params[:search], class: "search-box", placeholder:"Search"%>
+                  <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+              <% end %>
 
               <ul class="nav navbar-nav navbar-right">
                 <% if !user_signed_in? %>

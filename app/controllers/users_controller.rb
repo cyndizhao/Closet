@@ -20,20 +20,26 @@ class UsersController < ApplicationController
     @user_id = params[:id]
     @user = User.find_by_id(@user_id)
     @posts = @user.posts
-    # session[:user_id]
   end
 
   def edit
-
+    if @user == current_user
+      render :edit, notice: "edited successfully"
+    else
+      redirect_to root_path, alert: "can not edit other's profile"
+    end
   end
 
   def update
-    # TODO add if else
-    if @user.update(params.require(:user).permit([:first_name, :last_name, :company_name, :email, :description, :selfie]))
-      flash[:notice] = "User Infomation Updated"
-      redirect_to user_path(current_user)
+    if @user == current_user
+      if @user.update(params.require(:user).permit([:first_name, :last_name, :company_name, :email, :description, :selfie]))
+        flash[:notice] = "User Infomation Updated"
+        redirect_to user_path(current_user)
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to root_path, alert: "can not update other's profile"
     end
   end
 
