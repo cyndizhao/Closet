@@ -6,6 +6,7 @@
 </div>
 
 <div class="container">
+  <!-- Search  -->
   <% if @search_word.present? %>
     <% if @search_posts_ids.present? %>
     <h3>Your Search Result for "<%= @search_word.downcase.capitalize %>":</h3>
@@ -31,8 +32,6 @@
               <i class="fa fa-trash" aria-hidden="true" style="color:black;"></i>
             <% end %>
           <% end %>
-
-
           </div>
         </div>
       <% end %>
@@ -45,6 +44,7 @@
     <br>
     <br>
   <% else %>
+  <!-- List of Posts -->
   <div class="row">
     <h2 class="boxtitle">New</h2>
     <div class='list-group gallery'>
@@ -70,17 +70,6 @@
           <% end %>
         </div>
         <% end %>
-      <!-- <li>
-        <a href="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" class="fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="https://s-media-cache-ak0.pinimg.com/564x/67/4a/6b/674a6b2ef6bac78c87425feb71692617.jpg" alt="">
-        </a>
-      </li>
-      <li>
-        <a href="http://www.closetfulofclothes.com/wp-content/uploads/2015/12/winter-fall-work-outfit-grey-tweed-pants-trousers-cropped-pants-wide-leg-pants-ankel-booties-booties-and-shoes-navy-top-fall-neutrals-saddle-bag-thefashionguitar-instagram.jpg" class="fancybox" rel="gallery" title="show all tags">
-          <img class= "img-responsive"src="http://www.closetfulofclothes.com/wp-content/uploads/2015/12/winter-fall-work-outfit-grey-tweed-pants-trousers-cropped-pants-wide-leg-pants-ankel-booties-booties-and-shoes-navy-top-fall-neutrals-saddle-bag-thefashionguitar-instagram.jpg" alt="">
-        </a>
-      </li> -->
-
     </ul>
     </div>
   </div>
@@ -99,11 +88,9 @@
         <% end %>
       </ul>
     </div>
-
   </div>
 
-  <!-- normal user -->
-  <hr>
+  <!-- follow normal user -->
   <div class="row find_new_friends">
     <h2 class="boxtitle">Find New Friends?</h2>
     <div>
@@ -111,7 +98,6 @@
       <% counter1 = 1%>
       <% users.each do |u| %>
         <% if !(current_user.people_you_follow_ids.include? u.id) && (counter1 < 7) %>
-        <!-- ??????????????????why people_you_follow_ids only return a single result in rails console?-->
           <% following = current_user.followings.find_by(user: u) %>
           <% if !following.present? && !(business_user?(u)) && u != current_user%>
           <div class="col-sm-2" style="margin-bottom: 10px;">
@@ -134,7 +120,8 @@
     </div>
   </div>
   <br>
-  <!-- business_user -->
+
+  <!-- follow business_user -->
   <div class="row">
     <h2 class="boxtitle">Interested In Any Brand?</h2>
     <div>
@@ -164,11 +151,10 @@
     </div>
   </div>
   <% end %>
-<br>
+  <br>
 
 
 <% end %>
-<hr>
 </div>
 
 <!-- <section id="About">

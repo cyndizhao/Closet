@@ -18,8 +18,8 @@
               <tbody>
                 <% if @search_word.present? %>
                   <% if @search_persons_ids.present? %>
-                    <h3 class="center_text">Here Is the Search Result for "<%= @search_word.capitalize %>": </h3>
-                    <h3 class="center_text">Follow <%= @search_word.capitalize %> Now?</h3>
+                    <h3 align="center">Here Is the Search Result for "<%= @search_word.capitalize %>": </h3>
+                    <h3 align="center">Follow <%= @search_word.capitalize %> Now?</h3>
                     <% @search_persons_ids.each do |id| %>
                       <% p = User.find(id) %>
                       <tr id="followerinfo">
