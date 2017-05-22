@@ -11,9 +11,25 @@
 	height:70px;
 	border-radius:10%;
 }
-#followerinfo {
+.followerinfo {
   text-align: left;
 }
-#followerName {
+.followerName {
   width: 100px;
+}
+#followers .table-hover tbody tr:hover {
+	background-color: #efe9e8;
+}
+.SearchIcon
+{
+    color:#fff;
+
+}
+.SearchButton
+{
+    background-color:#8b76b3;
+    border-radius:1px;
+}
+.SearchButton:hover{
+    background-color:#64609e;
 }

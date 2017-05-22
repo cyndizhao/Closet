@@ -3,28 +3,42 @@
     <!-- render _sidebar.html.erb -->
     <%= render 'partials/sidebar' %>
     <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4">
+
+      <!-- Search Person -->
+      <div class="container" style="margin-top:30px;" >
+        <%= form_for user_followers_path, method: :get, html: { role: "search",class:"form-horizontal"} do %>
+          <div class="input-group" style="width:300px">
+            <%= text_field_tag :search_person, params[:search_person], class: "form-control", placeholder:"Search For Person"%>
+            <span class="input-group-btn">
+              <button class="btn btn-defaul SearchButton" type="submit">
+                  <span class=" glyphicon glyphicon-search SearchIcon" ></span>
+              </button>
+            </span>
+          </div>
+        <% end %>
+      </div>
       <div class="panel-body" id="followers">
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="list">
-           <table class="table table-list table-hover table-responsive">
+           <table class="table table-list table-responsive table-hover">
             <thead>
               <tr>
                 <th>Selfie</th>
                 <th>Name</th>
                 <th>Brief Introduction</th>
-                <th>Unfollow</th>
+                <th>Connection</th>
               </tr>
             </thead>
               <tbody>
-                <% if @search_word.present? %>
+                <% if @search_name.present? %>
                   <% if @search_persons_ids.present? %>
-                    <h3 align="center">Here Is the Search Result for "<%= @search_word.capitalize %>": </h3>
-                    <h3 align="center">Follow <%= @search_word.capitalize %> Now?</h3>
+                    <h3 align="center">Here Is the Search Result for "<%= @search_name.capitalize %>": </h3>
                     <% @search_persons_ids.each do |id| %>
                       <% p = User.find(id) %>
-                      <tr id="followerinfo">
+
+                      <tr class="followerinfo">
                         <td class="avatar"><%= image_tag p.selfie.url(:medium), class:"img-responsive center-block" %></td>
-                        <td id="followerName">
+                        <td class="followerName">
                           <a href="/users/<%= p.id %>">
                           <% if p.first_name.present? %>
                           <%= p.first_name.capitalize %> <%= p.last_name.capitalize %>
@@ -33,7 +47,7 @@
                           <% end %>
                           <a>
                           </td>
-                        <td id="followerDescription"><%= p.description %></td>
+                        <td><%= p.description %></td>
                         <td>
                           <% if current_user.find_whether_you_followed_the_person(p) %>
                             <%= link_to "Unfollow", user_following_path(current_user, current_user.find_following_id_for_specific_followed_user(p)), method: :delete%>
@@ -48,9 +62,9 @@
                   <% end %>
                 <% else %>
                   <% @followings.each do |f| %>
-                    <tr id="followerinfo">
+                    <tr class ="followerinfo">
                       <td class="avatar"><%= image_tag f.selfie.url(:medium), class:"img-responsive center-block" %></td>
-                      <td id="followerName">
+                      <td class="followerName">
                         <a href="/users/<%= f.id %>">
                         <% if f.first_name.present? %>
                         <%= f.first_name.capitalize %> <%= f.last_name.capitalize %>
@@ -59,7 +73,7 @@
                         <% end %>
                         <a>
                         </td>
-                      <td id="followerDescription"><%= f.description %></td>
+                      <td><%= f.description %></td>
                       <td>
                         <%= link_to "Unfollow", user_following_path(current_user, f.following_id), method: :delete%>
                       <td>

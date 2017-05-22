@@ -43,7 +43,7 @@ class User < ApplicationRecord
 
   def self.search_name(search)
     # where("first_name ILIKE ? OR last_name ILIKE ?", "%#{search}%", "%#{search}%")
-    where("lower(first_name || ' ' || last_name) ILIKE ?", "%#{search.downcase}%")
+    where("(first_name || ' ' || last_name) ILIKE ? OR company_name ILIKE ?" , "%#{search}%", "%#{search}%")
   end
 
   private

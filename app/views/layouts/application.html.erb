@@ -20,7 +20,7 @@
 
   <body>
     <div class="fluid-container">
-        <nav class="navbar navbar-inverse bs-dark fixed-top ">
+        <nav class="navbar navbar-inverse bs-dark fixed-top" style="border-radius:0px;">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -73,11 +73,11 @@
               </ul>
             </div>
         </nav>
-      <% if flash[:notice] %>
+      <!-- <%# if flash[:notice] %>
         <div class="flash-notice"><%= flash[:notice] %></div>
-      <% elsif flash[:alert] %>
+      <%# elsif flash[:alert] %>
         <div class="flash-alert"><%= flash.now[:alert] %></div>
-      <% end %>
+      <%# end %> -->
     <%= yield %>
     <!-- <div id="myModalFirst" class="modal fade" role="dialog"> -->
     <!-- </div> -->
