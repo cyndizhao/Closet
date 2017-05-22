@@ -6,11 +6,17 @@
       <%= @user.errors.full_messages.join(',') %>
 
       <%= form_for @user do |f| %>
+        <% if @user.first_name.present? %>
         <%= f.label :first_name %>
         <%= f.text_field :first_name, class:'form-control' %>
 
         <%= f.label :last_name %>
         <%= f.text_field :last_name, class:'form-control' %>
+
+        <% else %>
+        <%= f.label :company_name %>
+        <%= f.text_field :company_name, class:'form-control' %>
+        <% end %>
 
         <%= f.label :email %>
         <%= f.email_field :email, class:'form-control' %>
