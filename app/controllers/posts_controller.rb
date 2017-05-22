@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :post_params, only:[:update, :create]
 
   def index
+    @users = User.all
     if params[:search]
       @search_word = params[:search]
       @search_items = Item.search(params[:search]).order("created_at DESC")

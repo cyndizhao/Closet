@@ -25,30 +25,11 @@
   color: #3e4144;
 }
 
-// .header-bg1{
-//   background-color: #f2dede;
-//
-// }
-// .header-bg2{
-//   background-color: #d9edf7;
-//
-// }
-// .header-bg3{
-//   background-color: #f5f5f5;
-//
-// }
-// .header-bg4{
-//   background-color: #dff0d8;
-// }
 
 .card .header-bg {
   /* This stretches the canvas across the entire hero unit */
-  // background-color: #000;
-  // background-color: #2b2e32;
-  // background-color: #35404f;
   // background: linear-gradient(to right, #307dac ,#4a4cc9, #77a0b8,#6a6cba, #abcfe5,#b6b6dd, #ccdfeb);
   background: linear-gradient(#4a4cc9, #6a6cba, #b6b6dd, #77a0b8, #518cb0, #1879b4);
-  filter: grayscale(0.6);
   position: absolute;
   top: 0;
   left: 0;
@@ -57,6 +38,12 @@
   border-bottom: 1px #FFF solid;
   /* This positions the canvas under the text */
   z-index: 1;
+}
+#card_head_one{
+  filter: grayscale(0.6);
+}
+#card_head_two{
+  filter:sepia(100%);
 }
 .card .avatar {
   position: relative;
@@ -159,9 +146,6 @@ hr{
     height: 277px;
     overflow: hidden;
 }
-.iPictures{
-  background-color: black;
-}
 
 i.fa-heart-o, i.fa-heart{
   color:#af2424;
@@ -178,7 +162,22 @@ i{
 .fa-star-o, .fa-star{
   color: #0e8c5a;
 }
-
+footer{
+  i{
+    color:white;
+  }
+}
 #message1, #message2{
   text-align: center;
+}
+.horizontal_line_h2, .horizontal_line_h3 {
+   width: 100%;
+   text-align: center;
+   border-bottom: 1px solid grey;
+   line-height: 0.1em;
+   margin: 10px 0 20px;
+   span{
+     background:#f5f5f5;
+     padding:0 25px;
+   }
 }

@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
 
   resources :items
-  # get('/users/:id', {to:'users#show_posts'})
   resources :users, only:[:show, :new, :create, :update, :edit] do
     resources :followers, only:[:index]
     resources :followings, only:[:create, :destroy]

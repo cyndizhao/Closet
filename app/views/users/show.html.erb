@@ -16,7 +16,7 @@
       <br>
 
       <div class="container">
-          <h3 align="center"> - Your Styles -</h3>
+          <h3 class="horizontal_line_h3"><span>Your Styles</span></h3>
         <div class="row">
             <% @posts.each do |p| %>
             <div class="col-md-4 post-col-4">
@@ -85,7 +85,8 @@
 
       <!-- Show map -->
       <div class="container hidden" id="map_wrapper">
-        <div style='width: 803px; margin: 0 auto; border:dotted thin black;'>
+        <div style='width: 803px; margin: 0 auto;'>
+        <!-- <div style='width: 803px; margin: 0 auto; border:dotted thin black;'> -->
           <div id="map" style='width: 800px; height: 400px;box-sizing: border-box;' data-id="<%= @user.company_name.capitalize %>"></div>
         </div>
         <!-- <span class="map_spinner" style="display: none;"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> &nbsp; Loading...</span> -->

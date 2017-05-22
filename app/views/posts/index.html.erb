@@ -14,7 +14,7 @@
       <div class="row">
       <% @search_posts_ids.each do |id| %>
         <% p = Post.find(id) %>
-        <div class="col-md-4">
+        <div class="col-md-4 post-col-4">
           <div class="iPictures" data-interaction="hover">
             <div class="ip_slide">
               <%= image_tag p.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
@@ -25,14 +25,9 @@
               <% end %>
             </div>
           </div>
-          <div class="like-div" style="margin-top:2%;">
+
             <%= render "partials/like_bookmark_wrapper", p: p %>
-          <% if can? :destroy, p%>
-            <%= link_to post_path(p), method: :delete, data:{confirm: 'Are you sure?'} do%>
-              <i class="fa fa-trash" aria-hidden="true" style="color:black;"></i>
-            <% end %>
-          <% end %>
-          </div>
+
         </div>
       <% end %>
       </div>
@@ -45,8 +40,8 @@
     <br>
   <% else %>
   <!-- List of Posts -->
-  <div class="row">
-    <h2 class="boxtitle">New</h2>
+  <div class="row" style="padding:20px 0px;">
+    <h2 class="boxtitle horizontal_line_h2"><span>New</span></h2>
     <div class='list-group gallery'>
       <ul id = "slide2">
         <% @last_posts.each do |p| %>
@@ -59,8 +54,8 @@
       </ul>
     </div>
   </div>
-  <div class="row">
-    <h2 class="boxtitle">Trending</h2>
+  <div class="row" style="padding:20px 0px;">
+    <h2 class="boxtitle horizontal_line_h2"><span>Trending</span></h2>
     <div class='list-group gallery'>
       <ul id="slide3">
         <% @most_liked_posts.each do |p| %>
@@ -75,8 +70,8 @@
   </div>
   <% if user_signed_in? %>
   <% list_of_post = [] %>
-  <div class="row">
-    <h2 class="boxtitle">Looks From People You Follow</h2>
+  <div class="row" style="padding:20px 0px;">
+    <h2 class="boxtitle horizontal_line_h2"><span>Looks From Your Following</span></h2>
     <div class='list-group gallery'>
       <ul id="slide1">
         <% @friends_new_posts.each do |p| %>
@@ -91,18 +86,17 @@
   </div>
 
   <!-- follow normal user -->
-  <div class="row find_new_friends">
-    <h2 class="boxtitle">Find New Friends?</h2>
+  <div class="row find_new_friends" style="padding:20px 0px;">
+    <h2 class="horizontal_line_h2"><span>Find New Friends?</span></h2>
     <div>
-      <% users = User.all %>
       <% counter1 = 1%>
-      <% users.each do |u| %>
+      <% @users.each do |u| %>
         <% if !(current_user.people_you_follow_ids.include? u.id) && (counter1 < 7) %>
           <% following = current_user.followings.find_by(user: u) %>
           <% if !following.present? && !(business_user?(u)) && u != current_user%>
           <div class="col-sm-2" style="margin-bottom: 10px;">
             <div class="card" >
-                <div class="header-bg header-bg<%= counter1 %>" width="250" height="70" id="header-blur"></div>
+                <div class="header-bg" width="250" height="70" id="card_head_one"></div>
                 <div class="avatar">
                   <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
                 </div>
@@ -122,18 +116,17 @@
   <br>
 
   <!-- follow business_user -->
-  <div class="row">
-    <h2 class="boxtitle">Interested In Any Brand?</h2>
+  <div class="row" style="padding:20px 0px;">
+    <h2 class="horizontal_line_h2"><span>Interested In Any Brand?</span></h2>
     <div>
-      <% users = User.all %>
       <% counter2 = 1%>
-      <% users.each do |u| %>
+      <% @users.each do |u| %>
         <% if !(current_user.people_you_follow_ids.include? u.id) && (counter2 < 7) %>
           <% following = current_user.followings.find_by(user: u) %>
           <% if !following.present? && business_user?(u) && u!= current_user%>
           <div class="col-sm-2" style="margin-bottom: 10px;">
             <div class="card" >
-              <div class="header-bg header-bg<%= counter2 %>" width="250" height="70" id="header-blur"></div>
+              <div class="header-bg" width="250" height="70" id="card_head_two"></div>
               <div class="avatar">
                 <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
               </div>
