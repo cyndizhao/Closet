@@ -26,7 +26,7 @@
                 <th>Selfie</th>
                 <th>Name</th>
                 <th>Brief Introduction</th>
-                <th>Connection</th>
+                <th class="center_text">Connection</th>
               </tr>
             </thead>
               <tbody>
@@ -39,7 +39,7 @@
                       <tr class="followerinfo">
                         <td class="avatar"><%= image_tag p.selfie.url(:medium), class:"img-responsive center-block" %></td>
                         <td class="followerName">
-                          <a href="/users/<%= p.id %>">
+                          <a class="purple_text" href="/users/<%= p.id %>">
                           <% if p.first_name.present? %>
                           <%= p.first_name.capitalize %> <%= p.last_name.capitalize %>
                           <% else %>
@@ -48,11 +48,12 @@
                           <a>
                           </td>
                         <td><%= p.description %></td>
-                        <td>
+                        <td class="center_text">
                           <% if current_user.find_whether_you_followed_the_person(p) %>
-                            <%= link_to "Unfollow", user_following_path(current_user, current_user.find_following_id_for_specific_followed_user(p)), method: :delete%>
+                            <div>Following</div>
+                            <%= link_to "Unfollow", user_following_path(current_user, current_user.find_following_id_for_specific_followed_user(p)), class:'btn btn-default purple_button',method: :delete%>
                           <% else %>
-                            <%= link_to 'Follow',user_followings_path(p), method: :post%>
+                            <%= link_to 'Follow',user_followings_path(p), class:'btn btn-default purple_button', method: :post%>
                           <% end %>
                         <td>
                       </tr>
@@ -65,7 +66,7 @@
                     <tr class ="followerinfo">
                       <td class="avatar"><%= image_tag f.selfie.url(:medium), class:"img-responsive center-block" %></td>
                       <td class="followerName">
-                        <a href="/users/<%= f.id %>">
+                        <a class="purple_text" href="/users/<%= f.id %>">
                         <% if f.first_name.present? %>
                         <%= f.first_name.capitalize %> <%= f.last_name.capitalize %>
                         <% else %>
@@ -74,8 +75,8 @@
                         <a>
                         </td>
                       <td><%= f.description %></td>
-                      <td>
-                        <%= link_to "Unfollow", user_following_path(current_user, f.following_id), method: :delete%>
+                      <td class="center_text">
+                        <%= link_to "Unfollow", user_following_path(current_user, f.following_id), class:'btn btn-default purple_button', method: :delete%>
                       <td>
                     </tr>
                   <% end %>

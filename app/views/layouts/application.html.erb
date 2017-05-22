@@ -74,19 +74,19 @@
             </div>
         </nav>
 
-        <% if flash[:notice] %>
+        <!-- <%# if flash[:notice] %>
         <div class="container" id="mainContent">
-          <div class="alert alert-success" role="alert" style="backgroud-color:#c1d0ca">
-            <%= flash[:notice] %>
+          <div class="alert alert-success" role="alert" style="backgroud-color:#c1d0ca !important;">
+            <%# flash[:notice] %>
           </div>
-          <% elsif flash[:alert] %>
-          <div class="alert alert-danger" role="alert" style="background-color:#d0bfbf;">
+          <%# elsif flash[:alert] %>
+          <div class="alert alert-danger" role="alert" style="background-color:#d0bfbf !important;">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
-            <%= flash[:alert] %>
+            <%# flash[:alert] %>
           </div>
         </div>
-        <% end %>
+        <%# end %> -->
     <%= yield %>
     <!-- <div id="myModalFirst" class="modal fade" role="dialog"> -->
     <!-- </div> -->
