@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510043948) do
+ActiveRecord::Schema.define(version: 20170519183843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_bookmarks_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
+  end
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
@@ -51,8 +60,16 @@ ActiveRecord::Schema.define(version: 20170510043948) do
     t.integer  "y"
     t.string   "detail"
     t.string   "kind"
+    t.integer  "kind_id"
     t.index ["brand_id"], name: "index_items_on_brand_id", using: :btree
+    t.index ["kind_id"], name: "index_items_on_kind_id", using: :btree
     t.index ["post_id"], name: "index_items_on_post_id", using: :btree
+  end
+
+  create_table "kinds", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
@@ -96,7 +113,10 @@ ActiveRecord::Schema.define(version: 20170510043948) do
     t.string   "company_name"
   end
 
+  add_foreign_key "bookmarks", "posts"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "items", "brands"
+  add_foreign_key "items", "kinds"
   add_foreign_key "items", "posts"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"

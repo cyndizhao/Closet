@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   belongs_to :gender
   has_many :items, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   has_attached_file :picture, styles: { medium: "400x400>"}, default_url: "/images/missing-image.png"
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
@@ -18,5 +19,12 @@ class Post < ApplicationRecord
 
   def liked_by?(user)
     likes.exists?(user: user)
+  end
+  def bookmark_for(user)
+    bookmarks.find_by(user: user)
+  end
+
+  def bookmarked_by?(user)
+    bookmarks.exists?(user: user)
   end
 end

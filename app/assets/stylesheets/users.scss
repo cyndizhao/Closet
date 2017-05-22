@@ -89,6 +89,11 @@
   background-color: #dedfe8;
   text-align: center;
 }
+#collection-title{
+  height: 150px;
+  background-color: #dee4e8;
+  text-align: center;
+}
 
 #newOutfit {
   // transition: all 1000ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
@@ -152,6 +157,7 @@
 
 #map_wrapper{
   position: relative;
+  background-color: #d5e3e6;
   .map_spinner{
     position: absolute;
     top:calc(50% - 21px);
@@ -167,4 +173,18 @@
   margin-top: 1%;
   margin-bottom: 1%;
 
+}
+
+
+@media (max-width: 768px) {
+.post-col-4{
+  background-color: white;
+  padding-top: 1%;
+  margin-right: 1%;
+  margin-left: 1%;
+  width:calc(100% - 2%);
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+}
 }

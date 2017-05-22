@@ -27,7 +27,7 @@ $(document).ready(function(){
 
   //home page slider
   $('#slide1, #slide2, #slide3').bxSlider({
-    minSlides: 3,
+    minSlides: 2,
     maxSlides: 4,
     slideWidth: 280,
     slideMargin: 10,

@@ -1,33 +1,26 @@
 <% post_like = p.present? ? p : @post %>
-<div style="margin-bottom: 5%; margin-top:2%;">
-<div class="">
-  <span id="<%= dom_id(post_like) %>">
-    <% if user_signed_in? && (can? :like, post_like)%>
+
+<span id="<%= dom_id(post_like) %>">
+  <% if user_signed_in? && (can? :like, post_like)%>
     <% if !post_like.liked_by?(current_user) %>
     <%= link_to fa_icon("heart-o"), post_likes_path(post_like), method: :post, remote: true%>
     <% else %>
     <%= link_to fa_icon("heart"), post_like_path(post_like, post_like.like_for(current_user)), method: :delete, remote: true%>
     <% end %>
-    <% end %>
-    <span><%= pluralize(post_like.likes.count, 'like') %></span>
-    &nbsp;
-    <span><%= link_to fa_icon("id-badge"), user_path(post_like.user), class:"fa-lg"%></span>
-
-    <span class="pull-right"><%= ((Time.now - post_like.created_at) /86400).to_i%> day(s) ago</span>
-  </span>
-
-</div>
-<div class="">
-  <% if post_like.items.present? %>
-  <% list = [] %>
-    <% post_like.items.each do |i| %>
-      <% if !(list.include? i.brand.name) %>
-        <span><i class="fa fa-hashtag" aria-hidden="true"></i><%= i.brand.name %></span>
-        <% list.push(i.brand.name) %>
-      <% end %>
-    <% end %>
-  <% else %>
-    <span><i class="fa fa-hashtag" aria-hidden="true"></i></span>
   <% end %>
-</div>
-</div>
+  <span><%= pluralize(post_like.likes.count, 'like') %></span>
+  &nbsp;
+  <span><%= link_to fa_icon("id-badge"), user_path(post_like.user), class:"fa-lg"%></span>
+
+  <% if user_signed_in? && (can? :bookmark, post_like)%>
+    <% if !post_like.bookmarked_by?(current_user) %>
+    &nbsp;
+    <span><%= link_to fa_icon("star-o"), post_bookmarks_path(post_like), class:"fa-lg", method: :post, remote: true%></span>
+    <% else %>
+    &nbsp;
+    <span><%= link_to fa_icon("star"), post_bookmark_path(post_like, post_like.bookmark_for(current_user)), class:"fa-lg", method: :delete, remote: true%></span>
+    <% end %>
+  <% end %>
+
+  <span class="pull-right"><%= ((Time.now - post_like.created_at) /86400).to_i%> day(s) ago</span>
+</span>

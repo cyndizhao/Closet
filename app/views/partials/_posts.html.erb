@@ -1,21 +1,24 @@
+<!-- applied to category index and gender index -->
 <div class="container">
   <div class="row">
-    <% @posts.each do |p|%>
-      <div class="col-md-4">
-        <div class="iPictures" data-interaction="hover">
-          <div class="ip_slide">
-            <%= image_tag p.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
-            <% p.items.each do |i| %>
-              <div class="ip_tooltip ip_img32" style="top: <%= (i.y) * (36/40.0) %>px; left: <%= (i.x) * (36/40.0) %>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
-                <ul><li><% Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
-              </div>
-            <% end %>
+    <% if @posts.present? %>
+      <% @posts.each do |p|%>
+        <div class="col-md-4 post-col-4">
+          <div class="iPictures" data-interaction="hover">
+            <div class="ip_slide">
+              <%= image_tag p.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
+              <% p.items.each do |i| %>
+                <div class="ip_tooltip ip_img32" style="top: <%= (i.y) * (33.7/40.0) %>px; left: <%= (i.x) * (33.7/40.0) %>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
+                  <ul><li><% Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
+                </div>
+              <% end %>
+            </div>
           </div>
+
+          <%= render "partials/like_bookmark_wrapper", p: p %>
+
         </div>
-        <%= render "likes/like", p: p %>
-        <span class="pull-right"><%= ((Time.now - p.created_at) /86400).to_i%> day(s) ago</span>
-        <!-- User Post Likes !!! -->
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

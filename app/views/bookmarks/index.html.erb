@@ -1,0 +1,33 @@
+<div class="container-fluid" id="collection">
+  <div class="row">
+    <!-- render _sidebar.html.erb -->
+    <%= render 'partials/sidebar' %>
+    <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4">
+      <div class="row" id="collection-title">
+        <br><br>
+        <h3>Collection From Others' Styles</h3>
+      </div>
+      <br>
+
+      <%current_user.bookmarks.each do |b| %>
+      <% p = b.post %>
+      <div class="col-md-4 post-col-4">
+        <div class="iPictures" data-interaction="hover">
+          <div class="ip_slide">
+            <%= image_tag p.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
+            <% p.items.each do |i| %>
+              <div class="ip_tooltip ip_img32" style="top: <%= (i.y) * (33.3/40.0) %>px; left: <%= (i.x) * (33.3/40.0) %>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
+                <ul><li><% Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <%= render "partials/like_bookmark_wrapper", p: p %>
+
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+</div>

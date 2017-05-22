@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+
   has_attached_file :selfie, styles: { medium: "300x300>", thumb: "150x150>" }, default_url: "/images/missing.png"
   validates_attachment_content_type :selfie, content_type: /\Aimage\/.*\z/
 
@@ -41,8 +43,7 @@ class User < ApplicationRecord
 
   def self.search_name(search)
     # where("first_name ILIKE ? OR last_name ILIKE ?", "%#{search}%", "%#{search}%")
-    #TODO search full name
-    where("lower(first_name || ' ' || last_name) ILIKE ?", "%#{search.downcase}%")
+    where("(first_name || ' ' || last_name) ILIKE ? OR company_name ILIKE ?" , "%#{search}%", "%#{search}%")
   end
 
   private

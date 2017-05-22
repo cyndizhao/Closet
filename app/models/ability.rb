@@ -9,13 +9,20 @@ class Ability
       post.user == user
     end
 
-    # define abilities to prevent users from liking their own questions
     can :like, Post do |post|
       user != post.user
     end
     cannot :like, Post do |post|
       user == post.user
     end
+
+    can :bookmark, Post do |post|
+      user != post.user
+    end
+    cannot :bookmark, Post do |post|
+      user == post.user
+    end
+
   end
 
 end

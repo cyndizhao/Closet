@@ -1,16 +1,16 @@
 <div class="container-fluid">
   <div class="row">
-    <!-- render _sidebar.html.erb -->
     <% if user_signed_in? %>
       <% @user = current_user%>
+      <!-- render _sidebar.html.erb -->
       <%= render 'partials/sidebar' %>
-      <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4" id="main-content">
+      <div class="col-md-10 col-sm-8 col-md-offset-2 col-sm-offset-4">
         <br>
         <div class="container" id="newPost">
         	<div class="row">
         		<div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
 
-              <!-- form start -->
+              <!-- new post form start -->
               <div class = "row" >
                 <div class="col-md-12" id='new-post'>
                   <h3>What's your look today?</h3>
@@ -25,7 +25,6 @@
                     <%= f.collection_select :gender_id, Gender.order(:gender), :id, :gender, {}, {class:'chosen-select', style:'width:150px'} %>
                   </div>
                   <div class="form-group">
-                    <%# f.label :picture %>
                     <i class="fa fa-file-image-o" aria-hidden="true" style="margin-right:5px;"></i>
                     <%= f.file_field :picture, id: "inputPicture"%>
                   </div>
@@ -33,18 +32,14 @@
                     <%# f.label :description %>
                     <%# f.text_area :description, rows:"4", class:"form-control"%>
                   </div>  -->
-
-                  <!-- <div class="form-group"> -->
                   <%= f.submit "Share your new look", class:"btn btn-primary", id:"new-post-button"%>
-                  <!-- </div> -->
                   <input type="hidden" name="items_json" id="items">
                   <% end %>
                 </div>
-
-
-                <!-- preview picture -->
               </div>
+
               <br>
+              <!-- preview picture -->
               <div class="row hidden" id="new-post-div" style="background-color:#282a2d; color:white;border-radius:10px;padding:10px;">
                 <div class="col-md-7">
                   <div class="hidden" id="message1">
@@ -61,31 +56,29 @@
                   <div class="hidden" id="message2">
                     <p>Item details</p>
                   </div>
-                  <div id="newItemFormDiv" style="text-align:center;" class="hidden">
-                    <form class="" action="index.html" method="post" id="newItemForm">
-                      <label for="">Brand:</label>
+                  <div id="newItemFormDiv" class="center_text hidden">
+                    <form method="post" id="newItemForm">
+                      <label>Brand:</label>
                       <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}.sort_by{ |b| b.downcase }), id:"itemBrand", name: "brand", class: "form-control chosen-select"%>
-                      <label for="">Category:</label>
+                      <label>Category:</label>
                       <%= select_tag :kind, options_for_select(["Outerwears", "Jackets", "Bombers",
-                        "Blazers", "Trouserss", "Shorts", "Jeans", "Joggings", "Shirts",
+                        "Blazers", "Trousers", "Shorts", "Jeans", "Joggings", "Shirts",
                         "T-shirts", "Polo", "Tops", "Sweatshirts", "Sweaters", "Shoes",
                         "Bags", "Rings ", "Hats", "Scarves", "Ties", "Belts", "Swimwear",
-                        "Necklaces", "Bracelets", "Earrings ", "Watches", "Sunglasses, Glasses"]),
+                        "Necklaces", "Bracelets", "Earrings ", "Watches", "Sunglasses", "Glasses"]),
                         id:"item_kind", name: "kind", class: "form-control chosen-select"%>
-                      <label for="">Details:</label>
+                      <label>Details:</label>
                       <input type="text" name="detail" value="" id="item_detail" class="form-control">
-                      <label for="">Price:</label>
+                      <label>Price:</label>
                       <input type="text" name="price" value="" id="itemPrice" class="form-control">
-                      <label for="">Link:</label>
+                      <label>Link:</label>
                       <input type="text" name="link" value="" id="itemLink" class="form-control">
                       <br>
-                      <!-- <i style='submit' class="fa fa-plus fa-lg" aria-hidden="true"></i> -->
                       <input type="submit" name="" value="+" class="btn btn-primary" style="border-radius:100%;">
                     </form>
                   </div>
                 </div>
               </div>
-
 
 
         		</div>

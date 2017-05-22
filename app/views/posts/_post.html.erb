@@ -1,4 +1,4 @@
-<!-- modal body -->
+<!-- modal body content-->
 <div class="iPictures" data-interaction="hover">
   <div class="ip_slide">
     <%= image_tag @post.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
@@ -9,8 +9,7 @@
     <% end %>
   </div>
 </div>
-<%= render "likes/like", p: @post %>
-<!-- TODO time -->
+<%= render "partials/like_bookmark_wrapper", p: @post %>
 
 
 <script>

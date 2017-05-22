@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :post_params, only:[:update, :create]
 
   def index
+    @users = User.all
     if params[:search]
       @search_word = params[:search]
       @search_items = Item.search(params[:search]).order("created_at DESC")
@@ -25,8 +26,8 @@ class PostsController < ApplicationController
         end
       end
       @friends_new_posts = list_of_posts.sort {|a, b| b[:created_at] <=> a[:created_at] }
-      #TODO get the first 8 of array
     end
+
     #Most_recent
     @last_posts = Post.last(8)
     #Trending
@@ -38,7 +39,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    #params.require(:post).permit([:description, :picture, :category_id])
     @post = Post.new post_params
     @post.user = current_user
     if @post.save
@@ -48,7 +48,6 @@ class PostsController < ApplicationController
         item.delete('brand')
         @post.items.create(item)
       end
-      # redirect_to user_path(current_user)
       redirect_to user_path(current_user)
     else
       render :new
@@ -72,26 +71,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # def edit
-  #   # @post = Post.find(params[:id])
-  #   redirect_to root_path, alert:'Access denied!' unless can? :edit, @post
-  #
-  # end
-  #
-  # def update
-  #
-  #   # @post = Post.find(params[:id])
-  #   # post_params = params.require(:post).permit([:title, :body, :category_id])
-  #   if !can? :edit, @post
-  #     redirect_to root_path, alert:'Access denied!'
-  #   elsif @post.update(post_params)
-  #     flash[:notice] = "Post Updated"
-  #     redirect_to post_path(@post)
-  #   else
-  #     render :edit
-  #   end
-  # end
-  
+
   private
   def get_post
     @post = Post.find(params[:id])

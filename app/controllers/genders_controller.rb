@@ -1,8 +1,24 @@
 class GendersController < ApplicationController
   def index
-    @search_id = params[:search_id]
-    id = @search_id.to_i - 4
-    @gender = Gender.find_by_id(id)
-    @posts = @gender.posts
+    if params[:explore_id].present?
+      @explore_id = params[:explore_id]
+      id = @explore_id.to_i - 4
+      @gender = Gender.find_by_id(id)
+      @posts = @gender.posts
+    elsif params[:search]
+      @search_word = params[:search]
+      @search_items = Item.search(params[:search]).order("created_at DESC")
+      if @search_items.present?
+        @search_posts_ids = Array.new
+        @search_items.each do |i|
+          @search_posts_ids << (i.post.id)
+        end
+        @search_posts_ids.uniq!
+      end
+      render "posts/index", notice:'Search!'
+    else
+      redirect_to root_path, alert:'Something wrong!'
+    end
+
   end
 end

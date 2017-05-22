@@ -21,7 +21,4 @@ class ApplicationController < ActionController::Base
   end
   helper_method :business_user?
 
-  def get_date
-    
-  end
 end
