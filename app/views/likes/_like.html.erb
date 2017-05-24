@@ -1,6 +1,9 @@
 <% post_like = p.present? ? p : @post %>
 
 <span id="<%= dom_id(post_like) %>">
+  <span><%= link_to fa_icon("id-badge"), user_path(post_like.user), class:"fa-lg"%></span>
+  &nbsp;
+
   <% if user_signed_in? && (can? :like, post_like)%>
     <% if !post_like.liked_by?(current_user) %>
     <%= link_to fa_icon("heart-o"), post_likes_path(post_like), method: :post, remote: true%>
@@ -9,8 +12,6 @@
     <% end %>
   <% end %>
   <span><%= pluralize(post_like.likes.count, 'like') %></span>
-  &nbsp;
-  <span><%= link_to fa_icon("id-badge"), user_path(post_like.user), class:"fa-lg"%></span>
 
   <% if user_signed_in? && (can? :bookmark, post_like)%>
     <% if !post_like.bookmarked_by?(current_user) %>
@@ -21,6 +22,7 @@
     <span><%= link_to fa_icon("star"), post_bookmark_path(post_like, post_like.bookmark_for(current_user)), class:"fa-lg", method: :delete, remote: true%></span>
     <% end %>
   <% end %>
+
 
   <span class="pull-right"><%= ((Time.now - post_like.created_at) /86400).to_i%> day(s) ago</span>
 </span>

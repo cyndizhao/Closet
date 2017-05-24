@@ -11,7 +11,7 @@
             <%= image_tag @post.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
             <% @post.items.each do |i| %>
               <div class="ip_tooltip ip_img32" style="top: <%= i.y %>px; left: <%= i.x %>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
-                <ul><li><%= Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
+                <ul><li><%= Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><% if i.link.present? %><li><a href="<%= i.link %>">Find item here</a></li><% end %></ul>
               </div>
             <% end %>
           </div>
@@ -73,7 +73,7 @@
                 <%= image_tag @post.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
                 <% @post.items.each do |i| %>
                   <div class="ip_tooltip ip_img32" style="top: <%= i.y %>px; left: <%= i.x %>px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
-                    <ul><li><%= Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><li><a href="<%= i.link %>">Find item here</a></li></ul>
+                    <ul><li><%= Brand.find(i.brand).name %></li><li><%= i.kind %></li><li>$<%= i.price %></li><li><%= i.detail %></li><% if i.link.present? %><li><a href="<%= i.link %>">Find item here</a></li><% end %></ul>
                   </div>
                 <% end %>
               </div>

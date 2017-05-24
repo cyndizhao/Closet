@@ -20,10 +20,6 @@
 //= require_tree .
 
 $(document).ready(function(){
-  // $(".fancybox").fancybox({
-  //     openEffect: "none",
-  //     closeEffect: "none"
-  // });
 
   //home page slider
   $('#slide1, #slide2, #slide3').bxSlider({
@@ -33,10 +29,9 @@ $(document).ready(function(){
     slideMargin: 10,
     moveSlides: 1,
     auto: true,
-    // // auto_hover: true,
     // controls: ture,
   });
-  // $("#single_picture").iPicture();
+
   $('.chosen-select').chosen();
 
   //user.js signup form
@@ -51,11 +46,11 @@ $(document).ready(function(){
     }
   });
 
-  //user.js
+  //create user selfie; user.js
   $(function() {
     $('#inputPicture, #inputImage').on('change', function(event) {
       $('#signUp').addClass('col-md-6');
-      // $('')
+
       var files = event.target.files;
       var image = files[0]
       // here's the file size
@@ -70,7 +65,6 @@ $(document).ready(function(){
         $('#previewImage img').addClass("ip_tooltipImg");
 
         $('#new-post-div, #message1').removeClass('hidden');
-        //AJAX call post request to create a new post and get post id from the server
       }
       reader.readAsDataURL(image);
       console.log(files);
@@ -78,23 +72,19 @@ $(document).ready(function(){
 
   });
 
-  //post.js
+  //Create new post and associated items; post.js
   const outfit_labels = [];
   let x;
   let y;
   let offset;
   $(document).on("click", "#previewImage img", function(e){
-  // $('#previewImage img').on("click", function(e){
     $('#newItemFormDiv, #message2').removeClass('hidden');
     offset = $(this).offset();
     x = e.pageX - offset.left;
     y = e.pageY - offset.top;
 
-    // debugger#;
-    //show form div
+    //show item form div
     $('#newItemForm').off().on('submit', function(event){
-      console.log(x);
-      console.log(y);
       event.preventDefault();
       const fData = new FormData(event.currentTarget);
       const link = fData.get('link');
@@ -102,12 +92,7 @@ $(document).ready(function(){
       const brand = fData.get('brand');
       const detail = fData.get('detail');
       const kind = fData.get('kind');
-      // console.log(link);
-      // console.log(price);
-      // console.log(brand);
-      // console.log(detail);
-      // console.log(kind);
-      // debugger;
+
       outfit_labels.push({
         x: x,
         y: y,
@@ -117,17 +102,19 @@ $(document).ready(function(){
         detail: detail,
         kind: kind
       })
-      // TODO make if simple
-      // $('#newItemForm').reset();
+
       $('#itemPrice').val('');
       $('#itemLink').val('');
       $('#itemBrand').val('');
       $('#item_kind').val('');
       $('#item_detail').val('');
       $('#newItemFormDiv, #message2').addClass('hidden');
-      $("#previewImage").append(`<div class="ip_tooltip ip_img32" style="top: ${y}px; left: ${x}px;" data-button="moreblue" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
-      <ul><li>${brand}</li><li>${kind}</li><li>$${price}</li><li>${detail}</li><li><a href="${link}">Find item here</a></li></ul></div>`);
-      //debugger;
+      $("#previewImage").append(`<div class="ip_tooltip ip_img32" style="top:
+      ${y}px; left: ${x}px;" data-button="moreblue" data-tooltipbg="bgblack"
+      data-round="roundBgW" data-animationtype="ltr-slide">
+      <ul><li>${brand}</li><li>${kind}</li><li>$${price}</li><li>${detail}</li>
+      <li><a href="${link}">Find item here</a></li></ul></div>`);
+
       console.log(outfit_labels);
       $("#iPicture").iPicture();
     })
@@ -160,6 +147,7 @@ $(document).ready(function(){
         const lat = location.coords.latitude;
         const log = location.coords.longitude;
         pyrmont = new google.maps.LatLng(lat,log);
+        // Test when user change IP address, map center changes
         // pyrmont = new google.maps.LatLng(49 + Math.random(), -123 - Math.random());
 
         centerMap(pyrmont);
