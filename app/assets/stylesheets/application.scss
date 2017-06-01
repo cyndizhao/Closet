@@ -21,24 +21,23 @@
  @import "font-awesome";
 
 body{
-  // font-family: 'Oswald', sans-serif;
-  // font-family: 'Raleway', sans-serif;
-  // font-family: 'Lora', serif;
   font-family: 'Ubuntu', sans-serif;
-  // font-family: 'PT Sans Narrow', sans-serif;
   background-color: #f5f5f5;
   margin-top: 50px;
 }
-#loginButton, #signupButton{
+#login-button, #signup-button{
   margin-top:7px;
   margin-right:10px;
   margin-left:10px;
   width:75px;
+  background: linear-gradient(to right, #307dac, #4a4cc9, #77a0b8, #6a6cba, #abcfe5, #b6b6dd, #ccdfeb);
+  filter: grayscale(0.5);
 }
+
 .hidden{
   display: none;
 }
-.center_text{
+.center-text{
   text-align: center;
 }
 

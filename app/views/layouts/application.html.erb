@@ -56,8 +56,6 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <% if !user_signed_in? %>
-                <!-- <li><button id ="loginButton" type="button" class="btn" data-toggle="modal" data-target="#myModalFirst">Log In</button></li>
-                <li><button id ="signupButton" type="button" class="btn" data-toggle="modal" data-target="#myModalSecond">Sign Up</button></li> -->
                 <li><%= link_to "Sign Up", new_user_path %></li>
                 <li><%= link_to "Login", new_session_path %></li>
 
@@ -88,8 +86,6 @@
         </div>
         <%# end %> -->
     <%= yield %>
-    <!-- <div id="myModalFirst" class="modal fade" role="dialog"> -->
-    <!-- </div> -->
 
     </div>
   </body>

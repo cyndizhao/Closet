@@ -10,13 +10,13 @@
         <% greeting = ["Hi, what\'s new?", "Ready to share your outfit for today?", "Fashion is what you’re offered four times a year by designers. And style is what you choose.", "Clothes are like a good meal, a good movie, great pieces of music."] %>
         <h3><%= greeting.sample %></h3>
         <div id = "wrap">
-          <%= link_to "New Outfit", new_post_path, id:"newOutfit" %>
+          <%= link_to "New Outfit", new_post_path, id:"new-outfit" %>
         </div>
       </div>
       <br>
 
       <div class="container">
-          <h3 class="horizontal_line_h3"><span>Your Styles</span></h3>
+          <h3 class="horizontal-line-h3"><span>Your Styles</span></h3>
         <div class="row">
             <% @posts.each do |p| %>
             <div class="col-md-4 post-col-4">
@@ -84,7 +84,7 @@
       </div>
 
       <!-- Show map -->
-      <div class="container hidden" id="map_wrapper">
+      <div class="container hidden" id="map-wrapper">
         <div style='width: 803px; margin: 0 auto;'>
         <!-- <div style='width: 803px; margin: 0 auto; border:dotted thin black;'> -->
           <div id="map" style='width: 800px; height: 400px;box-sizing: border-box;' data-id="<%= @user.company_name.capitalize %>"></div>

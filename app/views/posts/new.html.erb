@@ -26,7 +26,7 @@
                   </div>
                   <div class="form-group">
                     <i class="fa fa-file-image-o" aria-hidden="true" style="margin-right:5px;"></i>
-                    <%= f.file_field :picture, id: "inputPicture"%>
+                    <%= f.file_field :picture, id: "input-picture"%>
                   </div>
                   <!-- <div class="form-group">
                     <%# f.label :description %>
@@ -46,7 +46,7 @@
                     <p>Share Details About Each Item By Clicking On The Image</p>
                   </div>
                   <div id="iPicture" data-interaction="hover">
-                    <div id="previewImage" class="ip_slide">
+                    <div id="preview-image" class="ip_slide">
 
                     </div>
                   </div>
@@ -56,8 +56,8 @@
                   <div class="hidden" id="message2">
                     <p>Item details</p>
                   </div>
-                  <div id="newItemFormDiv" class="center_text hidden">
-                    <form method="post" id="newItemForm">
+                  <div id="new-item-form-div" class="center-text hidden">
+                    <form method="post" id="new-item-form">
                       <label>Brand:</label>
                       <%= select_tag :brand, options_for_select(Brand.all.map{|b| b.name}.sort_by{ |b| b.downcase }), id:"itemBrand", name: "brand", class: "form-control chosen-select"%>
                       <label>Category:</label>
@@ -68,11 +68,11 @@
                         "Necklaces", "Bracelets", "Earrings ", "Watches", "Sunglasses", "Glasses", "Skirt"]),
                         id:"item_kind", name: "kind", class: "form-control chosen-select"%>
                       <label>Details:</label>
-                      <input type="text" name="detail" value="" id="item_detail" class="form-control">
+                      <input type="text" name="detail" value="" id="item-detail" class="form-control">
                       <label>Price:</label>
-                      <input type="text" name="price" value="" id="itemPrice" class="form-control">
+                      <input type="text" name="price" value="" id="item-price" class="form-control">
                       <label>Link:</label>
-                      <input type="text" name="link" value="" id="itemLink" class="form-control">
+                      <input type="text" name="link" value="" id="item-link" class="form-control">
                       <br>
                       <input type="submit" name="" value="+" class="btn btn-primary" style="border-radius:100%;">
                     </form>

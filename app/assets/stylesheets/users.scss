@@ -1,7 +1,7 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#signUpform{
+#signup-form{
     width : 400px;
     height : 500px;
     background-color : #35404f;
@@ -10,11 +10,11 @@
     box-shadow: 0 0 15px #4a4cc9;
     padding-bottom: 20px;
     padding-top: 25px;
+    input{
+      width: 200px;
+    }
 }
-#signUpform input{
-  width: 200px;
-}
-#business_user{
+#business-user{
   text-align: left;
   display: inline-block;
   width: 200px;
@@ -27,38 +27,24 @@
   }
 }
 
-// #logInform input[type=button]
-#signUpButton{
-  background: linear-gradient(to right, #307dac, #4a4cc9, #77a0b8, #6a6cba, #abcfe5, #b6b6dd, #ccdfeb);
-  filter: grayscale(0.4);
-
-}
-#inputImage{
+.input-image{
   color:white;
 }
 
 #sidebar1 {
     position:fixed;
     background: #F17153;
-    // /* For browsers that do not support gradients */
-    // background: -webkit-linear-gradient(#F17153, #F58D63, #f1ab53);
-    // /* For Safari 5.1 to 6.0 */
-    // background: -o-linear-gradient(#F17153, #F58D63, #f1ab53);
-    // /* For Opera 11.1 to 12.0 */
-    // background: -moz-linear-gradient(#F17153, #F58D63, #f1ab53);
-    // /* For Firefox 3.6 to 15 */
     background: linear-gradient(#4a4cc9, #6a6cba,#b6b6dd,#77a0b8, #518cb0, #1879b4);
-    /* Standard syntax */
     filter: grayscale(0.6);;
     padding: 0px;
     min-height: 100%;
 }
-#userLogo {
+#user-logo {
     max-width: 100%;
 
 
 }
-#userLogo img, .other_selfie{
+#user-logo img, .other_selfie{
     max-width: 50%;
     margin-top: 30px;
     padding: 3px;
@@ -95,25 +81,17 @@
   text-align: center;
 }
 
-#newOutfit {
-  // transition: all 1000ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+#new-outfit {
   display: block;
   margin: 20px auto;
   max-width: 180px;
   text-decoration: none;
   border-radius: 4px;
   padding: 15px 15px;
-}
-
-#newOutfit {
   color: rgba(30, 22, 54, 1);
   box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
 }
 
-// #newOutfit:hover {
-//   color: rgba(255, 255, 255, 0.85);
-//   box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
-// }
 #heart{
   width: 30px;
   height: 30px;
@@ -121,7 +99,6 @@
   padding: 6px 0;
   font-size: 12px;
   line-height: 1.428571429;
-  // border-radius: 15px;
 }
 .hidden{
   display: none;
@@ -155,7 +132,7 @@
   }
 }
 
-#map_wrapper{
+#map-wrapper{
   position: relative;
   background-color: #d5e3e6;
   .map_spinner{

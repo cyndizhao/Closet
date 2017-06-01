@@ -2,10 +2,10 @@
 <br><br>
 <div align="center" id="signUp" >
     <br/><br/>
-    <div id="signUpform">
+    <div id="signup-form">
       <%= form_for @user do |f| %>
       <h2 style="color: white">Sign Up Here</h2><br>
-      <div id='business_user'>
+      <div id='business-user'>
         <%= f.check_box :business_user, {}, 'true', 'false' %>
         <%= f.label :business_user%>
       </div>
@@ -29,9 +29,9 @@
       <br><br>
       <%= f.password_field :password_confirmation, placeholder:"Password Confirmation", style:"padding : 5px"%>
       <br><br>
-      <%= f.file_field :selfie, id: "inputImage"%>
+      <%= f.file_field :selfie, class: "input-image"%>
       <br>
-      <%= f.submit "Sign Up", id:"signUpButton", class: 'btn btn-primary' %>
+      <%= f.submit "Sign Up", id:"signup-button", class: 'btn btn-primary' %>
 
     <% end %>
   </div>
@@ -39,6 +39,6 @@
 
 <div align="center">
   <br><br>
-  <div id="previewImage" style="max-width:450px;" class="col-md-6">
+  <div id="preview-image" style="max-width:450px;" class="col-md-6">
   </div>
 </div>

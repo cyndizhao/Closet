@@ -4,16 +4,12 @@
 
 .jumbotron-fluid{
   background: linear-gradient(to right, #307dac ,#4a4cc9, #77a0b8,#6a6cba, #abcfe5,#b6b6dd, #ccdfeb);
-  // background-image: url('http://fc06.deviantart.net/fs71/i/2013/237/1/5/outfit_sketch_spazz_by_dreamerwhit95-d6jqz6i.jpg');
-  // background-image: image-url('background.jpg');
-  // filter: drop-shadow(10px 10px 7px rgba(0,0,0,0.8)) grayscale(0.8);;
   filter: grayscale(0.5);;
 }
 .boxtitle{
   text-align: center;
 }
 
-// Find new friends
 .card {
   background-color: white;
   overflow: hidden;
@@ -28,7 +24,6 @@
 
 .card .header-bg {
   /* This stretches the canvas across the entire hero unit */
-  // background: linear-gradient(to right, #307dac ,#4a4cc9, #77a0b8,#6a6cba, #abcfe5,#b6b6dd, #ccdfeb);
   background: linear-gradient(#4a4cc9, #6a6cba, #b6b6dd, #77a0b8, #518cb0, #1879b4);
   position: absolute;
   top: 0;
@@ -39,10 +34,10 @@
   /* This positions the canvas under the text */
   z-index: 1;
 }
-#card_head_one{
+#card-head-one{
   filter: grayscale(0.6);
 }
-#card_head_two{
+#card-head-two{
   filter:sepia(100%);
 }
 .card .avatar {
@@ -83,11 +78,11 @@
   text-align: center;
 
 }
-#inputPicture{
+#input-picture{
   display: inline-block;
   width: 190px;
 }
-#previewImage{
+#preview-image{
   text-align: center;
   display: inline-block;
 }
@@ -98,7 +93,7 @@
   border: 0px;
 }
 
-#newItemForm{
+#new-item-form{
   .btn{
     background: linear-gradient(to right, #307dac, #4a4cc9, #77a0b8, #6a6cba, #abcfe5, #b6b6dd, #ccdfeb);
     filter: grayscale(0.4);
@@ -108,7 +103,7 @@
   input[type='submit']{
     font-weight: bold;
   }
-  #item_detail, #itemPrice, #itemLink{
+  #item-detail, #item-price, #item-link{
     height: 24px !important;
   }
 }
@@ -170,7 +165,7 @@ footer{
 #message1, #message2{
   text-align: center;
 }
-.horizontal_line_h2, .horizontal_line_h3 {
+.horizontal-line-h2, .horizontal-line-h3 {
    width: 100%;
    text-align: center;
    border-bottom: 1px solid grey;

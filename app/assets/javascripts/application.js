@@ -29,13 +29,12 @@ $(document).ready(function(){
     slideMargin: 10,
     moveSlides: 1,
     auto: true,
-    // controls: ture,
   });
 
   $('.chosen-select').chosen();
 
   //user.js signup form
-  $( "#business_user input[type=checkbox]" ).on( "click", function(event){
+  $( "#business-user input[type=checkbox]" ).on( "click", function(event){
 
     if ($('.input-company-name').hasClass('hidden') && $(this).is(':checked')){
       $('.input-user-name').addClass('hidden');
@@ -46,23 +45,22 @@ $(document).ready(function(){
     }
   });
 
-  //create user selfie; user.js
+  //create user selfie
   $(function() {
-    $('#inputPicture, #inputImage').on('change', function(event) {
+    $('#input-picture, .input-image').on('change', function(event) {
       $('#signUp').addClass('col-md-6');
 
       var files = event.target.files;
       var image = files[0]
-      // here's the file size
-      // console.log(image.size);
+
       var reader = new FileReader();
       reader.onload = function(file) {
         var img = new Image();
-        // console.log(file);
+
         img.src = file.target.result;
-        $('#previewImage').html(img);
-        $('#previewImage img').css({'max-width': '400px', 'max-height':'400px'})
-        $('#previewImage img').addClass("ip_tooltipImg");
+        $('#preview-image').html(img);
+        $('#preview-image img').css({'max-width': '400px', 'max-height':'400px'})
+        $('#preview-image img').addClass("ip_tooltipImg");
 
         $('#new-post-div, #message1').removeClass('hidden');
       }
@@ -72,19 +70,19 @@ $(document).ready(function(){
 
   });
 
-  //Create new post and associated items; post.js
+  //Create new post and associated items
   const outfit_labels = [];
   let x;
   let y;
   let offset;
-  $(document).on("click", "#previewImage img", function(e){
-    $('#newItemFormDiv, #message2').removeClass('hidden');
+  $(document).on("click", "#preview-image img", function(e){
+    $('#new-item-form-div, #message2').removeClass('hidden');
     offset = $(this).offset();
     x = e.pageX - offset.left;
     y = e.pageY - offset.top;
 
     //show item form div
-    $('#newItemForm').off().on('submit', function(event){
+    $('#new-item-form').off().on('submit', function(event){
       event.preventDefault();
       const fData = new FormData(event.currentTarget);
       const link = fData.get('link');
@@ -103,13 +101,13 @@ $(document).ready(function(){
         kind: kind
       })
 
-      $('#itemPrice').val('');
-      $('#itemLink').val('');
+      $('#item-price').val('');
+      $('#item-link').val('');
       $('#itemBrand').val('');
       $('#item_kind').val('');
-      $('#item_detail').val('');
-      $('#newItemFormDiv, #message2').addClass('hidden');
-      $("#previewImage").append(`<div class="ip_tooltip ip_img32" style="top:
+      $('#item-detail').val('');
+      $('#new-item-form-div, #message2').addClass('hidden');
+      $("#preview-image").append(`<div class="ip_tooltip ip_img32" style="top:
       ${y}px; left: ${x}px;" data-button="moreblue" data-tooltipbg="bgblack"
       data-round="roundBgW" data-animationtype="ltr-slide">
       <ul><li>${brand}</li><li>${kind}</li><li>$${price}</li><li>${detail}</li>
@@ -137,10 +135,10 @@ $(document).ready(function(){
   //find closest store GOOGLE MAP
   $('#get_location').on('click', function(event){
     event.preventDefault();
-    if($('#map_wrapper').hasClass('hidden')){
+    if($('#map-wrapper').hasClass('hidden')){
       // $('.map_spinner').show();
       if (pyrmont){
-        $('#map_wrapper').removeClass('hidden');
+        $('#map-wrapper').removeClass('hidden');
         centerMap(pyrmont);
       }
       navigator.geolocation.getCurrentPosition(function(location) {
@@ -151,7 +149,7 @@ $(document).ready(function(){
         // pyrmont = new google.maps.LatLng(49 + Math.random(), -123 - Math.random());
 
         centerMap(pyrmont);
-        $('#map_wrapper').removeClass('hidden');
+        $('#map-wrapper').removeClass('hidden');
 
         const query = $('#map').attr("data-id");
         const request = {
@@ -164,7 +162,7 @@ $(document).ready(function(){
       });
 
     }else{
-      $('#map_wrapper').addClass('hidden');
+      $('#map-wrapper').addClass('hidden');
     }
 
     function centerMap(pyrmont){
@@ -187,7 +185,6 @@ $(document).ready(function(){
           createMarker(results[i]);
         }
       }
-      // $('.map_spinner').hide();
     }
     function createMarker(place) {
       var placeLoc = place.geometry.location;
