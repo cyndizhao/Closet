@@ -12,7 +12,16 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-app/assets/images/
+app/assets/images/.keep
+app/assets/images/autumn.jpg
+app/assets/images/spring.jpg
+app/assets/images/winter.jpg
+app/assets/images/summer.jpg
+app/assets/images/logo.png
+app/assets/images/background-women.jpg
+app/assets/images/background-men.jpg
+app/assets/images/dark-blue-pin.svg
+
 public/
 *.DS_Store
 
