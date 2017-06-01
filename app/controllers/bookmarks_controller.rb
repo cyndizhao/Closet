@@ -2,11 +2,6 @@ class BookmarksController < ApplicationController
   before_action :authenticate_user!
   def index
     @user = current_user
-    # render render_bookmark_index
-    # respond_to do |format|
-    #   # format.html {render :index}
-    #   format.js {render :render_bookmark_index}
-    # end
   end
 
   def create

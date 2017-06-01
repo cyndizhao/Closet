@@ -3,7 +3,6 @@ class FollowersController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     if @user == current_user
-    # @followings = @user.people_you_follow
       @followings = @user.followed_users
       @followers = @user.followers
       if params[:search_person]

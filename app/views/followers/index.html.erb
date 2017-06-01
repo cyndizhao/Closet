@@ -10,8 +10,8 @@
           <div class="input-group" style="width:300px">
             <%= text_field_tag :search_person, params[:search_person], class: "form-control", placeholder:"Search For Person"%>
             <span class="input-group-btn">
-              <button class="btn btn-defaul SearchButton" type="submit">
-                  <span class=" glyphicon glyphicon-search SearchIcon" ></span>
+              <button class="btn btn-defaul search-button" type="submit">
+                  <span class=" glyphicon glyphicon-search search-icon" ></span>
               </button>
             </span>
           </div>
@@ -26,7 +26,7 @@
                 <th>Selfie</th>
                 <th>Name</th>
                 <th>Brief Introduction</th>
-                <th class="center_text">Connection</th>
+                <th class="center-text">Connection</th>
               </tr>
             </thead>
               <tbody>
@@ -36,10 +36,10 @@
                     <% @search_persons_ids.each do |id| %>
                       <% p = User.find(id) %>
 
-                      <tr class="followerinfo">
+                      <tr class="follower-info">
                         <td class="avatar"><%= image_tag p.selfie.url(:medium), class:"img-responsive center-block" %></td>
-                        <td class="followerName">
-                          <a class="purple_text" href="/users/<%= p.id %>">
+                        <td class="follower-name">
+                          <a class="purple-text" href="/users/<%= p.id %>">
                           <% if p.first_name.present? %>
                           <%= p.first_name.capitalize %> <%= p.last_name.capitalize %>
                           <% else %>
@@ -48,12 +48,12 @@
                           <a>
                           </td>
                         <td><%= p.description %></td>
-                        <td class="center_text">
+                        <td class="center-text">
                           <% if current_user.find_whether_you_followed_the_person(p) %>
                             <div>Following</div>
-                            <%= link_to "Unfollow", user_following_path(current_user, current_user.find_following_id_for_specific_followed_user(p)), class:'btn btn-default purple_button',method: :delete%>
+                            <%= link_to "Unfollow", user_following_path(current_user, current_user.find_following_id_for_specific_followed_user(p)), class:'btn btn-default purple-button',method: :delete%>
                           <% else %>
-                            <%= link_to 'Follow',user_followings_path(p), class:'btn btn-default purple_button', method: :post%>
+                            <%= link_to 'Follow',user_followings_path(p), class:'btn btn-default purple-button', method: :post%>
                           <% end %>
                         <td>
                       </tr>
@@ -63,10 +63,10 @@
                   <% end %>
                 <% else %>
                   <% @followings.each do |f| %>
-                    <tr class ="followerinfo">
+                    <tr class ="follower-info">
                       <td class="avatar"><%= image_tag f.selfie.url(:medium), class:"img-responsive center-block" %></td>
-                      <td class="followerName">
-                        <a class="purple_text" href="/users/<%= f.id %>">
+                      <td class="follower-name">
+                        <a class="purple-text" href="/users/<%= f.id %>">
                         <% if f.first_name.present? %>
                         <%= f.first_name.capitalize %> <%= f.last_name.capitalize %>
                         <% else %>
@@ -75,8 +75,8 @@
                         <a>
                         </td>
                       <td><%= f.description %></td>
-                      <td class="center_text">
-                        <%= link_to "Unfollow", user_following_path(current_user, f.following_id), class:'btn btn-default purple_button', method: :delete%>
+                      <td class="center-text">
+                        <%= link_to "Unfollow", user_following_path(current_user, f.following_id), class:'btn btn-default purple-button', method: :delete%>
                       <td>
                     </tr>
                   <% end %>

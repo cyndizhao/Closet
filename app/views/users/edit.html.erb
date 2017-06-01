@@ -25,9 +25,9 @@
         <%= f.text_area :description, class:'form-control', rows: 4 %>
 
         <%= f.label :selfie %>
-        <%= f.file_field :selfie, class: 'form-control', id: "inputImage"%>
+        <%= f.file_field :selfie, class: 'form-control input-image'%>
         <br>
-        <div id="previewImage" style="max-width:300px;">
+        <div id="preview-image" style="max-width:300px;">
         </div>
         <br><br>
         <%= f.submit "Update Your Profile", class: 'btn btn-primary' %>

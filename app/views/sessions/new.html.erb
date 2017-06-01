@@ -1,7 +1,7 @@
 <br><br>
 <div align="center">
     <br/><br/>
-    <div id="logInform">
+    <div id="login-form">
     <%= form_tag sessions_path do %>
       <h2 style="color : white">Login Here</h2><br>
       <%= email_field_tag :email, '', placeholder: 'Email Address',style:"padding : 5px" %>
@@ -9,7 +9,7 @@
       <%= password_field_tag :password, '', placeholder: 'Password', style:"padding : 5px" %>
       <br><br>
       <p align="center"><a href="#" style="color:white;">Forgot your Password?</a></p>
-      <%= submit_tag 'Log In', id:"loginButton", class: 'btn btn-primary', style:"padding : 5px" %>
+      <%= submit_tag 'Log In', id:"login-button", class: 'btn btn-primary', style:"padding : 5px" %>
     <% end %>
     <br/><br/>
   </div>

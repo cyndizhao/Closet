@@ -41,7 +41,7 @@
   <% else %>
   <!-- List of Posts -->
   <div class="row" style="padding:20px 0px;">
-    <h2 class="boxtitle horizontal_line_h2"><span>New</span></h2>
+    <h2 class="boxtitle horizontal-line-h2"><span>New</span></h2>
     <div class='list-group gallery'>
       <ul id = "slide2">
         <% @last_posts.each do |p| %>
@@ -55,7 +55,7 @@
     </div>
   </div>
   <div class="row" style="padding:20px 0px;">
-    <h2 class="boxtitle horizontal_line_h2"><span>Trending</span></h2>
+    <h2 class="boxtitle horizontal-line-h2"><span>Trending</span></h2>
     <div class='list-group gallery'>
       <ul id="slide3">
         <% @most_liked_posts.each do |p| %>
@@ -71,7 +71,7 @@
   <% if user_signed_in? %>
   <% list_of_post = [] %>
   <div class="row" style="padding:20px 0px;">
-    <h2 class="boxtitle horizontal_line_h2"><span>Looks From Your Following</span></h2>
+    <h2 class="boxtitle horizontal-line-h2"><span>Looks From Your Following</span></h2>
     <div class='list-group gallery'>
       <ul id="slide1">
         <% @friends_new_posts.each do |p| %>
@@ -87,7 +87,7 @@
 
   <!-- follow normal user -->
   <div class="row find_new_friends" style="padding:20px 0px;">
-    <h2 class="horizontal_line_h2"><span>Find New Friends?</span></h2>
+    <h2 class="horizontal-line-h2"><span>Find New Friends?</span></h2>
     <div>
       <% counter1 = 1%>
       <% @users.each do |u| %>
@@ -96,7 +96,7 @@
           <% if !following.present? && !(business_user?(u)) && u != current_user%>
           <div class="col-sm-2" style="margin-bottom: 10px;">
             <div class="card" >
-                <div class="header-bg" width="250" height="70" id="card_head_one"></div>
+                <div class="header-bg" width="250" height="70" id="card-head-one"></div>
                 <div class="avatar">
                   <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
                 </div>
@@ -117,7 +117,7 @@
 
   <!-- follow business_user -->
   <div class="row" style="padding:20px 0px;">
-    <h2 class="horizontal_line_h2"><span>Interested In Any Brand?</span></h2>
+    <h2 class="horizontal-line-h2"><span>Interested In Any Brand?</span></h2>
     <div>
       <% counter2 = 1%>
       <% @users.each do |u| %>
@@ -126,7 +126,7 @@
           <% if !following.present? && business_user?(u) && u!= current_user%>
           <div class="col-sm-2" style="margin-bottom: 10px;">
             <div class="card" >
-              <div class="header-bg" width="250" height="70" id="card_head_two"></div>
+              <div class="header-bg" width="250" height="70" id="card-head-two"></div>
               <div class="avatar">
                 <%= image_tag u.selfie.url(:medium), class:"img-responsive center-block" %>
               </div>
