@@ -21,7 +21,6 @@ class User < ApplicationRecord
   validates :last_name, presence: true, unless: :is_business_user?
   validates :company_name, presence: true, if: :is_business_user?
   validates :business_user, inclusion: { in: [ true, false ] }, default: false
-  # validates :description, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
@@ -42,7 +41,6 @@ class User < ApplicationRecord
   end
 
   def self.search_name(search)
-    # where("first_name ILIKE ? OR last_name ILIKE ?", "%#{search}%", "%#{search}%")
     where("(first_name || ' ' || last_name) ILIKE ? OR company_name ILIKE ?" , "%#{search}%", "%#{search}%")
   end
 

@@ -125,14 +125,13 @@ $(document).ready(function(){
     return true;
   });
 
-
+  //find closest store GOOGLE MAP
   let map;
   let pyrmont;
   let centerImage = {
     url: 'http://www.myiconfinder.com/uploads/iconsets/256-256-a5485b563efc4511e0cd8bd04ad0fe9e.png',
     scaledSize: new google.maps.Size(35, 35),
   }
-  //find closest store GOOGLE MAP
   $('#get_location').on('click', function(event){
     event.preventDefault();
     if($('#map-wrapper').hasClass('hidden')){
