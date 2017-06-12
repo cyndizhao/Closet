@@ -5,7 +5,7 @@
   <br>
   <div class="left-navigation" >
     <ul>
-      <h5><strong>Your Account</strong></h5>
+      <li><strong>Your Account</strong></li>
       <li><%= link_to 'Looks', user_path(@user), style: 'color:white;'%></li>
       <li><%= link_to 'Profile', edit_user_path(@user), style: 'color:white;'%></li>
       <li><%= link_to 'Following', user_followers_path(@user), style: 'color:white;'%></li>
@@ -13,4 +13,22 @@
       <li>Settings</li>
     </ul>
   </div>
+</div>
+<div id="sidebar2">
+  <div class="col-sm-6">
+    <div id="user-logo">
+        <%= image_tag @user.selfie.url(:thumb), class:"img-responsive center-block" %>
+    </div>
+  </div>
+  <div class="left-navigation col-sm-6" >
+    <ul>
+      <li><strong>Your Account</strong></li>
+      <li><%= link_to 'Looks', user_path(@user), style: 'color:white;'%></li>
+      <li><%= link_to 'Profile', edit_user_path(@user), style: 'color:white;'%></li>
+      <li><%= link_to 'Following', user_followers_path(@user), style: 'color:white;'%></li>
+      <li><%= link_to 'Collection', user_bookmarks_path(@user), style: 'color:white;'%></li>
+      <li>Settings</li>
+    </ul>
+  </div>
+
 </div>

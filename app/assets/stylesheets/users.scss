@@ -39,6 +39,7 @@
     padding: 0px;
     min-height: 100%;
 }
+
 #user-logo {
     max-width: 100%;
 
@@ -63,6 +64,33 @@
     padding: 5px 0px 5px 40px;
 }
 #sidebar1 ul >li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-left: 5px solid white;
+    color: white;
+    font-weight: bolder;
+    padding-left: 35px;
+}
+#sidebar2 {
+    background: #F17153;
+    background: linear-gradient(#4a4cc9, #6a6cba,#b6b6dd,#77a0b8, #518cb0, #1879b4);
+    filter: grayscale(0.6);;
+    padding: 0px;
+    margin: 0px;
+    min-height: 100%;
+
+}
+#sidebar2 ul {
+    color: #fff;
+    list-style: none;
+    padding-left: 0px;
+}
+#sidebar2 ul::first-line {
+    color: rgba(255, 255, 255, 0.5);
+}
+#sidebar2 ul > li, h5 {
+    padding: 5px 0px 5px 40px;
+}
+#sidebar2 ul >li:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-left: 5px solid white;
     color: white;

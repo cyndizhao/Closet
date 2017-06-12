@@ -25,7 +25,7 @@
               <tr>
                 <th>Selfie</th>
                 <th>Name</th>
-                <th>Brief Introduction</th>
+                <th class="follower-description">Brief Introduction</th>
                 <th class="center-text">Connection</th>
               </tr>
             </thead>
@@ -47,7 +47,7 @@
                           <% end %>
                           <a>
                           </td>
-                        <td><%= p.description %></td>
+                        <td class="follower-description"><%= p.description %></td>
                         <td class="center-text">
                           <% if current_user.find_whether_you_followed_the_person(p) %>
                             <div>Following</div>
@@ -74,7 +74,7 @@
                         <% end %>
                         <a>
                         </td>
-                      <td><%= f.description %></td>
+                      <td class="follower-description"><%= f.description %></td>
                       <td class="center-text">
                         <%= link_to "Unfollow", user_following_path(current_user, f.following_id), class:'btn btn-default purple-button', method: :delete%>
                       <td>

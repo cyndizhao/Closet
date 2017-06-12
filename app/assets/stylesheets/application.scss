@@ -141,7 +141,7 @@ body{
  .footer .acount-icon .fa{margin-right:25px;}
 
  @media (min-width: 768px) {
-     .bs-dark .dropdown:hover {background-color: #000;}
+  .bs-dark .dropdown:hover {background-color: #000;}
  	.bs-dark .dropdown:hover .dropdown-menu {
  	  display: block;
  	}
@@ -152,5 +152,49 @@ body{
  	  width:260px;
  	  height:32px;
  	}
-
+  #sidebar2{
+    display: none;
+  }
  }
+
+ @media (max-width:768px) {
+   #sidebar1{
+     display: none;
+   }
+   #sidebar2 {
+     padding-top: 2%;
+     padding-bottom: 2%;
+    img{
+      margin-top: 0px;
+    }
+   }
+
+   #greeting{
+     height:100px;
+     background-color: #dedfe8;
+     text-align: center;
+     h3{
+       display: none;
+     }
+   }
+   #followers{
+     .follower-description{
+       display: none;
+     }
+   }
+   .col-sm-2{
+     width: 24%;
+     display: inline-block;
+   }
+ }
+@media (max-width:480px) {
+  #modal {
+     .ip_slide{
+       width: 330px;
+     }
+   }
+   .col-sm-2{
+     width: 49%;
+     display: inline-block;
+   }
+}

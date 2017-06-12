@@ -1,5 +1,5 @@
 <!-- modal body content-->
-<div class="iPictures" data-interaction="hover">
+<div class="iPictures" data-interaction="hover" id="modal">
   <div class="ip_slide">
     <%= image_tag @post.picture.url(:medium), class:"img-responsive center-block ip_tooltipImg" %>
     <% @post.items.each do |i| %>
