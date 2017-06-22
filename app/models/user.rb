@@ -27,6 +27,7 @@ class User < ApplicationRecord
                     format: VALID_EMAIL_REGEX
 
   before_validation :downcase_email
+  before_save :set_is_public
 
   def followed_users
     User.select('users.*','followings.id AS following_id').joins(:followings).where('followings.follower_id = ?', self.id)
@@ -52,4 +53,9 @@ class User < ApplicationRecord
   def is_business_user?
     business_user == true
   end
+
+  def set_is_public
+    return self.business_user ? self.is_public == false : self.is_public == true
+  end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622205938) do
+ActiveRecord::Schema.define(version: 20170622211318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20170622205938) do
     t.datetime "selfie_updated_at"
     t.boolean  "business_user"
     t.string   "company_name"
+    t.boolean  "is_public"
   end
 
   add_foreign_key "bookmarks", "posts"
