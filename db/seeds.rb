@@ -34,3 +34,4 @@
   Brand.create(name: b)
 end
 puts "brands generated"
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')

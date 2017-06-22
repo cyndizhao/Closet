@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :get_user, only:[:show, :edit, :update]
   before_action :authenticate_user!, only:[:update, :edit, :show]
+  before_action :user_published?, except:[:new, :create]
   def new
     @user = User.new
   end

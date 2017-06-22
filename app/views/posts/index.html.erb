@@ -68,7 +68,7 @@
     </ul>
     </div>
   </div>
-  <% if user_signed_in? %>
+  <% if user_signed_in? && current_user.is_public %>
   <% list_of_post = [] %>
   <div class="row" style="padding:20px 0px;">
     <h2 class="boxtitle horizontal-line-h2"><span>From Your Following</span></h2>
