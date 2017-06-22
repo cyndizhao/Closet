@@ -21,4 +21,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :business_user?
 
+  def user_published?
+    if !current_user.is_public
+      redirect_to root_path, alert: 'waiting for approval!'
+    end
+  end
+  helper_method :user_published?
 end

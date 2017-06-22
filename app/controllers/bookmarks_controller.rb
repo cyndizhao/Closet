@@ -1,5 +1,6 @@
 class BookmarksController < ApplicationController
   before_action :authenticate_user!
+  before_action :user_published?
   def index
     @user = current_user
   end

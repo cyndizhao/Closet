@@ -1,5 +1,6 @@
 class FollowersController < ApplicationController
   before_action :authenticate_user!
+  before_action :user_published?
   def index
     @user = User.find(params[:user_id])
     if @user == current_user

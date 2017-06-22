@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :get_post, only:[:show, :update, :edit, :destroy]
   before_action :post_params, only:[:update, :create]
+  before_action :user_published?, except:[:index, :show]
 
   def index
     @users = User.all
@@ -18,7 +19,7 @@ class PostsController < ApplicationController
     end
 
     #New posts from friend
-    if user_signed_in?
+    if user_signed_in? && current_user.is_public
       list_of_posts = []
       current_user.people_you_follow.each do |u|
         u.posts.each do |post|
