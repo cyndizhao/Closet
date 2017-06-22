@@ -42,6 +42,9 @@ gem 'chosen-rails'
 gem 'gmaps4rails'
 gem 'underscore-rails'
 
+gem 'devise'
+gem 'activeadmin', github: 'activeadmin'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -61,6 +64,7 @@ group :development do
   gem 'interactive_editor'
   gem 'awesome_print'
   gem 'hirb'
+  gem 'rails-erd'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

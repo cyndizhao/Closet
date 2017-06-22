@@ -21,6 +21,7 @@ app/assets/images/logo.png
 app/assets/images/background-women.jpg
 app/assets/images/background-men.jpg
 app/assets/images/dark-blue-pin.svg
+db/migrate/
 
 public/
 *.DS_Store
